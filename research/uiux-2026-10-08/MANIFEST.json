@@ -31,5 +31,8 @@
   "separation_rule": "Do not mix illustrative evaluation cases into training seeds; public illustration is not a blind held-out benchmark",
   "maintaining_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/4",
   "antipattern_count": 10,
-  "verification_rule_count": 12
+  "verification_rule_count": 12,
+  "partial_claim_check_count": 6,
+  "partially_checked_documents": 5,
+  "primary_corpus_fully_verified": false
 }
