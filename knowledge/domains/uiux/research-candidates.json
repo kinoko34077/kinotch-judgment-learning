@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "stage": "research_unverified",
+  "records": [
+    {
+      "id": "K-IA-001",
+      "title": "主要taskからIAを設計",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "複数機能の探索。単一極小taskなら階層過剰を避ける",
+      "applicability_notes": "複数機能の探索。単一極小taskなら階層過剰を避ける",
+      "contraindications_or_reversal_notes": "複数機能の探索。単一極小taskなら階層過剰を避ける",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-DATA-001",
+      "title": "比較は共通軸へ",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "homogeneous multi-attribute comparison、sort。画像/異種構造なら別形式",
+      "applicability_notes": "homogeneous multi-attribute comparison、sort。画像/異種構造なら別形式",
+      "contraindications_or_reversal_notes": "homogeneous multi-attribute comparison、sort。画像/異種構造なら別形式",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-DATA-002",
+      "title": "cardは視覚的まとまりへ",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "mixed visual content。大量列比較には不向き",
+      "applicability_notes": "mixed visual content。大量列比較には不向き",
+      "contraindications_or_reversal_notes": "mixed visual content。大量列比較には不向き",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-EFF-001",
+      "title": "可視標準経路＋高速経路",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "高頻度professional work。一回利用にshortcut過多は避ける",
+      "applicability_notes": "高頻度professional work。一回利用にshortcut過多は避ける",
+      "contraindications_or_reversal_notes": "高頻度professional work。一回利用にshortcut過多は避ける",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-DISC-001",
+      "title": "段階的開示",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "多機能UI。安全重要状態は隠さない",
+      "applicability_notes": "多機能UI。安全重要状態は隠さない",
+      "contraindications_or_reversal_notes": "多機能UI。安全重要状態は隠さない",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-STATE-001",
+      "title": "状態と復帰を一級要件化",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "edit/async/sync。瞬時完全可逆操作へstatus過多は避ける",
+      "applicability_notes": "edit/async/sync。瞬時完全可逆操作へstatus過多は避ける",
+      "contraindications_or_reversal_notes": "edit/async/sync。瞬時完全可逆操作へstatus過多は避ける",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-ERR-001",
+      "title": "可逆操作はUndo優先候補",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "低中risk/高頻度。不可逆高損害にはconfirm等",
+      "applicability_notes": "低中risk/高頻度。不可逆高損害にはconfirm等",
+      "contraindications_or_reversal_notes": "低中risk/高頻度。不可逆高損害にはconfirm等",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-A11Y-001",
+      "title": "native semantics優先",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "Web全般。custom widgetは完全keyboard model",
+      "applicability_notes": "Web全般。custom widgetは完全keyboard model",
+      "contraindications_or_reversal_notes": "Web全般。custom widgetは完全keyboard model",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-A11Y-002",
+      "title": "規格最低値とproduct target区別",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "touch/pointer。AA/AAA、CSS px/pt/dp混同禁止",
+      "applicability_notes": "touch/pointer。AA/AAA、CSS px/pt/dp混同禁止",
+      "contraindications_or_reversal_notes": "touch/pointer。AA/AAA、CSS px/pt/dp混同禁止",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-PRO-001",
+      "title": "複数操作経路を同じcommandへ",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "IDE/DAW/editor。単純UIでは経路過多を避ける",
+      "applicability_notes": "IDE/DAW/editor。単純UIでは経路過多を避ける",
+      "contraindications_or_reversal_notes": "IDE/DAW/editor。単純UIでは経路過多を避ける",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-AI-001",
+      "title": "AI能力と限界の校正",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "probabilistic AI。deterministic processingに不要説明を強制しない",
+      "applicability_notes": "probabilistic AI。deterministic processingに不要説明を強制しない",
+      "contraindications_or_reversal_notes": "probabilistic AI。deterministic processingに不要説明を強制しない",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-AI-002",
+      "title": "AI変更をcorrect/reject/revert可能に",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "consequential action。軽いsuggestionに過剰modal不要",
+      "applicability_notes": "consequential action。軽いsuggestionに過剰modal不要",
+      "contraindications_or_reversal_notes": "consequential action。軽いsuggestionに過剰modal不要",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-PERF-001",
+      "title": "field performanceとtask latency分離",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "Web app。nativeへCWV直適用しない",
+      "applicability_notes": "Web app。nativeへCWV直適用しない",
+      "contraindications_or_reversal_notes": "Web app。nativeへCWV直適用しない",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-REQ-001",
+      "title": "goal→scenario→acceptance追跡",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "software全般。prototypeでは軽量化",
+      "applicability_notes": "software全般。prototypeでは軽量化",
+      "contraindications_or_reversal_notes": "software全般。prototypeでは軽量化",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-REQ-002",
+      "title": "標準暗黙要件はAIが先行補完",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "low-risk/reversible/common expectation。business/legal/safety semanticsは確認",
+      "applicability_notes": "low-risk/reversible/common expectation。business/legal/safety semanticsは確認",
+      "contraindications_or_reversal_notes": "low-risk/reversible/common expectation。business/legal/safety semanticsは確認",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-ARCH-001",
+      "title": "複雑状態遷移を明示model化",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "async/approval/retry。二状態に過剰framework不要",
+      "applicability_notes": "async/approval/retry。二状態に過剰framework不要",
+      "contraindications_or_reversal_notes": "async/approval/retry。二状態に過剰framework不要",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-ARCH-002",
+      "title": "抽象化は確認済み変動点へ",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "stable variation。未確定futureを万能framework化しない",
+      "applicability_notes": "stable variation。未確定futureを万能framework化しない",
+      "contraindications_or_reversal_notes": "stable variation。未確定futureを万能framework化しない",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-VERIFY-001",
+      "title": "machine/human verification分離",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "全UI検収。automated pass≠UX pass",
+      "applicability_notes": "全UI検収。automated pass≠UX pass",
+      "contraindications_or_reversal_notes": "全UI検収。automated pass≠UX pass",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-REDESIGN-001",
+      "title": "UI追加前に問題階層を上げる",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "症状反復/UI増殖。migration/safety costと比較。**研究上のsynthesis**",
+      "applicability_notes": "症状反復/UI増殖。migration/safety costと比較。**研究上のsynthesis**",
+      "contraindications_or_reversal_notes": "症状反復/UI増殖。migration/safety costと比較。**研究上のsynthesis**",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    },
+    {
+      "id": "K-I18N-001",
+      "title": "日本語を実文字列・組版で検証",
+      "domain": "uiux-and-software-design",
+      "guidance_from_report": "ja-JP。英語mockup幅を固定しない",
+      "applicability_notes": "ja-JP。英語mockup幅を固定しない",
+      "contraindications_or_reversal_notes": "ja-JP。英語mockup幅を固定しない",
+      "authority": "research_synthesis_unapproved",
+      "provenance": {
+        "kind": "secondary_issue_extraction",
+        "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+        "original_bundle_verified": false
+      },
+      "evidence_status": "primary_sources_not_yet_checked",
+      "adoption_status": "candidate"
+    }
+  ]
+}
