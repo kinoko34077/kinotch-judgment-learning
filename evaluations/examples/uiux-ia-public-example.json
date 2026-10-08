@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "evaluation_id": "EVAL-IA-001",
+  "visibility": "public_example_not_blind",
+  "scenario": "設定画面が15 tabに増え、searchでしか目的設定を見つけられない。",
+  "question": "search精度改善だけの提案をどう評価するか。",
+  "expected_generalization_from_report": "search改善だけでなくIA再構成、tree testing、contextual relocationを比較する。",
+  "knowledge_ids": [
+    "K-IA-001",
+    "K-REDESIGN-001"
+  ],
+  "training_seed": false,
+  "independent_evaluation": "not_yet_performed",
+  "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7"
+}
