@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "stage": "not_verified",
+  "stage": "claim_coverage_only",
   "entries": [
     {
       "id": "DS-01",
@@ -17,7 +17,7 @@
         "CHECK-MATERIAL3-ADAPTIVE"
       ],
       "checked_on": "2026-10-09",
-      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "DS-02",
@@ -25,11 +25,16 @@
       "category": "design_system",
       "reported_guidance": "platform convention、hierarchy、navigation、input",
       "reported_transfer_boundary": "Apple navigationをWeb/Windowsへ直輸入しない",
-      "primary_source_url": null,
+      "primary_source_url": "https://developer.apple.com/design/human-interface-guidelines/design-principles",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-APPLE-HIG-PRINCIPLES"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "DS-03",
@@ -37,11 +42,16 @@
       "category": "design_system",
       "reported_guidance": "productivity UIの一貫性、focus、AT",
       "reported_transfer_boundary": "高密度を初心者向けへ強制しない",
-      "primary_source_url": null,
+      "primary_source_url": "https://s2.spectrum.adobe.com/index.html",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-SPECTRUM2-INTRO"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "DS-04",
@@ -49,11 +59,16 @@
       "category": "design_system",
       "reported_guidance": "platform awareness、adaptive layout、content clarity",
       "reported_transfer_boundary": "component採用だけでa11y適合としない",
-      "primary_source_url": null,
+      "primary_source_url": "https://fluent2.microsoft.design/design-principles",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-FLUENT2-PLATFORM"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "DS-05",
@@ -61,11 +76,16 @@
       "category": "design_system",
       "reported_guidance": "enterprise/data-heavy UI、a11y testing status",
       "reported_transfer_boundary": "desktop密度をmobileへ強制しない",
-      "primary_source_url": null,
+      "primary_source_url": "https://www.carbondesignsystem.com/building-blocks/core/components/data-table/code",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-CARBON-DATA-TABLE"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "DS-06",
@@ -73,11 +93,16 @@
       "category": "design_system",
       "reported_guidance": "card/table/split viewをtask/data shapeで選ぶ",
       "reported_transfer_boundary": "AWS Consoleの密度は普遍基準ではない",
-      "primary_source_url": null,
+      "primary_source_url": "https://cloudscape.design/patterns/resource-management/view/",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-CLOUDSCAPE-TABLE-CARD"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "DS-07",
@@ -85,11 +110,16 @@
       "category": "design_system",
       "reported_guidance": "resource index、filter/sort/bulk action、saved views",
       "reported_transfer_boundary": "commerce modelは普遍ではない。Web Components移行中のAPIと概念を分離",
-      "primary_source_url": null,
+      "primary_source_url": "https://shopify.dev/docs/api/app-home/latest/web-components/layout-and-structure/table",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-POLARIS-WEBCOMP-TABLE"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "DS-08",
@@ -97,11 +127,16 @@
       "category": "design_system",
       "reported_guidance": "system consistencyとtask needsを両立",
       "reported_transfer_boundary": "consistency自体を目的化しない",
-      "primary_source_url": null,
+      "primary_source_url": "https://atlassian.design/components/pragmatic-drag-and-drop/accessibility-guidelines/",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-ATLASSIAN-DRAG-ALT"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "DS-09",
@@ -109,11 +144,16 @@
       "category": "design_system",
       "reported_guidance": "standard path＋keyboard accelerator",
       "reported_transfer_boundary": "shortcutを唯一の経路にしない",
-      "primary_source_url": null,
+      "primary_source_url": "https://primer.style/product/getting-started/",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-PRIMER-EFFICIENCY"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "DS-10",
@@ -121,11 +161,16 @@
       "category": "design_system",
       "reported_guidance": "base componentsのstandard/a11y foundation",
       "reported_transfer_boundary": "app全体のWCAG適合を保証しない",
-      "primary_source_url": null,
+      "primary_source_url": "https://www.lightningdesignsystem.com/2e1ef8501/p/641741",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-SLDS2-A11Y"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "DS-11",
@@ -133,11 +178,16 @@
       "category": "design_system",
       "reported_guidance": "workflow/floorplan、table variant、draft/message",
       "reported_transfer_boundary": "large desktop tableをmobileへ無理に縮小しない",
-      "primary_source_url": null,
+      "primary_source_url": "https://experience.sap.com/fiori-design-web/table-overview/",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-FIORI-RESPONSIVE"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "DS-12",
@@ -154,7 +204,7 @@
         "CHECK-GOVUK-ERROR"
       ],
       "checked_on": "2026-10-09",
-      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "DS-13",
@@ -172,7 +222,7 @@
         "CHECK-USWDS-TEST"
       ],
       "checked_on": "2026-10-09",
-      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "DS-14",
@@ -180,11 +230,16 @@
       "category": "design_system",
       "reported_guidance": "enterprise data display、numerical alignment",
       "reported_transfer_boundary": "visual densityをconsumer appへ無条件転用しない",
-      "primary_source_url": null,
+      "primary_source_url": "https://ant.design/docs/spec/data-format/",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-ANT-NUMERIC-ALIGN"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "STD-01",
@@ -202,7 +257,7 @@
         "CHECK-WCAG22-258"
       ],
       "checked_on": "2026-10-09",
-      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "STD-02",
@@ -219,7 +274,7 @@
         "CHECK-WCAG3-DRAFT"
       ],
       "checked_on": "2026-10-09",
-      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "STD-03",
@@ -236,7 +291,7 @@
         "CHECK-APG-KEYBOARD"
       ],
       "checked_on": "2026-10-09",
-      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "STD-04",
@@ -261,11 +316,16 @@
       "category": "standard_or_public_guidance",
       "reported_status": "usability in context of use",
       "reported_usage_caveat": "具体UIルールに短絡しない",
-      "primary_source_url": null,
+      "primary_source_url": "https://www.iso.org/standard/63500.html",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-ISO9241-11-SCOPE"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "STD-06",
@@ -273,11 +333,17 @@
       "category": "standard_or_public_guidance",
       "reported_status": "human-centred / conceptual interaction design",
       "reported_usage_caveat": "有料本文の未読箇所を推定しない",
-      "primary_source_url": null,
+      "primary_source_url": "https://www.iso.org/standard/77520.html",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-ISO9241-210-SCOPE",
+        "CHECK-ISO9241-115-SCOPE"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "STD-07",
@@ -294,7 +360,7 @@
         "CHECK-ISO25010-MODEL"
       ],
       "checked_on": "2026-10-09",
-      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "STD-08",
@@ -312,7 +378,7 @@
         "CHECK-ISO29148-DIS"
       ],
       "checked_on": "2026-10-09",
-      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "STD-09",
@@ -329,7 +395,7 @@
         "CHECK-NIST-RMF"
       ],
       "checked_on": "2026-10-09",
-      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "STD-10",
@@ -346,7 +412,7 @@
         "CHECK-CWV"
       ],
       "checked_on": "2026-10-09",
-      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     },
     {
       "id": "STD-11",
@@ -363,7 +429,9 @@
         "CHECK-GHERKIN-THEN"
       ],
       "checked_on": "2026-10-09",
-      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
+      "verification_scope_warning": "Only identified claims against public publisher text; neither full-document audit nor original Deep Research catalog completeness is established."
     }
-  ]
+  ],
+  "full_documents_verified": false,
+  "original_research_source_catalog_complete": false
 }

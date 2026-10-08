@@ -32,10 +32,12 @@
   "maintaining_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/4",
   "antipattern_count": 10,
   "verification_rule_count": 12,
-  "partial_claim_check_count": 15,
-  "partially_checked_documents": 13,
+  "partial_claim_check_count": 29,
+  "partially_checked_documents": 27,
   "primary_corpus_fully_verified": false,
-  "partially_checked_inventory_entries": 12,
-  "unverified_inventory_entries": 13,
-  "batch2_claim_count": 9
+  "partially_checked_inventory_entries": 25,
+  "unverified_inventory_entries": 0,
+  "batch2_claim_count": 9,
+  "batch3_claim_count": 14,
+  "all_inventory_entries_have_bounded_claims": true
 }
