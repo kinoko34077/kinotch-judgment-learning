@@ -93,5 +93,29 @@ assert.equal(manifest.knowledge_record_count,k.records.length);
 assert.equal(manifest.tradeoff_count,t.records.length);
 assert.equal(manifest.learning_seed_count,q.records.length);
 assert.equal(manifest.inventory_entry_count,s.entries.length);
+
+const trace = await json("knowledge/domains/uiux/evidence-traceability-audit.v1.json");
+assert.equal(trace.records.length,20);
+assert.equal(trace.no_general_rule_certification,true);
+unique("knowledge trace IDs",trace.records.map(x=>x.knowledge_id));
+const linkedClaimIds=new Set(checks.map(x=>x.id));
+assert.deepEqual(new Set(trace.records.map(x=>x.knowledge_id)),new Set(k.records.map(x=>x.id)));
+for (const row of trace.records) {
+  assert.equal(row.personal_approval,false);
+  assert.equal(row.runtime_eligible,false);
+  assert.equal(row.conditions_atomized_and_validated,false);
+  assert.equal(row.candidate_authority,"research_synthesis_unapproved");
+  assert.ok(row.unverified_scope.length>0);
+  for (const edge of row.primary_claim_links) {
+    assert.ok(linkedClaimIds.has(edge.claim_id),row.knowledge_id+" references nonexistent claim");
+    assert.ok(["context_only","partial_direct"].includes(edge.relationship));
+  }
+  const expected = row.primary_claim_links.some(y=>y.relationship==="partial_direct") ? "partial_claim_support" : row.primary_claim_links.length ? "context_only" : "no_direct_claim";
+  assert.equal(row.claim_support_level,expected);
+}
+assert.equal(trace.records.filter(x=>x.claim_support_level==="partial_claim_support").length,7);
+assert.equal(trace.records.filter(x=>x.claim_support_level==="context_only").length,7);
+assert.equal(trace.records.filter(x=>x.claim_support_level==="no_direct_claim").length,6);
+
 console.log("PASS: 20 knowledge, 10 tradeoffs, 14 seeds, 25 inventory, 10 antipatterns, 12 verification rules, 1 isolated illustrative evaluation.");
 console.log("LIMITATION: This test checks structure and recorded provenance only; it cannot reproduce external research verification or user approval.");
