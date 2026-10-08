@@ -1,0 +1,366 @@
+{
+  "schema_version": 1,
+  "record_kind": "evidence_traceability_audit",
+  "source_corpus": "29 bounded claims from 25 Issue-derived source entries; no full source catalog or original ZIP verified",
+  "no_general_rule_certification": true,
+  "records": [
+    {
+      "knowledge_id": "K-IA-001",
+      "knowledge_title": "主要taskからIAを設計",
+      "original_issue_summary": "複数機能の探索。単一極小taskなら階層過剰を避ける",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [
+        {
+          "claim_id": "CHECK-ISO9241-115-SCOPE",
+          "relationship": "context_only"
+        }
+      ],
+      "unverified_scope": "主要taskから情報構造を設計する具体的な比較試験や階層量の閾値",
+      "claim_support_level": "context_only",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-DATA-001",
+      "knowledge_title": "比較は共通軸へ",
+      "original_issue_summary": "homogeneous multi-attribute comparison、sort。画像/異種構造なら別形式",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [
+        {
+          "claim_id": "CHECK-CLOUDSCAPE-TABLE-CARD",
+          "relationship": "partial_direct"
+        },
+        {
+          "claim_id": "CHECK-USWDS-TABLE",
+          "relationship": "partial_direct"
+        },
+        {
+          "claim_id": "CHECK-CARBON-DATA-TABLE",
+          "relationship": "context_only"
+        }
+      ],
+      "unverified_scope": "異種構造の場合の適用反転を全プラットフォームで実証した研究",
+      "claim_support_level": "partial_claim_support",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-DATA-002",
+      "knowledge_title": "cardは視覚的まとまりへ",
+      "original_issue_summary": "mixed visual content。大量列比較には不向き",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [
+        {
+          "claim_id": "CHECK-CLOUDSCAPE-TABLE-CARD",
+          "relationship": "partial_direct"
+        },
+        {
+          "claim_id": "CHECK-USWDS-TABLE",
+          "relationship": "partial_direct"
+        }
+      ],
+      "unverified_scope": "カード採用と比較効率の一般化・実測",
+      "claim_support_level": "partial_claim_support",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-EFF-001",
+      "knowledge_title": "可視標準経路＋高速経路",
+      "original_issue_summary": "高頻度professional work。一回利用にshortcut過多は避ける",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [
+        {
+          "claim_id": "CHECK-PRIMER-EFFICIENCY",
+          "relationship": "context_only"
+        }
+      ],
+      "unverified_scope": "可視標準経路とショートカットの併用が最適という具体的な一次証拠",
+      "claim_support_level": "context_only",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-DISC-001",
+      "knowledge_title": "段階的開示",
+      "original_issue_summary": "多機能UI。安全重要状態は隠さない",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [],
+      "unverified_scope": "段階的開示と安全重要状態の例外に関する一次資料",
+      "claim_support_level": "no_direct_claim",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-STATE-001",
+      "knowledge_title": "状態と復帰を一級要件化",
+      "original_issue_summary": "edit/async/sync。瞬時完全可逆操作へstatus過多は避ける",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [],
+      "unverified_scope": "編集・保存・失敗・再開状態の明示を扱う一次資料と操作検証",
+      "claim_support_level": "no_direct_claim",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-ERR-001",
+      "knowledge_title": "可逆操作はUndo優先候補",
+      "original_issue_summary": "低中risk/高頻度。不可逆高損害にはconfirm等",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [
+        {
+          "claim_id": "CHECK-GOVUK-ERROR",
+          "relationship": "context_only"
+        }
+      ],
+      "unverified_scope": "Undo対confirmの危険度と頻度に応じた比較実証（GOV.UKはフォームエラー表示のみ）",
+      "claim_support_level": "context_only",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-A11Y-001",
+      "knowledge_title": "native semantics優先",
+      "original_issue_summary": "Web全般。custom widgetは完全keyboard model",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [
+        {
+          "claim_id": "CHECK-APG-KEYBOARD",
+          "relationship": "partial_direct"
+        },
+        {
+          "claim_id": "CHECK-SLDS2-A11Y",
+          "relationship": "context_only"
+        }
+      ],
+      "unverified_scope": "native semantics優先という比較主張の原典、および対象アプリの完全なキーボード検証",
+      "claim_support_level": "partial_claim_support",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-A11Y-002",
+      "knowledge_title": "規格最低値とproduct target区別",
+      "original_issue_summary": "touch/pointer。AA/AAA、CSS px/pt/dp混同禁止",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [
+        {
+          "claim_id": "CHECK-WCAG22-258",
+          "relationship": "partial_direct"
+        },
+        {
+          "claim_id": "CHECK-WCAG3-DRAFT",
+          "relationship": "context_only"
+        }
+      ],
+      "unverified_scope": "AA/AAA・各OSのproduct targetとの違い全般を説明する追加一次資料",
+      "claim_support_level": "partial_claim_support",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-PRO-001",
+      "knowledge_title": "複数操作経路を同じcommandへ",
+      "original_issue_summary": "IDE/DAW/editor。単純UIでは経路過多を避ける",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [
+        {
+          "claim_id": "CHECK-PRIMER-EFFICIENCY",
+          "relationship": "context_only"
+        }
+      ],
+      "unverified_scope": "複数操作入口を共通commandへ集約する実装効果の原典",
+      "claim_support_level": "context_only",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-AI-001",
+      "knowledge_title": "AI能力と限界の校正",
+      "original_issue_summary": "probabilistic AI。deterministic processingに不要説明を強制しない",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [
+        {
+          "claim_id": "CHECK-NIST-RMF",
+          "relationship": "context_only"
+        }
+      ],
+      "unverified_scope": "確率的AIの能力・不確実性の校正方法を直接示す研究",
+      "claim_support_level": "context_only",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-AI-002",
+      "knowledge_title": "AI変更をcorrect/reject/revert可能に",
+      "original_issue_summary": "consequential action。軽いsuggestionに過剰modal不要",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [],
+      "unverified_scope": "AI変更の承認/拒否/差分/取り消しUIに関する直接の一次研究",
+      "claim_support_level": "no_direct_claim",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-PERF-001",
+      "knowledge_title": "field performanceとtask latency分離",
+      "original_issue_summary": "Web app。nativeへCWV直適用しない",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [
+        {
+          "claim_id": "CHECK-CWV",
+          "relationship": "partial_direct"
+        }
+      ],
+      "unverified_scope": "CWV field measurementとtask latencyを比較した根拠、native/desktop適用境界",
+      "claim_support_level": "partial_claim_support",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-REQ-001",
+      "knowledge_title": "goal→scenario→acceptance追跡",
+      "original_issue_summary": "software全般。prototypeでは軽量化",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [
+        {
+          "claim_id": "CHECK-GHERKIN-THEN",
+          "relationship": "partial_direct"
+        },
+        {
+          "claim_id": "CHECK-ISO29148-STATUS",
+          "relationship": "context_only"
+        }
+      ],
+      "unverified_scope": "goal→scenario→acceptanceの全連鎖、2018版規格の有料本文",
+      "claim_support_level": "partial_claim_support",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-REQ-002",
+      "knowledge_title": "標準暗黙要件はAIが先行補完",
+      "original_issue_summary": "low-risk/reversible/common expectation。business/legal/safety semanticsは確認",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [],
+      "unverified_scope": "暗黙要件補完が安全な条件とbusiness/legal semanticsの質問ゲートの実証",
+      "claim_support_level": "no_direct_claim",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-ARCH-001",
+      "knowledge_title": "複雑状態遷移を明示model化",
+      "original_issue_summary": "async/approval/retry。二状態に過剰framework不要",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [],
+      "unverified_scope": "async state machineに関する設計・実装一次資料",
+      "claim_support_level": "no_direct_claim",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-ARCH-002",
+      "knowledge_title": "抽象化は確認済み変動点へ",
+      "original_issue_summary": "stable variation。未確定futureを万能framework化しない",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [],
+      "unverified_scope": "抽象化を安定した変動点に限るという比較事例・実証",
+      "claim_support_level": "no_direct_claim",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-VERIFY-001",
+      "knowledge_title": "machine/human verification分離",
+      "original_issue_summary": "全UI検収。automated pass≠UX pass",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [
+        {
+          "claim_id": "CHECK-USWDS-TEST",
+          "relationship": "partial_direct"
+        },
+        {
+          "claim_id": "CHECK-ISO9241-11-SCOPE",
+          "relationship": "context_only"
+        }
+      ],
+      "unverified_scope": "自動試験と実利用者UX判定の定量的な比較実証",
+      "claim_support_level": "partial_claim_support",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-REDESIGN-001",
+      "knowledge_title": "UI追加前に問題階層を上げる",
+      "original_issue_summary": "症状反復/UI増殖。migration/safety costと比較。**研究上のsynthesis**",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [
+        {
+          "claim_id": "CHECK-ISO9241-115-SCOPE",
+          "relationship": "context_only"
+        }
+      ],
+      "unverified_scope": "UI追加前に問題構造を再定義する一般原理の直接実証。研究合成であり規格そのものではない",
+      "claim_support_level": "context_only",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    },
+    {
+      "knowledge_id": "K-I18N-001",
+      "knowledge_title": "日本語を実文字列・組版で検証",
+      "original_issue_summary": "ja-JP。英語mockup幅を固定しない",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "primary_claim_links": [
+        {
+          "claim_id": "CHECK-JLREQ-SCOPE",
+          "relationship": "context_only"
+        }
+      ],
+      "unverified_scope": "日本語実文字列・ルビ・font fallback・reflowを使用した実際のUI検証",
+      "claim_support_level": "context_only",
+      "candidate_authority": "research_synthesis_unapproved",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "conditions_atomized_and_validated": false
+    }
+  ]
+}
