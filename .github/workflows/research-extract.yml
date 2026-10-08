@@ -1,0 +1,30 @@
+name: Research extraction validation
+on:
+  pull_request:
+    paths:
+      - 'research/uiux-2026-10-08/**'
+      - 'knowledge/domains/uiux/**'
+      - 'learning/seeds/uiux-research-seeds.json'
+      - 'evaluations/examples/uiux-ia-public-example.json'
+      - 'schemas/research-candidate.v1.schema.json'
+      - 'scripts/validate-research-extract.mjs'
+      - '.github/workflows/research-extract.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/uiux-2026-10-08/**'
+      - 'knowledge/domains/uiux/**'
+      - 'learning/seeds/uiux-research-seeds.json'
+      - 'evaluations/examples/uiux-ia-public-example.json'
+      - 'schemas/research-candidate.v1.schema.json'
+      - 'scripts/validate-research-extract.mjs'
+      - '.github/workflows/research-extract.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate source-derived research data
+        run: node scripts/validate-research-extract.mjs
