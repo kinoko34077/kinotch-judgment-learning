@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "stage": "research_unverified",
+  "records": [
+    {
+      "id": "TRADEOFF-001",
+      "axis": "clarity / efficiency",
+      "prefer_left_when": "novice、低頻度、高risk",
+      "prefer_right_when": "expert、高頻度、可逆",
+      "integration_or_reversal": "visible＋accelerator",
+      "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "status": "unverified_research_extract"
+    },
+    {
+      "id": "TRADEOFF-002",
+      "axis": "simplicity / capability",
+      "prefer_left_when": "task少数、一回利用",
+      "prefer_right_when": "professional、長時間、多様task",
+      "integration_or_reversal": "progressive disclosure",
+      "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "status": "unverified_research_extract"
+    },
+    {
+      "id": "TRADEOFF-003",
+      "axis": "density / readability",
+      "prefer_left_when": "desktop、monitoring、comparison",
+      "prefer_right_when": "touch、初見、重要情報少数",
+      "integration_or_reversal": "density mode、column priority",
+      "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "status": "unverified_research_extract"
+    },
+    {
+      "id": "TRADEOFF-004",
+      "axis": "consistency / context",
+      "prefer_left_when": "意味・riskが同じ",
+      "prefer_right_when": "task構造が異なる",
+      "integration_or_reversal": "semantics共通、presentation適応",
+      "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "status": "unverified_research_extract"
+    },
+    {
+      "id": "TRADEOFF-005",
+      "axis": "standard / custom speed",
+      "prefer_left_when": "一般利用、OS convention",
+      "prefer_right_when": "expert、明確な速度利益",
+      "integration_or_reversal": "standard baseline＋optional accelerator",
+      "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "status": "unverified_research_extract"
+    },
+    {
+      "id": "TRADEOFF-006",
+      "axis": "error prevention / operation count",
+      "prefer_left_when": "irreversible、高損害",
+      "prefer_right_when": "reversible、高頻度",
+      "integration_or_reversal": "Undo/preview/risk-tiered confirmation",
+      "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "status": "unverified_research_extract"
+    },
+    {
+      "id": "TRADEOFF-007",
+      "axis": "flexibility / predictability",
+      "prefer_left_when": "heterogeneous expert workflows",
+      "prefer_right_when": "novice/high-risk",
+      "integration_or_reversal": "safe defaults＋explicit customization",
+      "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "status": "unverified_research_extract"
+    },
+    {
+      "id": "TRADEOFF-008",
+      "axis": "feature addition / simplification",
+      "prefer_left_when": "能力が本当に欠落",
+      "prefer_right_when": "同じ症状が複数UI",
+      "integration_or_reversal": "remove/merge/reorder優先比較",
+      "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "status": "unverified_research_extract"
+    },
+    {
+      "id": "TRADEOFF-009",
+      "axis": "abstraction / local optimization",
+      "prefer_left_when": "stable shared variation",
+      "prefer_right_when": "requirements探索中",
+      "integration_or_reversal": "concrete boundary first",
+      "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "status": "unverified_research_extract"
+    },
+    {
+      "id": "TRADEOFF-010",
+      "axis": "dev speed / maintainability",
+      "prefer_left_when": "disposable prototype",
+      "prefer_right_when": "production/shared state",
+      "integration_or_reversal": "vertical slice＋acceptance contract",
+      "issue_url": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "status": "unverified_research_extract"
+    }
+  ]
+}
