@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "created_from": "GitHub Issues #5 #6 #7, which summarized a user-provided 2026-10-08 Deep Research report",
+  "source_fidelity": "secondary_extraction_not_original_archive",
+  "original_zip_retrieved": false,
+  "original_46_source_catalog_verified": false,
+  "primary_sources_independently_verified": false,
+  "knowledge_record_count": 20,
+  "tradeoff_count": 10,
+  "learning_seed_count": 14,
+  "inventory_entry_count": 25,
+  "training_seed_ids": [
+    "Q-BAS-001",
+    "Q-CON-001",
+    "Q-BND-001",
+    "Q-RED-001",
+    "Q-STR-001",
+    "Q-IMP-001",
+    "Q-A11Y-001",
+    "Q-A11Y-002",
+    "Q-AI-001",
+    "Q-PERF-001",
+    "Q-REQ-001",
+    "Q-ABS-001",
+    "Q-VER-001",
+    "Q-I18N-001"
+  ],
+  "evaluations": [
+    "EVAL-IA-001"
+  ],
+  "separation_rule": "Do not mix illustrative evaluation cases into training seeds; public illustration is not a blind held-out benchmark",
+  "maintaining_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/4"
+}
