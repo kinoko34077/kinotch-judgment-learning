@@ -9,6 +9,8 @@ Canonical tracking: [#4](https://github.com/kinoko34077/kinotch-judgment-learnin
 - `knowledge/domains/uiux/research-candidates.json`: 20 candidate principles; compact applicability wording is **raw, not semantically disambiguated**.
 - `knowledge/domains/uiux/tradeoffs.json`: 10 conditional tradeoffs.
 - `research/uiux-2026-10-08/source-inventory.json`: 25 named external systems/standards from the Issue tables, **no source URL or clause verification yet**.
+- `knowledge/domains/uiux/antipatterns.json`: 10 reported anti-patterns, not independently verified.
+- `research/uiux-2026-10-08/verification-rules.json`: 12 candidate checks, not executed against a live UI.
 - `learning/seeds/uiux-research-seeds.json`: 14 AI-initial-answer examples. No human responses or personal approval are recorded.
 - `evaluations/examples/uiux-ia-public-example.json`: 1 **public illustrative** evaluation case; keep out of training seeds. Because it is public, it **cannot** substantiate a blind held-out evaluation on its own.
 
