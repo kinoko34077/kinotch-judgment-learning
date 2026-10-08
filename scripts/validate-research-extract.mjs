@@ -2,12 +2,12 @@ import {readFile} from "node:fs/promises";
 import assert from "node:assert/strict";
 const json = async path => JSON.parse(await readFile(new URL("../"+path, import.meta.url),"utf8"));
 const root="research/uiux-2026-10-08/";
-const [manifest,k,t,s,q,e,a,v,sch] = await Promise.all([
+const [manifest,k,t,s,q,e,a,v,sch,pc] = await Promise.all([
   json(root+"MANIFEST.json"),json("knowledge/domains/uiux/research-candidates.json"),
   json("knowledge/domains/uiux/tradeoffs.json"),json(root+"source-inventory.json"),
   json("learning/seeds/uiux-research-seeds.json"),json("evaluations/examples/uiux-ia-public-example.json"),
   json("knowledge/domains/uiux/antipatterns.json"),json(root+"verification-rules.json"),
-  json("schemas/research-candidate.v1.schema.json")
+  json("schemas/research-candidate.v1.schema.json"),json(root+"primary-claim-checks-2026-10-09.json")
 ]);
 const exactCount=(name,arr,n)=>assert.equal(arr.length,n,name+" count");
 const unique=(name,arr)=>assert.equal(new Set(arr).size,arr.length,name+" duplicates");
@@ -26,10 +26,33 @@ for (const x of k.records) {
   assert.equal(x.authority,"research_synthesis_unapproved");
   assert.equal(x.provenance.original_bundle_verified,false);
 }
-for (const x of s.entries) {
-  assert.equal(x.verification_state,"not_verified");
-  assert.equal(x.primary_source_url,null);
+assert.equal(pc.claim_count,6);
+assert.equal(pc.claims.length,6);
+assert.equal(pc.verified_document_count,5);
+assert.equal(pc.source_corpus_fully_verified,false);
+unique("checked claims",pc.claims.map(x=>x.id));
+assert.equal(new Set(pc.claims.map(x=>x.source_inventory_id)).size,5);
+for(const x of pc.claims) {
+  assert.equal(x.claim_status,"primary_text_checked");
+  assert.equal(x.coverage,"only_identified_claims_not_full_document");
+  assert.equal(x.human_approved,false);
+  assert.match(x.primary_url,/^https:\/\//);
+  assert.ok(x.source_section.length>0);
+}
+for(const x of s.entries) {
+  const matched=pc.claims.filter(y=>y.source_inventory_id===x.id);
   assert.equal(x.verified_section,null);
+  if(matched.length) {
+    assert.equal(x.verification_state,"limited_claims_checked");
+    assert.equal(x.primary_source_url,matched[0].primary_url);
+    assert.deepEqual(x.checked_claim_ids,matched.map(y=>y.id));
+    assert.equal(x.checked_on,"2026-10-09");
+    if(x.id==="STD-04")assert.match(x.verification_scope_warning,/Gap Analysis not checked/);
+  } else {
+    assert.equal(x.verification_state,"not_verified");
+    assert.equal(x.primary_source_url,null);
+    assert.equal(x.checked_claim_ids,undefined);
+  }
 }
 for (const x of q.records) {
   assert.equal(x.human_response,null);assert.equal(x.human_approval,"not_requested");
@@ -41,9 +64,12 @@ assert.ok(!q.records.some(x=>x.id===e.evaluation_id),"evaluation leakage");
 assert.equal(manifest.original_zip_retrieved,false);
 assert.equal(manifest.original_46_source_catalog_verified,false);
 assert.equal(manifest.primary_sources_independently_verified,false);
+assert.equal(manifest.partial_claim_check_count,6);
+assert.equal(manifest.partially_checked_documents,5);
+assert.equal(manifest.primary_corpus_fully_verified,false);
 assert.equal(manifest.knowledge_record_count,k.records.length);
 assert.equal(manifest.tradeoff_count,t.records.length);
 assert.equal(manifest.learning_seed_count,q.records.length);
 assert.equal(manifest.inventory_entry_count,s.entries.length);
 console.log("PASS: 20 knowledge, 10 tradeoffs, 14 seeds, 25 inventory, 10 antipatterns, 12 verification rules, 1 isolated illustrative evaluation.");
-console.log("LIMITATION: This test checks structure and declared provenance; it does not validate primary research claims or user acceptance.");
+console.log("LIMITATION: This test checks structure and recorded provenance only; it cannot reproduce external research verification or user approval.");

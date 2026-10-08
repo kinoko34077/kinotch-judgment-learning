@@ -176,11 +176,17 @@
       "category": "standard_or_public_guidance",
       "reported_status": "Recommendation / 現行baseline",
       "reported_usage_caveat": "2.5.7 Dragging Movementsのsingle-pointer代替とessential exception、2.5.8 Target Size (Minimum) AA 24×24 CSS pxまたはspacing等の例外。44×44 enhancedと混同しない",
-      "primary_source_url": null,
+      "primary_source_url": "https://www.w3.org/TR/WCAG22/",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-WCAG22-257",
+        "CHECK-WCAG22-258"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only listed claim(s) checked against primary text; no whole-document certification"
     },
     {
       "id": "STD-02",
@@ -200,11 +206,16 @@
       "category": "standard_or_public_guidance",
       "reported_status": "keyboard/focus/composite navigation guidance",
       "reported_usage_caveat": "custom widgetのkeyboard modelは作者責任。selection-follows-focusはnetwork latencyで不適切な場合あり",
-      "primary_source_url": null,
+      "primary_source_url": "https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-APG-KEYBOARD"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only listed claim(s) checked against primary text; no whole-document certification"
     },
     {
       "id": "STD-04",
@@ -212,11 +223,16 @@
       "category": "standard_or_public_guidance",
       "reported_status": "日本語組版・禁則・ルビ・Web実装gap",
       "reported_usage_caveat": "実日本語・font fallback・reflowで検証",
-      "primary_source_url": null,
+      "primary_source_url": "https://www.w3.org/TR/jlreq/",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-JLREQ-SCOPE"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "JLREQ only; Japanese Gap Analysis not checked"
     },
     {
       "id": "STD-05",
@@ -272,11 +288,16 @@
       "category": "standard_or_public_guidance",
       "reported_status": "version 1.0、改訂watch",
       "reported_usage_caveat": "法令や強制規格と同一視しない",
-      "primary_source_url": null,
+      "primary_source_url": "https://www.nist.gov/itl/ai-risk-management-framework",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-NIST-RMF"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only listed claim(s) checked against primary text; no whole-document certification"
     },
     {
       "id": "STD-10",
@@ -284,11 +305,16 @@
       "category": "standard_or_public_guidance",
       "reported_status": "LCP 2.5s、INP 200ms、CLS 0.1、p75のgood目安",
       "reported_usage_caveat": "interaction responseと長時間task completionを別測定。nativeへ直適用しない",
-      "primary_source_url": null,
+      "primary_source_url": "https://web.dev/articles/vitals",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-CWV"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only listed claim(s) checked against primary text; no whole-document certification"
     },
     {
       "id": "STD-11",

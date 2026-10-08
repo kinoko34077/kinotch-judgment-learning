@@ -8,14 +8,15 @@ Canonical tracking: [#4](https://github.com/kinoko34077/kinotch-judgment-learnin
 ## Dataset
 - `knowledge/domains/uiux/research-candidates.json`: 20 candidate principles; compact applicability wording is **raw, not semantically disambiguated**.
 - `knowledge/domains/uiux/tradeoffs.json`: 10 conditional tradeoffs.
-- `research/uiux-2026-10-08/source-inventory.json`: 25 named external systems/standards from the Issue tables, **no source URL or clause verification yet**.
+- `research/uiux-2026-10-08/source-inventory.json`: 25 named external systems/standards from the Issue tables; **5 have only bounded official claim checks and the other 20 remain unverified**.
+- `research/uiux-2026-10-08/primary-claim-checks-2026-10-09.json`: **6 specific claims from 5 official primary documents checked** (WCAG 2.2, APG, JLREQ, NIST AI RMF, Web Vitals); full source validation is not asserted. For the combined inventory name `W3C JLREQ / Japanese Gap Analysis`, only JLREQ was checked.
 - `knowledge/domains/uiux/antipatterns.json`: 10 reported anti-patterns, not independently verified.
 - `research/uiux-2026-10-08/verification-rules.json`: 12 candidate checks, not executed against a live UI.
 - `learning/seeds/uiux-research-seeds.json`: 14 AI-initial-answer examples. No human responses or personal approval are recorded.
 - `evaluations/examples/uiux-ia-public-example.json`: 1 **public illustrative** evaluation case; keep out of training seeds. Because it is public, it **cannot** substantiate a blind held-out evaluation on its own.
 
 ## Evidence and authority
-All candidate claims are `source_unverified`; do not use as compliance assurance, legal advice, or approved KiNoTch. rules. The project is domain-agnostic; this dataset is one domain-specific research input, not the project-wide policy. Original issue values are retained as raw Japanese mixed-language wording; normalization and traceable primary references are later checkpoints.
+All candidate knowledge records remain `source_unverified` and are not personally approved; source-level claim checks do not imply knowledge approval. Do not use as compliance assurance, legal advice, or approved KiNoTch. rules. The project is domain-agnostic; this dataset is one domain-specific research input, not the project-wide policy. Original issue values are retained as raw Japanese mixed-language wording; normalization and traceable primary references are later checkpoints.
 
 ## Verification
 Run `node scripts/validate-research-extract.mjs`. It checks parseable JSON, cardinalities, unique IDs, source-verification flags and evaluation/training separation. It **does not** assert that any external scholarly, product or normative claim is true.
