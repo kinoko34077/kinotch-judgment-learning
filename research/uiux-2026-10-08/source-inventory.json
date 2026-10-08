@@ -8,11 +8,16 @@
       "category": "design_system",
       "reported_guidance": "adaptive layout、semantic roles、tokens、interaction state",
       "reported_transfer_boundary": "Material/Android固有のvisual languageは移植しない",
-      "primary_source_url": null,
+      "primary_source_url": "https://developer.android.com/develop/ui/compose/designsystems/material3?hl=ja",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-MATERIAL3-ADAPTIVE"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
     },
     {
       "id": "DS-02",
@@ -140,11 +145,16 @@
       "category": "design_system",
       "reported_guidance": "public forms、validation、error recovery",
       "reported_transfer_boundary": "政府手続の説明密度を専門ツールへ固定しない",
-      "primary_source_url": null,
+      "primary_source_url": "https://design-system.service.gov.uk/components/error-summary/",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-GOVUK-ERROR"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
     },
     {
       "id": "DS-13",
@@ -152,11 +162,17 @@
       "category": "design_system",
       "reported_guidance": "semantic HTML、forms/tables、個別testing",
       "reported_transfer_boundary": "公式componentにも既知問題があり得る",
-      "primary_source_url": null,
+      "primary_source_url": "https://designsystem.digital.gov/components/table/",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-USWDS-TABLE",
+        "CHECK-USWDS-TEST"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
     },
     {
       "id": "DS-14",
@@ -186,7 +202,7 @@
         "CHECK-WCAG22-258"
       ],
       "checked_on": "2026-10-09",
-      "verification_scope_warning": "Only listed claim(s) checked against primary text; no whole-document certification"
+      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
     },
     {
       "id": "STD-02",
@@ -194,11 +210,16 @@
       "category": "standard_or_public_guidance",
       "reported_status": "2026-09 incomplete draft",
       "reported_usage_caveat": "production conformance gateへ昇格しない",
-      "primary_source_url": null,
+      "primary_source_url": "https://www.w3.org/TR/wcag-3.0/",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-WCAG3-DRAFT"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
     },
     {
       "id": "STD-03",
@@ -215,7 +236,7 @@
         "CHECK-APG-KEYBOARD"
       ],
       "checked_on": "2026-10-09",
-      "verification_scope_warning": "Only listed claim(s) checked against primary text; no whole-document certification"
+      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
     },
     {
       "id": "STD-04",
@@ -264,11 +285,16 @@
       "category": "standard_or_public_guidance",
       "reported_status": "product quality model",
       "reported_usage_caveat": "requirements/design/test/acceptanceへ接続",
-      "primary_source_url": null,
+      "primary_source_url": "https://www.iso.org/standard/78176.html",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-ISO25010-MODEL"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
     },
     {
       "id": "STD-08",
@@ -276,11 +302,17 @@
       "category": "standard_or_public_guidance",
       "reported_status": "current published（報告時点）、Ed.3 DIS enquiry",
       "reported_usage_caveat": "currentとsuccessor draftを別version record",
-      "primary_source_url": null,
+      "primary_source_url": "https://www.iso.org/standard/72089.html",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-ISO29148-STATUS",
+        "CHECK-ISO29148-DIS"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
     },
     {
       "id": "STD-09",
@@ -297,7 +329,7 @@
         "CHECK-NIST-RMF"
       ],
       "checked_on": "2026-10-09",
-      "verification_scope_warning": "Only listed claim(s) checked against primary text; no whole-document certification"
+      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
     },
     {
       "id": "STD-10",
@@ -314,7 +346,7 @@
         "CHECK-CWV"
       ],
       "checked_on": "2026-10-09",
-      "verification_scope_warning": "Only listed claim(s) checked against primary text; no whole-document certification"
+      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
     },
     {
       "id": "STD-11",
@@ -322,11 +354,16 @@
       "category": "standard_or_public_guidance",
       "reported_status": "Given/When/Then observable outcomes",
       "reported_usage_caveat": "DB内部だけでacceptanceを記述しない",
-      "primary_source_url": null,
+      "primary_source_url": "https://cucumber.io/docs/gherkin/reference/",
       "verified_section": null,
       "checked_at": null,
-      "verification_state": "not_verified",
-      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5"
+      "verification_state": "limited_claims_checked",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/5",
+      "checked_claim_ids": [
+        "CHECK-GHERKIN-THEN"
+      ],
+      "checked_on": "2026-10-09",
+      "verification_scope_warning": "Only listed claim(s) checked; no whole-document verification; do not promote candidate knowledge based on source inventory alone."
     }
   ]
 }

@@ -8,8 +8,9 @@ Canonical tracking: [#4](https://github.com/kinoko34077/kinotch-judgment-learnin
 ## Dataset
 - `knowledge/domains/uiux/research-candidates.json`: 20 candidate principles; compact applicability wording is **raw, not semantically disambiguated**.
 - `knowledge/domains/uiux/tradeoffs.json`: 10 conditional tradeoffs.
-- `research/uiux-2026-10-08/source-inventory.json`: 25 named external systems/standards from the Issue tables; **5 have only bounded official claim checks and the other 20 remain unverified**.
+- `research/uiux-2026-10-08/source-inventory.json`: 25 named external systems/standards from the Issue tables; **12 inventory entries have limited individual claims checked; 13 remain completely unverified**. This is not full-document or full-research-catalog verification.
 - `research/uiux-2026-10-08/primary-claim-checks-2026-10-09.json`: **6 specific claims from 5 official primary documents checked** (WCAG 2.2, APG, JLREQ, NIST AI RMF, Web Vitals); full source validation is not asserted. For the combined inventory name `W3C JLREQ / Japanese Gap Analysis`, only JLREQ was checked.
+- `research/uiux-2026-10-08/primary-claim-checks-batch2-2026-10-09.json`: 9 additional checked claims across 7 new inventory entries, from 8 official documents. Working Draft WCAG 3.0 remains **non-normative**, ISO 29148:2018 is distinct from its draft successor; ISO paid clauses were not examined. Total: **15 claims, 12 partially checked inventory entries, 13 untouched**.
 - `knowledge/domains/uiux/antipatterns.json`: 10 reported anti-patterns, not independently verified.
 - `research/uiux-2026-10-08/verification-rules.json`: 12 candidate checks, not executed against a live UI.
 - `learning/seeds/uiux-research-seeds.json`: 14 AI-initial-answer examples. No human responses or personal approval are recorded.
@@ -19,7 +20,7 @@ Canonical tracking: [#4](https://github.com/kinoko34077/kinotch-judgment-learnin
 All candidate knowledge records remain `source_unverified` and are not personally approved; source-level claim checks do not imply knowledge approval. Do not use as compliance assurance, legal advice, or approved KiNoTch. rules. The project is domain-agnostic; this dataset is one domain-specific research input, not the project-wide policy. Original issue values are retained as raw Japanese mixed-language wording; normalization and traceable primary references are later checkpoints.
 
 ## Verification
-Run `node scripts/validate-research-extract.mjs`. It checks parseable JSON, cardinalities, unique IDs, source-verification flags and evaluation/training separation. It **does not** assert that any external scholarly, product or normative claim is true.
+Run `node scripts/validate-research-extract.mjs`. It checks parseable JSON, cardinalities, unique IDs across both claim ledgers, inventory claim linkage and limited-verification boundaries, and evaluation/training separation. It **does not** assert that any external scholarly, product or normative claim is true.
 
 ## Roadmap
 1. Preserve and validate this Issue-derived dataset (this PR).
