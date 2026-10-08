@@ -29,5 +29,7 @@
     "EVAL-IA-001"
   ],
   "separation_rule": "Do not mix illustrative evaluation cases into training seeds; public illustration is not a blind held-out benchmark",
-  "maintaining_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/4"
+  "maintaining_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/4",
+  "antipattern_count": 10,
+  "verification_rule_count": 12
 }
