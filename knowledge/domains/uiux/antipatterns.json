@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "records": [
+    {
+      "id": "AP-001",
+      "symptom": "card過剰",
+      "reported_cause": "外観選択",
+      "reported_remedy": "table/list/index",
+      "proposed_verification": "comparison task time",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "evidence_status": "unverified_research_extract"
+    },
+    {
+      "id": "AP-002",
+      "symptom": "巨大button/余白",
+      "reported_cause": "hit areaとvisual size混同",
+      "reported_remedy": "hit area/visual hierarchy分離",
+      "proposed_verification": "viewport task coverage",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "evidence_status": "unverified_research_extract"
+    },
+    {
+      "id": "AP-003",
+      "symptom": "自然導線から到達不能",
+      "reported_cause": "存在＝完了という誤り",
+      "reported_remedy": "entry point/IA変更",
+      "proposed_verification": "first-use task success",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "evidence_status": "unverified_research_extract"
+    },
+    {
+      "id": "AP-004",
+      "symptom": "save/retry/resume欠落",
+      "reported_cause": "happy path偏重",
+      "reported_remedy": "state/recovery model",
+      "proposed_verification": "failure injection",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "evidence_status": "unverified_research_extract"
+    },
+    {
+      "id": "AP-005",
+      "symptom": "screen分割過多",
+      "reported_cause": "機能単位の画面化",
+      "reported_remedy": "split/inline/context panel",
+      "proposed_verification": "transitions/task time",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "evidence_status": "unverified_research_extract"
+    },
+    {
+      "id": "AP-006",
+      "symptom": "confirm過多",
+      "reported_cause": "error対策をdialogに限定",
+      "reported_remedy": "Undo/preview/defaults",
+      "proposed_verification": "誤操作評価",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "evidence_status": "unverified_research_extract"
+    },
+    {
+      "id": "AP-007",
+      "symptom": "expert機能消失",
+      "reported_cause": "単純化と機能削減を混同",
+      "reported_remedy": "段階的開示",
+      "proposed_verification": "novice/expert別評価",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "evidence_status": "unverified_research_extract"
+    },
+    {
+      "id": "AP-008",
+      "symptom": "過剰抽象化",
+      "reported_cause": "未確認futureの先行実装",
+      "reported_remedy": "concrete casesから抽出",
+      "proposed_verification": "change-impact review",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "evidence_status": "unverified_research_extract"
+    },
+    {
+      "id": "AP-009",
+      "symptom": "design system模倣",
+      "reported_cause": "vendorを普遍視",
+      "reported_remedy": "use/do-not-use照合",
+      "proposed_verification": "condition mapping",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "evidence_status": "unverified_research_extract"
+    },
+    {
+      "id": "AP-010",
+      "symptom": "automated testsだけでUX PASS",
+      "reported_cause": "測定可能性と品質全体を混同",
+      "reported_remedy": "verification type分離",
+      "proposed_verification": "evidence audit",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+      "evidence_status": "unverified_research_extract"
+    }
+  ]
+}

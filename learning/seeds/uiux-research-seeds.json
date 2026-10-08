@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+  "records": [
+    {
+      "id": "Q-BAS-001",
+      "scenario": "PC在庫800件、属性比較・sort・bulk",
+      "ai_preselected_seed": "table/index",
+      "reversal_condition": "画像主体・少数ならcard",
+      "human_response": null,
+      "human_approval": "not_requested",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "usage": "training_seed_only"
+    },
+    {
+      "id": "Q-CON-001",
+      "scenario": "可逆tag削除に毎回confirm？",
+      "ai_preselected_seed": "即実行＋Undo",
+      "reversal_condition": "不可逆/高損害ならconfirm",
+      "human_response": null,
+      "human_approval": "not_requested",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "usage": "training_seed_only"
+    },
+    {
+      "id": "Q-BND-001",
+      "scenario": "compact tableをiPhoneへそのまま？",
+      "ai_preselected_seed": "priority columns＋row detail",
+      "reversal_condition": "visual choiceならcard",
+      "human_response": null,
+      "human_approval": "not_requested",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "usage": "training_seed_only"
+    },
+    {
+      "id": "Q-RED-001",
+      "scenario": "exportがsettings3階層下",
+      "ai_preselected_seed": "helpよりentry point/IA",
+      "reversal_condition": "稀少advancedならoverflow/palette",
+      "human_response": null,
+      "human_approval": "not_requested",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "usage": "training_seed_only"
+    },
+    {
+      "id": "Q-STR-001",
+      "scenario": "list/detail/backを数百回",
+      "ai_preselected_seed": "split/master-detail比較",
+      "reversal_condition": "長時間full-screen detailは別page",
+      "human_response": null,
+      "human_approval": "not_requested",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "usage": "training_seed_only"
+    },
+    {
+      "id": "Q-IMP-001",
+      "scenario": "AI処理に多数の状態",
+      "ai_preselected_seed": "transition＋acceptance",
+      "reversal_condition": "真の二状態なら軽量化",
+      "human_response": null,
+      "human_approval": "not_requested",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "usage": "training_seed_only"
+    },
+    {
+      "id": "Q-A11Y-001",
+      "scenario": "drag reorder",
+      "ai_preselected_seed": "non-drag single-pointer alternative",
+      "reversal_condition": "essential exception",
+      "human_response": null,
+      "human_approval": "not_requested",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "usage": "training_seed_only"
+    },
+    {
+      "id": "Q-A11Y-002",
+      "scenario": "24×24 iconはAA違反で44必須？",
+      "ai_preselected_seed": "AA/AAA/spacingを区別、断定不可",
+      "reversal_condition": "独自product minimumは別",
+      "human_response": null,
+      "human_approval": "not_requested",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "usage": "training_seed_only"
+    },
+    {
+      "id": "Q-AI-001",
+      "scenario": "AIが20 files変更",
+      "ai_preselected_seed": "diff＋pending＋accept/revert",
+      "reversal_condition": "ephemeral suggestionなら軽量化",
+      "human_response": null,
+      "human_approval": "not_requested",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "usage": "training_seed_only"
+    },
+    {
+      "id": "Q-PERF-001",
+      "scenario": "Lighthouse良好でもclick遅い",
+      "ai_preselected_seed": "field INP＋task latency",
+      "reversal_condition": "nativeは別telemetry",
+      "human_response": null,
+      "human_approval": "not_requested",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "usage": "training_seed_only"
+    },
+    {
+      "id": "Q-REQ-001",
+      "scenario": "CSV import failure未指定",
+      "ai_preselected_seed": "generic recovery＋business semantics確認",
+      "reversal_condition": "previewなら簡略化",
+      "human_response": null,
+      "human_approval": "not_requested",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "usage": "training_seed_only"
+    },
+    {
+      "id": "Q-ABS-001",
+      "scenario": "将来10 forms予想で万能engine",
+      "ai_preselected_seed": "concrete＋boundary先行",
+      "reversal_condition": "shared contract確定なら抽象化",
+      "human_response": null,
+      "human_approval": "not_requested",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "usage": "training_seed_only"
+    },
+    {
+      "id": "Q-VER-001",
+      "scenario": "axe0件＋unit/e2e pass",
+      "ai_preselected_seed": "UX/a11yは未検証範囲あり",
+      "reversal_condition": "manual/AT/user evidenceで限定PASS",
+      "human_response": null,
+      "human_approval": "not_requested",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "usage": "training_seed_only"
+    },
+    {
+      "id": "Q-I18N-001",
+      "scenario": "日本語buttonが溢れる",
+      "ai_preselected_seed": "label＋flexible layout",
+      "reversal_condition": "icon-onlyが自然なら別解",
+      "human_response": null,
+      "human_approval": "not_requested",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "usage": "training_seed_only"
+    }
+  ]
+}

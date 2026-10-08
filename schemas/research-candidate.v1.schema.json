@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Issue-derived research knowledge candidate v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "title",
+    "domain",
+    "guidance_from_report",
+    "applicability_notes",
+    "contraindications_or_reversal_notes",
+    "authority",
+    "provenance",
+    "evidence_status",
+    "adoption_status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^K-[A-Z0-9-]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "domain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "guidance_from_report": {
+      "type": "string",
+      "minLength": 1
+    },
+    "applicability_notes": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Raw compact notes; not yet atomized into logically tested conditions"
+    },
+    "contraindications_or_reversal_notes": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Raw combined wording; verify and split before runtime decision use"
+    },
+    "authority": {
+      "const": "research_synthesis_unapproved"
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "kind",
+        "issue_url",
+        "original_bundle_verified"
+      ],
+      "properties": {
+        "kind": {
+          "const": "secondary_issue_extraction"
+        },
+        "issue_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "original_bundle_verified": {
+          "const": false
+        }
+      }
+    },
+    "evidence_status": {
+      "const": "primary_sources_not_yet_checked"
+    },
+    "adoption_status": {
+      "const": "candidate"
+    }
+  }
+}
