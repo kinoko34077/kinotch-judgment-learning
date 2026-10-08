@@ -2,9 +2,9 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { isAllowedGitHubUser, validAnswer, randomToken, hexHash } from "../worker/index.js";
 test("numeric, stable GitHub identity (not username)", () => {
-  assert.equal(isAllowedGitHubUser(79015263, "79015263"), true);
-  assert.equal(isAllowedGitHubUser(79015264, "79015263"), false);
-  assert.equal(isAllowedGitHubUser("79015263", "79015263"), false);
+  assert.equal(isAllowedGitHubUser(123456, "123456"), true);
+  assert.equal(isAllowedGitHubUser(123457, "123456"), false);
+  assert.equal(isAllowedGitHubUser("123456", "123456"), false);
   assert.equal(isAllowedGitHubUser(0, "0"), false);
   assert.equal(isAllowedGitHubUser(1, "alice"), false);
 });
