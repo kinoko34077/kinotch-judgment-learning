@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "records": [
+    {
+      "id": "VERIFY-001",
+      "raw_rule": "taskが不要screen transitionなしで完了するか（task test）",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "verification_state": "not_executed"
+    },
+    {
+      "id": "VERIFY-002",
+      "raw_rule": "selection/edit/save/failure状態が区別されるか（state test/manual）",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "verification_state": "not_executed"
+    },
+    {
+      "id": "VERIFY-003",
+      "raw_rule": "failure後input/context保持（failure injection）",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "verification_state": "not_executed"
+    },
+    {
+      "id": "VERIFY-004",
+      "raw_rule": "keyboardだけで主要task完了（manual＋自動補助）",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "verification_state": "not_executed"
+    },
+    {
+      "id": "VERIFY-005",
+      "raw_rule": "dragにnon-drag alternative（inventory＋実操作）",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "verification_state": "not_executed"
+    },
+    {
+      "id": "VERIFY-006",
+      "raw_rule": "shortcutがsole pathwayでない（route inventory）",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "verification_state": "not_executed"
+    },
+    {
+      "id": "VERIFY-007",
+      "raw_rule": "comparison dataがcommon axisに並ぶ（task test）",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "verification_state": "not_executed"
+    },
+    {
+      "id": "VERIFY-008",
+      "raw_rule": "destructive frictionがrisk比例（risk assessment）",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "verification_state": "not_executed"
+    },
+    {
+      "id": "VERIFY-009",
+      "raw_rule": "AI変更にdiff/revertが必要か（risk別判断）",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "verification_state": "not_executed"
+    },
+    {
+      "id": "VERIFY-010",
+      "raw_rule": "automated passをUX passと誤認しない（evidence audit）",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "verification_state": "not_executed"
+    },
+    {
+      "id": "VERIFY-011",
+      "raw_rule": "field performanceを測る（telemetry）",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "verification_state": "not_executed"
+    },
+    {
+      "id": "VERIFY-012",
+      "raw_rule": "日本語実文字列layout（fixture＋visual/manual）",
+      "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/7",
+      "verification_state": "not_executed"
+    }
+  ]
+}
