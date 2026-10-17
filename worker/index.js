@@ -171,6 +171,8 @@ async function api(req, env, url) {
     let data;
     try { data = await readSmallJSON(req); } catch { return json({ error: "Invalid body" }, 400); }
     if (!data || typeof data.questionId !== "string" || !/^[a-z0-9-]{1,80}$/.test(data.questionId)) return json({ error: "Invalid question ID" }, 400);
+    const exists = await env.DB.prepare("SELECT id FROM questions WHERE id = ?").bind(data.questionId).first();
+    if (!exists) return json({ error: "Unknown question" }, 404);
     const owner = String(env.OWNER_GITHUB_USER_ID);
     const now = Date.now();
     await env.DB.batch([
