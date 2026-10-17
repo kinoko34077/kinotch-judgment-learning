@@ -5,6 +5,9 @@ on:
       - 'research/uiux-2026-10-08/**'
       - 'knowledge/domains/uiux/**'
       - 'learning/seeds/uiux-research-seeds.json'
+      - 'learning/seeds/uiux-question-routing.v1.json'
+      - 'scripts/gate-research-question.mjs'
+      - 'scripts/validate-research-question-routing.mjs'
       - 'evaluations/examples/uiux-ia-public-example.json'
       - 'schemas/research-candidate.v1.schema.json'
       - 'scripts/validate-research-extract.mjs'
@@ -18,6 +21,9 @@ on:
       - 'research/uiux-2026-10-08/**'
       - 'knowledge/domains/uiux/**'
       - 'learning/seeds/uiux-research-seeds.json'
+      - 'learning/seeds/uiux-question-routing.v1.json'
+      - 'scripts/gate-research-question.mjs'
+      - 'scripts/validate-research-question-routing.mjs'
       - 'evaluations/examples/uiux-ia-public-example.json'
       - 'schemas/research-candidate.v1.schema.json'
       - 'scripts/validate-research-extract.mjs'
@@ -36,3 +42,5 @@ jobs:
         run: node scripts/validate-research-extract.mjs
       - name: Validate conditional research candidates and 160 synthetic cases
         run: node scripts/validate-conditional-candidates.mjs
+      - name: Validate research question routing and abstention
+        run: node scripts/validate-research-question-routing.mjs
