@@ -1,0 +1,23 @@
+name: Cloudflare static bootstrap preflight
+on:
+  pull_request:
+    paths:
+      - 'wrangler.jsonc'
+      - 'public/**'
+      - '.github/workflows/cloudflare-static-bootstrap.yml'
+permissions:
+  contents: read
+jobs:
+  dry_run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate public-only bootstrap configuration
+        run: |
+          node -e 'const fs=require("fs");const c=JSON.parse(fs.readFileSync("wrangler.jsonc","utf8"));if(c.name!=="kinotch-judgment-learning"||c.assets?.directory!=="./public"||c.main||c.d1_databases||c.vars||!fs.existsSync("public/index.html"))process.exit(1);const h=fs.readFileSync("public/index.html","utf8");if(h.includes("/auth/start")||h.includes("GITHUB_CLIENT_SECRET")||h.includes("/api/"))process.exit(2);'
+      - name: Check Wrangler deployment without publishing
+        run: npx --yes wrangler@4.151.1 deploy --dry-run --outdir /tmp/kjl-bootstrap-dryrun
