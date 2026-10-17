@@ -1,0 +1,1870 @@
+{
+  "schema_version": 1,
+  "kind": "synthetic_test_only",
+  "human_answers_included": false,
+  "real_user_context_included": false,
+  "training_data": false,
+  "blind_held_out_evaluation": false,
+  "fixtures": [
+    {
+      "id": "K-IA-001-positive",
+      "knowledge_id": "K-IA-001",
+      "kind": "positive",
+      "context": {
+        "multi_feature": true,
+        "task_navigation": true,
+        "single_tiny_task": false,
+        "hierarchy_cost_high": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-IA-001-negative",
+      "knowledge_id": "K-IA-001",
+      "kind": "negative",
+      "context": {
+        "multi_feature": false,
+        "task_navigation": true,
+        "single_tiny_task": false,
+        "hierarchy_cost_high": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-IA-001-exception",
+      "knowledge_id": "K-IA-001",
+      "kind": "exception",
+      "context": {
+        "multi_feature": true,
+        "task_navigation": true,
+        "single_tiny_task": true,
+        "hierarchy_cost_high": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-IA-001-reversal",
+      "knowledge_id": "K-IA-001",
+      "kind": "reversal",
+      "context": {
+        "multi_feature": true,
+        "task_navigation": true,
+        "single_tiny_task": false,
+        "hierarchy_cost_high": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-IA-001-missing-applicability",
+      "knowledge_id": "K-IA-001",
+      "kind": "missing-applicability",
+      "context": {
+        "task_navigation": true,
+        "single_tiny_task": false,
+        "hierarchy_cost_high": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-IA-001-missing-guard",
+      "knowledge_id": "K-IA-001",
+      "kind": "missing-guard",
+      "context": {
+        "multi_feature": true,
+        "task_navigation": true,
+        "hierarchy_cost_high": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-IA-001-missing-reversal",
+      "knowledge_id": "K-IA-001",
+      "kind": "missing-reversal",
+      "context": {
+        "multi_feature": true,
+        "task_navigation": true,
+        "single_tiny_task": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-IA-001-exception-precedes-reversal",
+      "knowledge_id": "K-IA-001",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "multi_feature": true,
+        "task_navigation": true,
+        "single_tiny_task": true,
+        "hierarchy_cost_high": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-DATA-001-positive",
+      "knowledge_id": "K-DATA-001",
+      "kind": "positive",
+      "context": {
+        "data_shape": "homogeneous",
+        "task": "compare_attributes",
+        "visual_mixed_data": false,
+        "mobile_columns_unusable": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-DATA-001-negative",
+      "knowledge_id": "K-DATA-001",
+      "kind": "negative",
+      "context": {
+        "data_shape": "__other__",
+        "task": "compare_attributes",
+        "visual_mixed_data": false,
+        "mobile_columns_unusable": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-DATA-001-exception",
+      "knowledge_id": "K-DATA-001",
+      "kind": "exception",
+      "context": {
+        "data_shape": "homogeneous",
+        "task": "compare_attributes",
+        "visual_mixed_data": true,
+        "mobile_columns_unusable": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-DATA-001-reversal",
+      "knowledge_id": "K-DATA-001",
+      "kind": "reversal",
+      "context": {
+        "data_shape": "homogeneous",
+        "task": "compare_attributes",
+        "visual_mixed_data": false,
+        "mobile_columns_unusable": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-DATA-001-missing-applicability",
+      "knowledge_id": "K-DATA-001",
+      "kind": "missing-applicability",
+      "context": {
+        "task": "compare_attributes",
+        "visual_mixed_data": false,
+        "mobile_columns_unusable": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-DATA-001-missing-guard",
+      "knowledge_id": "K-DATA-001",
+      "kind": "missing-guard",
+      "context": {
+        "data_shape": "homogeneous",
+        "task": "compare_attributes",
+        "mobile_columns_unusable": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-DATA-001-missing-reversal",
+      "knowledge_id": "K-DATA-001",
+      "kind": "missing-reversal",
+      "context": {
+        "data_shape": "homogeneous",
+        "task": "compare_attributes",
+        "visual_mixed_data": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-DATA-001-exception-precedes-reversal",
+      "knowledge_id": "K-DATA-001",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "data_shape": "homogeneous",
+        "task": "compare_attributes",
+        "visual_mixed_data": true,
+        "mobile_columns_unusable": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-DATA-002-positive",
+      "knowledge_id": "K-DATA-002",
+      "kind": "positive",
+      "context": {
+        "data_shape": "mixed_visual",
+        "task": "browse_objects",
+        "dense_attribute_comparison": false,
+        "comparison_required": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-DATA-002-negative",
+      "knowledge_id": "K-DATA-002",
+      "kind": "negative",
+      "context": {
+        "data_shape": "__other__",
+        "task": "browse_objects",
+        "dense_attribute_comparison": false,
+        "comparison_required": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-DATA-002-exception",
+      "knowledge_id": "K-DATA-002",
+      "kind": "exception",
+      "context": {
+        "data_shape": "mixed_visual",
+        "task": "browse_objects",
+        "dense_attribute_comparison": true,
+        "comparison_required": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-DATA-002-reversal",
+      "knowledge_id": "K-DATA-002",
+      "kind": "reversal",
+      "context": {
+        "data_shape": "mixed_visual",
+        "task": "browse_objects",
+        "dense_attribute_comparison": false,
+        "comparison_required": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-DATA-002-missing-applicability",
+      "knowledge_id": "K-DATA-002",
+      "kind": "missing-applicability",
+      "context": {
+        "task": "browse_objects",
+        "dense_attribute_comparison": false,
+        "comparison_required": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-DATA-002-missing-guard",
+      "knowledge_id": "K-DATA-002",
+      "kind": "missing-guard",
+      "context": {
+        "data_shape": "mixed_visual",
+        "task": "browse_objects",
+        "comparison_required": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-DATA-002-missing-reversal",
+      "knowledge_id": "K-DATA-002",
+      "kind": "missing-reversal",
+      "context": {
+        "data_shape": "mixed_visual",
+        "task": "browse_objects",
+        "dense_attribute_comparison": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-DATA-002-exception-precedes-reversal",
+      "knowledge_id": "K-DATA-002",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "data_shape": "mixed_visual",
+        "task": "browse_objects",
+        "dense_attribute_comparison": true,
+        "comparison_required": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-EFF-001-positive",
+      "knowledge_id": "K-EFF-001",
+      "kind": "positive",
+      "context": {
+        "frequency": "high",
+        "experience": "expert",
+        "shortcut_only": false,
+        "one_time_flow": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-EFF-001-negative",
+      "knowledge_id": "K-EFF-001",
+      "kind": "negative",
+      "context": {
+        "frequency": "__other__",
+        "experience": "expert",
+        "shortcut_only": false,
+        "one_time_flow": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-EFF-001-exception",
+      "knowledge_id": "K-EFF-001",
+      "kind": "exception",
+      "context": {
+        "frequency": "high",
+        "experience": "expert",
+        "shortcut_only": true,
+        "one_time_flow": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-EFF-001-reversal",
+      "knowledge_id": "K-EFF-001",
+      "kind": "reversal",
+      "context": {
+        "frequency": "high",
+        "experience": "expert",
+        "shortcut_only": false,
+        "one_time_flow": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-EFF-001-missing-applicability",
+      "knowledge_id": "K-EFF-001",
+      "kind": "missing-applicability",
+      "context": {
+        "experience": "expert",
+        "shortcut_only": false,
+        "one_time_flow": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-EFF-001-missing-guard",
+      "knowledge_id": "K-EFF-001",
+      "kind": "missing-guard",
+      "context": {
+        "frequency": "high",
+        "experience": "expert",
+        "one_time_flow": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-EFF-001-missing-reversal",
+      "knowledge_id": "K-EFF-001",
+      "kind": "missing-reversal",
+      "context": {
+        "frequency": "high",
+        "experience": "expert",
+        "shortcut_only": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-EFF-001-exception-precedes-reversal",
+      "knowledge_id": "K-EFF-001",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "frequency": "high",
+        "experience": "expert",
+        "shortcut_only": true,
+        "one_time_flow": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-DISC-001-positive",
+      "knowledge_id": "K-DISC-001",
+      "kind": "positive",
+      "context": {
+        "complexity": "high",
+        "secondary_features": true,
+        "safety_critical_hidden": false,
+        "critical_entry_obscured": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-DISC-001-negative",
+      "knowledge_id": "K-DISC-001",
+      "kind": "negative",
+      "context": {
+        "complexity": "__other__",
+        "secondary_features": true,
+        "safety_critical_hidden": false,
+        "critical_entry_obscured": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-DISC-001-exception",
+      "knowledge_id": "K-DISC-001",
+      "kind": "exception",
+      "context": {
+        "complexity": "high",
+        "secondary_features": true,
+        "safety_critical_hidden": true,
+        "critical_entry_obscured": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-DISC-001-reversal",
+      "knowledge_id": "K-DISC-001",
+      "kind": "reversal",
+      "context": {
+        "complexity": "high",
+        "secondary_features": true,
+        "safety_critical_hidden": false,
+        "critical_entry_obscured": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-DISC-001-missing-applicability",
+      "knowledge_id": "K-DISC-001",
+      "kind": "missing-applicability",
+      "context": {
+        "secondary_features": true,
+        "safety_critical_hidden": false,
+        "critical_entry_obscured": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-DISC-001-missing-guard",
+      "knowledge_id": "K-DISC-001",
+      "kind": "missing-guard",
+      "context": {
+        "complexity": "high",
+        "secondary_features": true,
+        "critical_entry_obscured": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-DISC-001-missing-reversal",
+      "knowledge_id": "K-DISC-001",
+      "kind": "missing-reversal",
+      "context": {
+        "complexity": "high",
+        "secondary_features": true,
+        "safety_critical_hidden": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-DISC-001-exception-precedes-reversal",
+      "knowledge_id": "K-DISC-001",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "complexity": "high",
+        "secondary_features": true,
+        "safety_critical_hidden": true,
+        "critical_entry_obscured": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-STATE-001-positive",
+      "knowledge_id": "K-STATE-001",
+      "kind": "positive",
+      "context": {
+        "workflow": "stateful",
+        "can_fail": true,
+        "recovery_unavailable": false,
+        "instant_fully_reversible": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-STATE-001-negative",
+      "knowledge_id": "K-STATE-001",
+      "kind": "negative",
+      "context": {
+        "workflow": "__other__",
+        "can_fail": true,
+        "recovery_unavailable": false,
+        "instant_fully_reversible": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-STATE-001-exception",
+      "knowledge_id": "K-STATE-001",
+      "kind": "exception",
+      "context": {
+        "workflow": "stateful",
+        "can_fail": true,
+        "recovery_unavailable": true,
+        "instant_fully_reversible": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-STATE-001-reversal",
+      "knowledge_id": "K-STATE-001",
+      "kind": "reversal",
+      "context": {
+        "workflow": "stateful",
+        "can_fail": true,
+        "recovery_unavailable": false,
+        "instant_fully_reversible": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-STATE-001-missing-applicability",
+      "knowledge_id": "K-STATE-001",
+      "kind": "missing-applicability",
+      "context": {
+        "can_fail": true,
+        "recovery_unavailable": false,
+        "instant_fully_reversible": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-STATE-001-missing-guard",
+      "knowledge_id": "K-STATE-001",
+      "kind": "missing-guard",
+      "context": {
+        "workflow": "stateful",
+        "can_fail": true,
+        "instant_fully_reversible": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-STATE-001-missing-reversal",
+      "knowledge_id": "K-STATE-001",
+      "kind": "missing-reversal",
+      "context": {
+        "workflow": "stateful",
+        "can_fail": true,
+        "recovery_unavailable": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-STATE-001-exception-precedes-reversal",
+      "knowledge_id": "K-STATE-001",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "workflow": "stateful",
+        "can_fail": true,
+        "recovery_unavailable": true,
+        "instant_fully_reversible": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-ERR-001-positive",
+      "knowledge_id": "K-ERR-001",
+      "kind": "positive",
+      "context": {
+        "reversible": true,
+        "risk": "low_or_medium",
+        "undo_not_reliable": false,
+        "loss_impact_high": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-ERR-001-negative",
+      "knowledge_id": "K-ERR-001",
+      "kind": "negative",
+      "context": {
+        "reversible": false,
+        "risk": "low_or_medium",
+        "undo_not_reliable": false,
+        "loss_impact_high": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-ERR-001-exception",
+      "knowledge_id": "K-ERR-001",
+      "kind": "exception",
+      "context": {
+        "reversible": true,
+        "risk": "low_or_medium",
+        "undo_not_reliable": true,
+        "loss_impact_high": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-ERR-001-reversal",
+      "knowledge_id": "K-ERR-001",
+      "kind": "reversal",
+      "context": {
+        "reversible": true,
+        "risk": "low_or_medium",
+        "undo_not_reliable": false,
+        "loss_impact_high": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-ERR-001-missing-applicability",
+      "knowledge_id": "K-ERR-001",
+      "kind": "missing-applicability",
+      "context": {
+        "risk": "low_or_medium",
+        "undo_not_reliable": false,
+        "loss_impact_high": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-ERR-001-missing-guard",
+      "knowledge_id": "K-ERR-001",
+      "kind": "missing-guard",
+      "context": {
+        "reversible": true,
+        "risk": "low_or_medium",
+        "loss_impact_high": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-ERR-001-missing-reversal",
+      "knowledge_id": "K-ERR-001",
+      "kind": "missing-reversal",
+      "context": {
+        "reversible": true,
+        "risk": "low_or_medium",
+        "undo_not_reliable": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-ERR-001-exception-precedes-reversal",
+      "knowledge_id": "K-ERR-001",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "reversible": true,
+        "risk": "low_or_medium",
+        "undo_not_reliable": true,
+        "loss_impact_high": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-A11Y-001-positive",
+      "knowledge_id": "K-A11Y-001",
+      "kind": "positive",
+      "context": {
+        "platform": "web",
+        "interactive": true,
+        "native_semantics_insufficient": false,
+        "custom_widget_required": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-A11Y-001-negative",
+      "knowledge_id": "K-A11Y-001",
+      "kind": "negative",
+      "context": {
+        "platform": "__other__",
+        "interactive": true,
+        "native_semantics_insufficient": false,
+        "custom_widget_required": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-A11Y-001-exception",
+      "knowledge_id": "K-A11Y-001",
+      "kind": "exception",
+      "context": {
+        "platform": "web",
+        "interactive": true,
+        "native_semantics_insufficient": true,
+        "custom_widget_required": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-A11Y-001-reversal",
+      "knowledge_id": "K-A11Y-001",
+      "kind": "reversal",
+      "context": {
+        "platform": "web",
+        "interactive": true,
+        "native_semantics_insufficient": false,
+        "custom_widget_required": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-A11Y-001-missing-applicability",
+      "knowledge_id": "K-A11Y-001",
+      "kind": "missing-applicability",
+      "context": {
+        "interactive": true,
+        "native_semantics_insufficient": false,
+        "custom_widget_required": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-A11Y-001-missing-guard",
+      "knowledge_id": "K-A11Y-001",
+      "kind": "missing-guard",
+      "context": {
+        "platform": "web",
+        "interactive": true,
+        "custom_widget_required": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-A11Y-001-missing-reversal",
+      "knowledge_id": "K-A11Y-001",
+      "kind": "missing-reversal",
+      "context": {
+        "platform": "web",
+        "interactive": true,
+        "native_semantics_insufficient": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-A11Y-001-exception-precedes-reversal",
+      "knowledge_id": "K-A11Y-001",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "platform": "web",
+        "interactive": true,
+        "native_semantics_insufficient": true,
+        "custom_widget_required": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-A11Y-002-positive",
+      "knowledge_id": "K-A11Y-002",
+      "kind": "positive",
+      "context": {
+        "input": "pointer",
+        "standard": "wcag_2_2",
+        "exceptions_not_evaluated": false,
+        "product_target_stricter": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-A11Y-002-negative",
+      "knowledge_id": "K-A11Y-002",
+      "kind": "negative",
+      "context": {
+        "input": "__other__",
+        "standard": "wcag_2_2",
+        "exceptions_not_evaluated": false,
+        "product_target_stricter": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-A11Y-002-exception",
+      "knowledge_id": "K-A11Y-002",
+      "kind": "exception",
+      "context": {
+        "input": "pointer",
+        "standard": "wcag_2_2",
+        "exceptions_not_evaluated": true,
+        "product_target_stricter": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-A11Y-002-reversal",
+      "knowledge_id": "K-A11Y-002",
+      "kind": "reversal",
+      "context": {
+        "input": "pointer",
+        "standard": "wcag_2_2",
+        "exceptions_not_evaluated": false,
+        "product_target_stricter": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-A11Y-002-missing-applicability",
+      "knowledge_id": "K-A11Y-002",
+      "kind": "missing-applicability",
+      "context": {
+        "standard": "wcag_2_2",
+        "exceptions_not_evaluated": false,
+        "product_target_stricter": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-A11Y-002-missing-guard",
+      "knowledge_id": "K-A11Y-002",
+      "kind": "missing-guard",
+      "context": {
+        "input": "pointer",
+        "standard": "wcag_2_2",
+        "product_target_stricter": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-A11Y-002-missing-reversal",
+      "knowledge_id": "K-A11Y-002",
+      "kind": "missing-reversal",
+      "context": {
+        "input": "pointer",
+        "standard": "wcag_2_2",
+        "exceptions_not_evaluated": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-A11Y-002-exception-precedes-reversal",
+      "knowledge_id": "K-A11Y-002",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "input": "pointer",
+        "standard": "wcag_2_2",
+        "exceptions_not_evaluated": true,
+        "product_target_stricter": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-PRO-001-positive",
+      "knowledge_id": "K-PRO-001",
+      "kind": "positive",
+      "context": {
+        "app_kind": "professional_editor",
+        "operations": "repeated",
+        "command_parity_unknown": false,
+        "simple_single_operation": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-PRO-001-negative",
+      "knowledge_id": "K-PRO-001",
+      "kind": "negative",
+      "context": {
+        "app_kind": "__other__",
+        "operations": "repeated",
+        "command_parity_unknown": false,
+        "simple_single_operation": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-PRO-001-exception",
+      "knowledge_id": "K-PRO-001",
+      "kind": "exception",
+      "context": {
+        "app_kind": "professional_editor",
+        "operations": "repeated",
+        "command_parity_unknown": true,
+        "simple_single_operation": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-PRO-001-reversal",
+      "knowledge_id": "K-PRO-001",
+      "kind": "reversal",
+      "context": {
+        "app_kind": "professional_editor",
+        "operations": "repeated",
+        "command_parity_unknown": false,
+        "simple_single_operation": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-PRO-001-missing-applicability",
+      "knowledge_id": "K-PRO-001",
+      "kind": "missing-applicability",
+      "context": {
+        "operations": "repeated",
+        "command_parity_unknown": false,
+        "simple_single_operation": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-PRO-001-missing-guard",
+      "knowledge_id": "K-PRO-001",
+      "kind": "missing-guard",
+      "context": {
+        "app_kind": "professional_editor",
+        "operations": "repeated",
+        "simple_single_operation": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-PRO-001-missing-reversal",
+      "knowledge_id": "K-PRO-001",
+      "kind": "missing-reversal",
+      "context": {
+        "app_kind": "professional_editor",
+        "operations": "repeated",
+        "command_parity_unknown": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-PRO-001-exception-precedes-reversal",
+      "knowledge_id": "K-PRO-001",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "app_kind": "professional_editor",
+        "operations": "repeated",
+        "command_parity_unknown": true,
+        "simple_single_operation": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-AI-001-positive",
+      "knowledge_id": "K-AI-001",
+      "kind": "positive",
+      "context": {
+        "system": "probabilistic_ai",
+        "user_impact": "meaningful",
+        "confidence_unsubstantiated": false,
+        "deterministic_processing": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-AI-001-negative",
+      "knowledge_id": "K-AI-001",
+      "kind": "negative",
+      "context": {
+        "system": "__other__",
+        "user_impact": "meaningful",
+        "confidence_unsubstantiated": false,
+        "deterministic_processing": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-AI-001-exception",
+      "knowledge_id": "K-AI-001",
+      "kind": "exception",
+      "context": {
+        "system": "probabilistic_ai",
+        "user_impact": "meaningful",
+        "confidence_unsubstantiated": true,
+        "deterministic_processing": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-AI-001-reversal",
+      "knowledge_id": "K-AI-001",
+      "kind": "reversal",
+      "context": {
+        "system": "probabilistic_ai",
+        "user_impact": "meaningful",
+        "confidence_unsubstantiated": false,
+        "deterministic_processing": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-AI-001-missing-applicability",
+      "knowledge_id": "K-AI-001",
+      "kind": "missing-applicability",
+      "context": {
+        "user_impact": "meaningful",
+        "confidence_unsubstantiated": false,
+        "deterministic_processing": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-AI-001-missing-guard",
+      "knowledge_id": "K-AI-001",
+      "kind": "missing-guard",
+      "context": {
+        "system": "probabilistic_ai",
+        "user_impact": "meaningful",
+        "deterministic_processing": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-AI-001-missing-reversal",
+      "knowledge_id": "K-AI-001",
+      "kind": "missing-reversal",
+      "context": {
+        "system": "probabilistic_ai",
+        "user_impact": "meaningful",
+        "confidence_unsubstantiated": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-AI-001-exception-precedes-reversal",
+      "knowledge_id": "K-AI-001",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "system": "probabilistic_ai",
+        "user_impact": "meaningful",
+        "confidence_unsubstantiated": true,
+        "deterministic_processing": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-AI-002-positive",
+      "knowledge_id": "K-AI-002",
+      "kind": "positive",
+      "context": {
+        "action_origin": "ai",
+        "change_impact": "consequential",
+        "revert_not_possible": false,
+        "ephemeral_suggestion": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-AI-002-negative",
+      "knowledge_id": "K-AI-002",
+      "kind": "negative",
+      "context": {
+        "action_origin": "__other__",
+        "change_impact": "consequential",
+        "revert_not_possible": false,
+        "ephemeral_suggestion": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-AI-002-exception",
+      "knowledge_id": "K-AI-002",
+      "kind": "exception",
+      "context": {
+        "action_origin": "ai",
+        "change_impact": "consequential",
+        "revert_not_possible": true,
+        "ephemeral_suggestion": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-AI-002-reversal",
+      "knowledge_id": "K-AI-002",
+      "kind": "reversal",
+      "context": {
+        "action_origin": "ai",
+        "change_impact": "consequential",
+        "revert_not_possible": false,
+        "ephemeral_suggestion": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-AI-002-missing-applicability",
+      "knowledge_id": "K-AI-002",
+      "kind": "missing-applicability",
+      "context": {
+        "change_impact": "consequential",
+        "revert_not_possible": false,
+        "ephemeral_suggestion": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-AI-002-missing-guard",
+      "knowledge_id": "K-AI-002",
+      "kind": "missing-guard",
+      "context": {
+        "action_origin": "ai",
+        "change_impact": "consequential",
+        "ephemeral_suggestion": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-AI-002-missing-reversal",
+      "knowledge_id": "K-AI-002",
+      "kind": "missing-reversal",
+      "context": {
+        "action_origin": "ai",
+        "change_impact": "consequential",
+        "revert_not_possible": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-AI-002-exception-precedes-reversal",
+      "knowledge_id": "K-AI-002",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "action_origin": "ai",
+        "change_impact": "consequential",
+        "revert_not_possible": true,
+        "ephemeral_suggestion": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-PERF-001-positive",
+      "knowledge_id": "K-PERF-001",
+      "kind": "positive",
+      "context": {
+        "platform": "web",
+        "measurement": "interaction_latency",
+        "field_data_missing": false,
+        "native_application": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-PERF-001-negative",
+      "knowledge_id": "K-PERF-001",
+      "kind": "negative",
+      "context": {
+        "platform": "__other__",
+        "measurement": "interaction_latency",
+        "field_data_missing": false,
+        "native_application": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-PERF-001-exception",
+      "knowledge_id": "K-PERF-001",
+      "kind": "exception",
+      "context": {
+        "platform": "web",
+        "measurement": "interaction_latency",
+        "field_data_missing": true,
+        "native_application": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-PERF-001-reversal",
+      "knowledge_id": "K-PERF-001",
+      "kind": "reversal",
+      "context": {
+        "platform": "web",
+        "measurement": "interaction_latency",
+        "field_data_missing": false,
+        "native_application": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-PERF-001-missing-applicability",
+      "knowledge_id": "K-PERF-001",
+      "kind": "missing-applicability",
+      "context": {
+        "measurement": "interaction_latency",
+        "field_data_missing": false,
+        "native_application": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-PERF-001-missing-guard",
+      "knowledge_id": "K-PERF-001",
+      "kind": "missing-guard",
+      "context": {
+        "platform": "web",
+        "measurement": "interaction_latency",
+        "native_application": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-PERF-001-missing-reversal",
+      "knowledge_id": "K-PERF-001",
+      "kind": "missing-reversal",
+      "context": {
+        "platform": "web",
+        "measurement": "interaction_latency",
+        "field_data_missing": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-PERF-001-exception-precedes-reversal",
+      "knowledge_id": "K-PERF-001",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "platform": "web",
+        "measurement": "interaction_latency",
+        "field_data_missing": true,
+        "native_application": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-REQ-001-positive",
+      "knowledge_id": "K-REQ-001",
+      "kind": "positive",
+      "context": {
+        "work_type": "software_requirements",
+        "deliverable": "production",
+        "business_outcome_undefined": false,
+        "disposable_prototype": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-REQ-001-negative",
+      "knowledge_id": "K-REQ-001",
+      "kind": "negative",
+      "context": {
+        "work_type": "__other__",
+        "deliverable": "production",
+        "business_outcome_undefined": false,
+        "disposable_prototype": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-REQ-001-exception",
+      "knowledge_id": "K-REQ-001",
+      "kind": "exception",
+      "context": {
+        "work_type": "software_requirements",
+        "deliverable": "production",
+        "business_outcome_undefined": true,
+        "disposable_prototype": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-REQ-001-reversal",
+      "knowledge_id": "K-REQ-001",
+      "kind": "reversal",
+      "context": {
+        "work_type": "software_requirements",
+        "deliverable": "production",
+        "business_outcome_undefined": false,
+        "disposable_prototype": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-REQ-001-missing-applicability",
+      "knowledge_id": "K-REQ-001",
+      "kind": "missing-applicability",
+      "context": {
+        "deliverable": "production",
+        "business_outcome_undefined": false,
+        "disposable_prototype": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-REQ-001-missing-guard",
+      "knowledge_id": "K-REQ-001",
+      "kind": "missing-guard",
+      "context": {
+        "work_type": "software_requirements",
+        "deliverable": "production",
+        "disposable_prototype": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-REQ-001-missing-reversal",
+      "knowledge_id": "K-REQ-001",
+      "kind": "missing-reversal",
+      "context": {
+        "work_type": "software_requirements",
+        "deliverable": "production",
+        "business_outcome_undefined": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-REQ-001-exception-precedes-reversal",
+      "knowledge_id": "K-REQ-001",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "work_type": "software_requirements",
+        "deliverable": "production",
+        "business_outcome_undefined": true,
+        "disposable_prototype": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-REQ-002-positive",
+      "knowledge_id": "K-REQ-002",
+      "kind": "positive",
+      "context": {
+        "risk": "low",
+        "behavior": "reversible",
+        "unresolved_business_semantics": false,
+        "legal_or_permission_impact": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-REQ-002-negative",
+      "knowledge_id": "K-REQ-002",
+      "kind": "negative",
+      "context": {
+        "risk": "__other__",
+        "behavior": "reversible",
+        "unresolved_business_semantics": false,
+        "legal_or_permission_impact": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-REQ-002-exception",
+      "knowledge_id": "K-REQ-002",
+      "kind": "exception",
+      "context": {
+        "risk": "low",
+        "behavior": "reversible",
+        "unresolved_business_semantics": true,
+        "legal_or_permission_impact": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-REQ-002-reversal",
+      "knowledge_id": "K-REQ-002",
+      "kind": "reversal",
+      "context": {
+        "risk": "low",
+        "behavior": "reversible",
+        "unresolved_business_semantics": false,
+        "legal_or_permission_impact": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-REQ-002-missing-applicability",
+      "knowledge_id": "K-REQ-002",
+      "kind": "missing-applicability",
+      "context": {
+        "behavior": "reversible",
+        "unresolved_business_semantics": false,
+        "legal_or_permission_impact": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-REQ-002-missing-guard",
+      "knowledge_id": "K-REQ-002",
+      "kind": "missing-guard",
+      "context": {
+        "risk": "low",
+        "behavior": "reversible",
+        "legal_or_permission_impact": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-REQ-002-missing-reversal",
+      "knowledge_id": "K-REQ-002",
+      "kind": "missing-reversal",
+      "context": {
+        "risk": "low",
+        "behavior": "reversible",
+        "unresolved_business_semantics": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-REQ-002-exception-precedes-reversal",
+      "knowledge_id": "K-REQ-002",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "risk": "low",
+        "behavior": "reversible",
+        "unresolved_business_semantics": true,
+        "legal_or_permission_impact": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-ARCH-001-positive",
+      "knowledge_id": "K-ARCH-001",
+      "kind": "positive",
+      "context": {
+        "process": "asynchronous",
+        "states": "multiple_recoverable",
+        "transitions_unobserved": false,
+        "simple_binary_flow": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-ARCH-001-negative",
+      "knowledge_id": "K-ARCH-001",
+      "kind": "negative",
+      "context": {
+        "process": "__other__",
+        "states": "multiple_recoverable",
+        "transitions_unobserved": false,
+        "simple_binary_flow": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-ARCH-001-exception",
+      "knowledge_id": "K-ARCH-001",
+      "kind": "exception",
+      "context": {
+        "process": "asynchronous",
+        "states": "multiple_recoverable",
+        "transitions_unobserved": true,
+        "simple_binary_flow": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-ARCH-001-reversal",
+      "knowledge_id": "K-ARCH-001",
+      "kind": "reversal",
+      "context": {
+        "process": "asynchronous",
+        "states": "multiple_recoverable",
+        "transitions_unobserved": false,
+        "simple_binary_flow": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-ARCH-001-missing-applicability",
+      "knowledge_id": "K-ARCH-001",
+      "kind": "missing-applicability",
+      "context": {
+        "states": "multiple_recoverable",
+        "transitions_unobserved": false,
+        "simple_binary_flow": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-ARCH-001-missing-guard",
+      "knowledge_id": "K-ARCH-001",
+      "kind": "missing-guard",
+      "context": {
+        "process": "asynchronous",
+        "states": "multiple_recoverable",
+        "simple_binary_flow": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-ARCH-001-missing-reversal",
+      "knowledge_id": "K-ARCH-001",
+      "kind": "missing-reversal",
+      "context": {
+        "process": "asynchronous",
+        "states": "multiple_recoverable",
+        "transitions_unobserved": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-ARCH-001-exception-precedes-reversal",
+      "knowledge_id": "K-ARCH-001",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "process": "asynchronous",
+        "states": "multiple_recoverable",
+        "transitions_unobserved": true,
+        "simple_binary_flow": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-ARCH-002-positive",
+      "knowledge_id": "K-ARCH-002",
+      "kind": "positive",
+      "context": {
+        "variation": "repeated_observed",
+        "component_scope": "shared",
+        "contract_not_stable": false,
+        "requirements_exploration": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-ARCH-002-negative",
+      "knowledge_id": "K-ARCH-002",
+      "kind": "negative",
+      "context": {
+        "variation": "__other__",
+        "component_scope": "shared",
+        "contract_not_stable": false,
+        "requirements_exploration": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-ARCH-002-exception",
+      "knowledge_id": "K-ARCH-002",
+      "kind": "exception",
+      "context": {
+        "variation": "repeated_observed",
+        "component_scope": "shared",
+        "contract_not_stable": true,
+        "requirements_exploration": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-ARCH-002-reversal",
+      "knowledge_id": "K-ARCH-002",
+      "kind": "reversal",
+      "context": {
+        "variation": "repeated_observed",
+        "component_scope": "shared",
+        "contract_not_stable": false,
+        "requirements_exploration": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-ARCH-002-missing-applicability",
+      "knowledge_id": "K-ARCH-002",
+      "kind": "missing-applicability",
+      "context": {
+        "component_scope": "shared",
+        "contract_not_stable": false,
+        "requirements_exploration": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-ARCH-002-missing-guard",
+      "knowledge_id": "K-ARCH-002",
+      "kind": "missing-guard",
+      "context": {
+        "variation": "repeated_observed",
+        "component_scope": "shared",
+        "requirements_exploration": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-ARCH-002-missing-reversal",
+      "knowledge_id": "K-ARCH-002",
+      "kind": "missing-reversal",
+      "context": {
+        "variation": "repeated_observed",
+        "component_scope": "shared",
+        "contract_not_stable": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-ARCH-002-exception-precedes-reversal",
+      "knowledge_id": "K-ARCH-002",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "variation": "repeated_observed",
+        "component_scope": "shared",
+        "contract_not_stable": true,
+        "requirements_exploration": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-VERIFY-001-positive",
+      "knowledge_id": "K-VERIFY-001",
+      "kind": "positive",
+      "context": {
+        "verification": "ui_acceptance",
+        "automation": "present",
+        "manual_testing_unavailable": false,
+        "non_interactive_component": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-VERIFY-001-negative",
+      "knowledge_id": "K-VERIFY-001",
+      "kind": "negative",
+      "context": {
+        "verification": "__other__",
+        "automation": "present",
+        "manual_testing_unavailable": false,
+        "non_interactive_component": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-VERIFY-001-exception",
+      "knowledge_id": "K-VERIFY-001",
+      "kind": "exception",
+      "context": {
+        "verification": "ui_acceptance",
+        "automation": "present",
+        "manual_testing_unavailable": true,
+        "non_interactive_component": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-VERIFY-001-reversal",
+      "knowledge_id": "K-VERIFY-001",
+      "kind": "reversal",
+      "context": {
+        "verification": "ui_acceptance",
+        "automation": "present",
+        "manual_testing_unavailable": false,
+        "non_interactive_component": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-VERIFY-001-missing-applicability",
+      "knowledge_id": "K-VERIFY-001",
+      "kind": "missing-applicability",
+      "context": {
+        "automation": "present",
+        "manual_testing_unavailable": false,
+        "non_interactive_component": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-VERIFY-001-missing-guard",
+      "knowledge_id": "K-VERIFY-001",
+      "kind": "missing-guard",
+      "context": {
+        "verification": "ui_acceptance",
+        "automation": "present",
+        "non_interactive_component": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-VERIFY-001-missing-reversal",
+      "knowledge_id": "K-VERIFY-001",
+      "kind": "missing-reversal",
+      "context": {
+        "verification": "ui_acceptance",
+        "automation": "present",
+        "manual_testing_unavailable": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-VERIFY-001-exception-precedes-reversal",
+      "knowledge_id": "K-VERIFY-001",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "verification": "ui_acceptance",
+        "automation": "present",
+        "manual_testing_unavailable": true,
+        "non_interactive_component": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-REDESIGN-001-positive",
+      "knowledge_id": "K-REDESIGN-001",
+      "kind": "positive",
+      "context": {
+        "symptom": "repeated_across_screens",
+        "structure": "complex",
+        "migration_risk_unassessed": false,
+        "isolated_local_bug": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-REDESIGN-001-negative",
+      "knowledge_id": "K-REDESIGN-001",
+      "kind": "negative",
+      "context": {
+        "symptom": "__other__",
+        "structure": "complex",
+        "migration_risk_unassessed": false,
+        "isolated_local_bug": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-REDESIGN-001-exception",
+      "knowledge_id": "K-REDESIGN-001",
+      "kind": "exception",
+      "context": {
+        "symptom": "repeated_across_screens",
+        "structure": "complex",
+        "migration_risk_unassessed": true,
+        "isolated_local_bug": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-REDESIGN-001-reversal",
+      "knowledge_id": "K-REDESIGN-001",
+      "kind": "reversal",
+      "context": {
+        "symptom": "repeated_across_screens",
+        "structure": "complex",
+        "migration_risk_unassessed": false,
+        "isolated_local_bug": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-REDESIGN-001-missing-applicability",
+      "knowledge_id": "K-REDESIGN-001",
+      "kind": "missing-applicability",
+      "context": {
+        "structure": "complex",
+        "migration_risk_unassessed": false,
+        "isolated_local_bug": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-REDESIGN-001-missing-guard",
+      "knowledge_id": "K-REDESIGN-001",
+      "kind": "missing-guard",
+      "context": {
+        "symptom": "repeated_across_screens",
+        "structure": "complex",
+        "isolated_local_bug": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-REDESIGN-001-missing-reversal",
+      "knowledge_id": "K-REDESIGN-001",
+      "kind": "missing-reversal",
+      "context": {
+        "symptom": "repeated_across_screens",
+        "structure": "complex",
+        "migration_risk_unassessed": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-REDESIGN-001-exception-precedes-reversal",
+      "knowledge_id": "K-REDESIGN-001",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "symptom": "repeated_across_screens",
+        "structure": "complex",
+        "migration_risk_unassessed": true,
+        "isolated_local_bug": true
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-I18N-001-positive",
+      "knowledge_id": "K-I18N-001",
+      "kind": "positive",
+      "context": {
+        "locale": "ja_JP",
+        "surface": "text_layout",
+        "test_font_unavailable": false,
+        "icon_only_controls": false
+      },
+      "expected": "candidate_match"
+    },
+    {
+      "id": "K-I18N-001-negative",
+      "knowledge_id": "K-I18N-001",
+      "kind": "negative",
+      "context": {
+        "locale": "__other__",
+        "surface": "text_layout",
+        "test_font_unavailable": false,
+        "icon_only_controls": false
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "id": "K-I18N-001-exception",
+      "knowledge_id": "K-I18N-001",
+      "kind": "exception",
+      "context": {
+        "locale": "ja_JP",
+        "surface": "text_layout",
+        "test_font_unavailable": true,
+        "icon_only_controls": false
+      },
+      "expected": "contraindicated"
+    },
+    {
+      "id": "K-I18N-001-reversal",
+      "knowledge_id": "K-I18N-001",
+      "kind": "reversal",
+      "context": {
+        "locale": "ja_JP",
+        "surface": "text_layout",
+        "test_font_unavailable": false,
+        "icon_only_controls": true
+      },
+      "expected": "reversal_candidate"
+    },
+    {
+      "id": "K-I18N-001-missing-applicability",
+      "knowledge_id": "K-I18N-001",
+      "kind": "missing-applicability",
+      "context": {
+        "surface": "text_layout",
+        "test_font_unavailable": false,
+        "icon_only_controls": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-I18N-001-missing-guard",
+      "knowledge_id": "K-I18N-001",
+      "kind": "missing-guard",
+      "context": {
+        "locale": "ja_JP",
+        "surface": "text_layout",
+        "icon_only_controls": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-I18N-001-missing-reversal",
+      "knowledge_id": "K-I18N-001",
+      "kind": "missing-reversal",
+      "context": {
+        "locale": "ja_JP",
+        "surface": "text_layout",
+        "test_font_unavailable": false
+      },
+      "expected": "needs_context"
+    },
+    {
+      "id": "K-I18N-001-exception-precedes-reversal",
+      "knowledge_id": "K-I18N-001",
+      "kind": "exception-precedes-reversal",
+      "context": {
+        "locale": "ja_JP",
+        "surface": "text_layout",
+        "test_font_unavailable": true,
+        "icon_only_controls": true
+      },
+      "expected": "contraindicated"
+    }
+  ]
+}

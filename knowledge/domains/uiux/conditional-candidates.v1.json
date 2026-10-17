@@ -1,0 +1,931 @@
+{
+  "schema_version": 1,
+  "kind": "normalized_conditional_research_candidates",
+  "domain": "uiux-and-software-design",
+  "scope": "local deterministic illustrative fixtures; not an approved decision engine",
+  "source_issue": "https://github.com/kinoko34077/kinotch-judgment-learning/issues/6",
+  "source_audit": "knowledge/domains/uiux/evidence-traceability-audit.v1.json",
+  "original_report_verified": false,
+  "runtime_eligible": false,
+  "records": [
+    {
+      "id": "K-IA-001",
+      "source_candidate_id": "K-IA-001",
+      "domain": "uiux-and-software-design",
+      "recommendation": "複数機能の主要タスクから情報構造を比較設計",
+      "applies_when": [
+        {
+          "fact": "multi_feature",
+          "equals": true
+        },
+        {
+          "fact": "task_navigation",
+          "equals": true
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "single_tiny_task",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "hierarchy_cost_high",
+              "equals": true
+            }
+          ],
+          "consider": "shallow_direct_path"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "context_only",
+      "evidence_claim_ids": [
+        "CHECK-ISO9241-115-SCOPE"
+      ],
+      "evidence_limitations": "主要taskから情報構造を設計する具体的な比較試験や階層量の閾値"
+    },
+    {
+      "id": "K-DATA-001",
+      "source_candidate_id": "K-DATA-001",
+      "domain": "uiux-and-software-design",
+      "recommendation": "同質の複数属性比較では表形式を優先候補",
+      "applies_when": [
+        {
+          "fact": "data_shape",
+          "equals": "homogeneous"
+        },
+        {
+          "fact": "task",
+          "equals": "compare_attributes"
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "visual_mixed_data",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "mobile_columns_unusable",
+              "equals": true
+            }
+          ],
+          "consider": "column_priority_or_card"
+        }
+      ],
+      "conflicts_with": [
+        "K-DATA-002"
+      ],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "partial_claim_support",
+      "evidence_claim_ids": [
+        "CHECK-CLOUDSCAPE-TABLE-CARD",
+        "CHECK-USWDS-TABLE",
+        "CHECK-CARBON-DATA-TABLE"
+      ],
+      "evidence_limitations": "異種構造の場合の適用反転を全プラットフォームで実証した研究"
+    },
+    {
+      "id": "K-DATA-002",
+      "source_candidate_id": "K-DATA-002",
+      "domain": "uiux-and-software-design",
+      "recommendation": "視覚的異種コンテンツはカード形式を優先候補",
+      "applies_when": [
+        {
+          "fact": "data_shape",
+          "equals": "mixed_visual"
+        },
+        {
+          "fact": "task",
+          "equals": "browse_objects"
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "dense_attribute_comparison",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "comparison_required",
+              "equals": true
+            }
+          ],
+          "consider": "comparison_table"
+        }
+      ],
+      "conflicts_with": [
+        "K-DATA-001"
+      ],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "partial_claim_support",
+      "evidence_claim_ids": [
+        "CHECK-CLOUDSCAPE-TABLE-CARD",
+        "CHECK-USWDS-TABLE"
+      ],
+      "evidence_limitations": "カード採用と比較効率の一般化・実測"
+    },
+    {
+      "id": "K-EFF-001",
+      "source_candidate_id": "K-EFF-001",
+      "domain": "uiux-and-software-design",
+      "recommendation": "高頻度作業では可視操作に加え任意の高速経路",
+      "applies_when": [
+        {
+          "fact": "frequency",
+          "equals": "high"
+        },
+        {
+          "fact": "experience",
+          "equals": "expert"
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "shortcut_only",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "one_time_flow",
+              "equals": true
+            }
+          ],
+          "consider": "visible_standard_path_only"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "context_only",
+      "evidence_claim_ids": [
+        "CHECK-PRIMER-EFFICIENCY"
+      ],
+      "evidence_limitations": "可視標準経路とショートカットの併用が最適という具体的な一次証拠"
+    },
+    {
+      "id": "K-DISC-001",
+      "source_candidate_id": "K-DISC-001",
+      "domain": "uiux-and-software-design",
+      "recommendation": "多機能UIでは低頻度詳細の段階的開示を比較",
+      "applies_when": [
+        {
+          "fact": "complexity",
+          "equals": "high"
+        },
+        {
+          "fact": "secondary_features",
+          "equals": true
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "safety_critical_hidden",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "critical_entry_obscured",
+              "equals": true
+            }
+          ],
+          "consider": "directly_visible_critical_entry"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "no_direct_claim",
+      "evidence_claim_ids": [],
+      "evidence_limitations": "段階的開示と安全重要状態の例外に関する一次資料"
+    },
+    {
+      "id": "K-STATE-001",
+      "source_candidate_id": "K-STATE-001",
+      "domain": "uiux-and-software-design",
+      "recommendation": "編集・非同期処理では失敗と復帰の状態を表現",
+      "applies_when": [
+        {
+          "fact": "workflow",
+          "equals": "stateful"
+        },
+        {
+          "fact": "can_fail",
+          "equals": true
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "recovery_unavailable",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "instant_fully_reversible",
+              "equals": true
+            }
+          ],
+          "consider": "lightweight_status"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "no_direct_claim",
+      "evidence_claim_ids": [],
+      "evidence_limitations": "編集・保存・失敗・再開状態の明示を扱う一次資料と操作検証"
+    },
+    {
+      "id": "K-ERR-001",
+      "source_candidate_id": "K-ERR-001",
+      "domain": "uiux-and-software-design",
+      "recommendation": "可逆低中リスク操作ではUndoを比較",
+      "applies_when": [
+        {
+          "fact": "reversible",
+          "equals": true
+        },
+        {
+          "fact": "risk",
+          "equals": "low_or_medium"
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "undo_not_reliable",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "loss_impact_high",
+              "equals": true
+            }
+          ],
+          "consider": "confirmation_or_preview"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "context_only",
+      "evidence_claim_ids": [
+        "CHECK-GOVUK-ERROR"
+      ],
+      "evidence_limitations": "Undo対confirmの危険度と頻度に応じた比較実証（GOV.UKはフォームエラー表示のみ）"
+    },
+    {
+      "id": "K-A11Y-001",
+      "source_candidate_id": "K-A11Y-001",
+      "domain": "uiux-and-software-design",
+      "recommendation": "Web操作では標準要素を基準にキーボード経路を確認",
+      "applies_when": [
+        {
+          "fact": "platform",
+          "equals": "web"
+        },
+        {
+          "fact": "interactive",
+          "equals": true
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "native_semantics_insufficient",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "custom_widget_required",
+              "equals": true
+            }
+          ],
+          "consider": "tested_custom_keyboard_model"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "partial_claim_support",
+      "evidence_claim_ids": [
+        "CHECK-APG-KEYBOARD",
+        "CHECK-SLDS2-A11Y"
+      ],
+      "evidence_limitations": "native semantics優先という比較主張の原典、および対象アプリの完全なキーボード検証"
+    },
+    {
+      "id": "K-A11Y-002",
+      "source_candidate_id": "K-A11Y-002",
+      "domain": "uiux-and-software-design",
+      "recommendation": "pointer基準と製品目標の区別を確認",
+      "applies_when": [
+        {
+          "fact": "input",
+          "equals": "pointer"
+        },
+        {
+          "fact": "standard",
+          "equals": "wcag_2_2"
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "exceptions_not_evaluated",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "product_target_stricter",
+              "equals": true
+            }
+          ],
+          "consider": "track_standard_and_product_separately"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "partial_claim_support",
+      "evidence_claim_ids": [
+        "CHECK-WCAG22-258",
+        "CHECK-WCAG3-DRAFT"
+      ],
+      "evidence_limitations": "AA/AAA・各OSのproduct targetとの違い全般を説明する追加一次資料"
+    },
+    {
+      "id": "K-PRO-001",
+      "source_candidate_id": "K-PRO-001",
+      "domain": "uiux-and-software-design",
+      "recommendation": "専門編集で複数の操作入口を単一コマンドに接続",
+      "applies_when": [
+        {
+          "fact": "app_kind",
+          "equals": "professional_editor"
+        },
+        {
+          "fact": "operations",
+          "equals": "repeated"
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "command_parity_unknown",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "simple_single_operation",
+              "equals": true
+            }
+          ],
+          "consider": "visible_action_only"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "context_only",
+      "evidence_claim_ids": [
+        "CHECK-PRIMER-EFFICIENCY"
+      ],
+      "evidence_limitations": "複数操作入口を共通commandへ集約する実装効果の原典"
+    },
+    {
+      "id": "K-AI-001",
+      "source_candidate_id": "K-AI-001",
+      "domain": "uiux-and-software-design",
+      "recommendation": "確率的AI機能では能力と限界を校正",
+      "applies_when": [
+        {
+          "fact": "system",
+          "equals": "probabilistic_ai"
+        },
+        {
+          "fact": "user_impact",
+          "equals": "meaningful"
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "confidence_unsubstantiated",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "deterministic_processing",
+              "equals": true
+            }
+          ],
+          "consider": "no_probabilistic_disclaimer"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "context_only",
+      "evidence_claim_ids": [
+        "CHECK-NIST-RMF"
+      ],
+      "evidence_limitations": "確率的AIの能力・不確実性の校正方法を直接示す研究"
+    },
+    {
+      "id": "K-AI-002",
+      "source_candidate_id": "K-AI-002",
+      "domain": "uiux-and-software-design",
+      "recommendation": "影響のあるAI変更には差分・拒否・復元の選択肢を検討",
+      "applies_when": [
+        {
+          "fact": "action_origin",
+          "equals": "ai"
+        },
+        {
+          "fact": "change_impact",
+          "equals": "consequential"
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "revert_not_possible",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "ephemeral_suggestion",
+              "equals": true
+            }
+          ],
+          "consider": "lightweight_dismiss"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "no_direct_claim",
+      "evidence_claim_ids": [],
+      "evidence_limitations": "AI変更の承認/拒否/差分/取り消しUIに関する直接の一次研究"
+    },
+    {
+      "id": "K-PERF-001",
+      "source_candidate_id": "K-PERF-001",
+      "domain": "uiux-and-software-design",
+      "recommendation": "Web体感の測定と長時間タスク所要を分ける",
+      "applies_when": [
+        {
+          "fact": "platform",
+          "equals": "web"
+        },
+        {
+          "fact": "measurement",
+          "equals": "interaction_latency"
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "field_data_missing",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "native_application",
+              "equals": true
+            }
+          ],
+          "consider": "native_specific_metrics"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "partial_claim_support",
+      "evidence_claim_ids": [
+        "CHECK-CWV"
+      ],
+      "evidence_limitations": "CWV field measurementとtask latencyを比較した根拠、native/desktop適用境界"
+    },
+    {
+      "id": "K-REQ-001",
+      "source_candidate_id": "K-REQ-001",
+      "domain": "uiux-and-software-design",
+      "recommendation": "ソフトウェア要求を観測可能な受入結果に接続",
+      "applies_when": [
+        {
+          "fact": "work_type",
+          "equals": "software_requirements"
+        },
+        {
+          "fact": "deliverable",
+          "equals": "production"
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "business_outcome_undefined",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "disposable_prototype",
+              "equals": true
+            }
+          ],
+          "consider": "lightweight_acceptance"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "partial_claim_support",
+      "evidence_claim_ids": [
+        "CHECK-GHERKIN-THEN",
+        "CHECK-ISO29148-STATUS"
+      ],
+      "evidence_limitations": "goal→scenario→acceptanceの全連鎖、2018版規格の有料本文"
+    },
+    {
+      "id": "K-REQ-002",
+      "source_candidate_id": "K-REQ-002",
+      "domain": "uiux-and-software-design",
+      "recommendation": "低リスクの暗黙要件は仮定を明示して先行補完",
+      "applies_when": [
+        {
+          "fact": "risk",
+          "equals": "low"
+        },
+        {
+          "fact": "behavior",
+          "equals": "reversible"
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "unresolved_business_semantics",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "legal_or_permission_impact",
+              "equals": true
+            }
+          ],
+          "consider": "explicit_human_clarification"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "no_direct_claim",
+      "evidence_claim_ids": [],
+      "evidence_limitations": "暗黙要件補完が安全な条件とbusiness/legal semanticsの質問ゲートの実証"
+    },
+    {
+      "id": "K-ARCH-001",
+      "source_candidate_id": "K-ARCH-001",
+      "domain": "uiux-and-software-design",
+      "recommendation": "複雑な非同期操作の状態遷移をモデル化",
+      "applies_when": [
+        {
+          "fact": "process",
+          "equals": "asynchronous"
+        },
+        {
+          "fact": "states",
+          "equals": "multiple_recoverable"
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "transitions_unobserved",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "simple_binary_flow",
+              "equals": true
+            }
+          ],
+          "consider": "minimal_state_model"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "no_direct_claim",
+      "evidence_claim_ids": [],
+      "evidence_limitations": "async state machineに関する設計・実装一次資料"
+    },
+    {
+      "id": "K-ARCH-002",
+      "source_candidate_id": "K-ARCH-002",
+      "domain": "uiux-and-software-design",
+      "recommendation": "抽象化は繰り返し確認した変動点を対象とする",
+      "applies_when": [
+        {
+          "fact": "variation",
+          "equals": "repeated_observed"
+        },
+        {
+          "fact": "component_scope",
+          "equals": "shared"
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "contract_not_stable",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "requirements_exploration",
+              "equals": true
+            }
+          ],
+          "consider": "local_concrete_implementation"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "no_direct_claim",
+      "evidence_claim_ids": [],
+      "evidence_limitations": "抽象化を安定した変動点に限るという比較事例・実証"
+    },
+    {
+      "id": "K-VERIFY-001",
+      "source_candidate_id": "K-VERIFY-001",
+      "domain": "uiux-and-software-design",
+      "recommendation": "自動検査と実操作による品質確認を区別",
+      "applies_when": [
+        {
+          "fact": "verification",
+          "equals": "ui_acceptance"
+        },
+        {
+          "fact": "automation",
+          "equals": "present"
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "manual_testing_unavailable",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "non_interactive_component",
+              "equals": true
+            }
+          ],
+          "consider": "static_only_test_boundary"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "partial_claim_support",
+      "evidence_claim_ids": [
+        "CHECK-USWDS-TEST",
+        "CHECK-ISO9241-11-SCOPE"
+      ],
+      "evidence_limitations": "自動試験と実利用者UX判定の定量的な比較実証"
+    },
+    {
+      "id": "K-REDESIGN-001",
+      "source_candidate_id": "K-REDESIGN-001",
+      "domain": "uiux-and-software-design",
+      "recommendation": "症状が反復するUIでは追加より構造の修正を比較",
+      "applies_when": [
+        {
+          "fact": "symptom",
+          "equals": "repeated_across_screens"
+        },
+        {
+          "fact": "structure",
+          "equals": "complex"
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "migration_risk_unassessed",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "isolated_local_bug",
+              "equals": true
+            }
+          ],
+          "consider": "local_fix"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "context_only",
+      "evidence_claim_ids": [
+        "CHECK-ISO9241-115-SCOPE"
+      ],
+      "evidence_limitations": "UI追加前に問題構造を再定義する一般原理の直接実証。研究合成であり規格そのものではない"
+    },
+    {
+      "id": "K-I18N-001",
+      "source_candidate_id": "K-I18N-001",
+      "domain": "uiux-and-software-design",
+      "recommendation": "日本語UIを実文字列と可変寸法で検証",
+      "applies_when": [
+        {
+          "fact": "locale",
+          "equals": "ja_JP"
+        },
+        {
+          "fact": "surface",
+          "equals": "text_layout"
+        }
+      ],
+      "avoid_when": [
+        {
+          "fact": "test_font_unavailable",
+          "equals": true
+        }
+      ],
+      "reversal_conditions": [
+        {
+          "when": [
+            {
+              "fact": "icon_only_controls",
+              "equals": true
+            }
+          ],
+          "consider": "label_accessibility_review"
+        }
+      ],
+      "conflicts_with": [],
+      "decision_scope": "research_fixture_only",
+      "original_claim_scope": "issue_6_compact_summary",
+      "normalized_conditions_are_hypotheses": true,
+      "adoption_status": "candidate",
+      "personal_approval": false,
+      "runtime_eligible": false,
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "context_only",
+      "evidence_claim_ids": [
+        "CHECK-JLREQ-SCOPE"
+      ],
+      "evidence_limitations": "日本語実文字列・ルビ・font fallback・reflowを使用した実際のUI検証"
+    }
+  ]
+}
