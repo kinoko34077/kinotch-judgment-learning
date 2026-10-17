@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "kinotch-judgment-learning",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-10-08",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+  "vars": {
+    "PUBLIC_ORIGIN": "https://REPLACE-WITH-YOUR-WORKERS-DOMAIN.workers.dev",
+    "GITHUB_CLIENT_ID": "REPLACE_WITH_OAUTH_APP_CLIENT_ID",
+    "OWNER_GITHUB_USER_ID": "REPLACE_WITH_APPROVED_GITHUB_NUMERIC_ID"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "kinotch-judgment-learning",
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID"
+    }
+  ]
+}
