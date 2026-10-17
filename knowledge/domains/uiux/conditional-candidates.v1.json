@@ -47,7 +47,12 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "context_only",
+      "evidence_claim_ids": [
+        "CHECK-ISO9241-115-SCOPE"
+      ],
+      "evidence_limitations": "主要taskから情報構造を設計する具体的な比較試験や階層量の閾値"
     },
     {
       "id": "K-DATA-001",
@@ -90,7 +95,14 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "partial_claim_support",
+      "evidence_claim_ids": [
+        "CHECK-CLOUDSCAPE-TABLE-CARD",
+        "CHECK-USWDS-TABLE",
+        "CHECK-CARBON-DATA-TABLE"
+      ],
+      "evidence_limitations": "異種構造の場合の適用反転を全プラットフォームで実証した研究"
     },
     {
       "id": "K-DATA-002",
@@ -133,7 +145,13 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "partial_claim_support",
+      "evidence_claim_ids": [
+        "CHECK-CLOUDSCAPE-TABLE-CARD",
+        "CHECK-USWDS-TABLE"
+      ],
+      "evidence_limitations": "カード採用と比較効率の一般化・実測"
     },
     {
       "id": "K-EFF-001",
@@ -174,7 +192,12 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "context_only",
+      "evidence_claim_ids": [
+        "CHECK-PRIMER-EFFICIENCY"
+      ],
+      "evidence_limitations": "可視標準経路とショートカットの併用が最適という具体的な一次証拠"
     },
     {
       "id": "K-DISC-001",
@@ -215,7 +238,10 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "no_direct_claim",
+      "evidence_claim_ids": [],
+      "evidence_limitations": "段階的開示と安全重要状態の例外に関する一次資料"
     },
     {
       "id": "K-STATE-001",
@@ -256,7 +282,10 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "no_direct_claim",
+      "evidence_claim_ids": [],
+      "evidence_limitations": "編集・保存・失敗・再開状態の明示を扱う一次資料と操作検証"
     },
     {
       "id": "K-ERR-001",
@@ -297,7 +326,12 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "context_only",
+      "evidence_claim_ids": [
+        "CHECK-GOVUK-ERROR"
+      ],
+      "evidence_limitations": "Undo対confirmの危険度と頻度に応じた比較実証（GOV.UKはフォームエラー表示のみ）"
     },
     {
       "id": "K-A11Y-001",
@@ -338,7 +372,13 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "partial_claim_support",
+      "evidence_claim_ids": [
+        "CHECK-APG-KEYBOARD",
+        "CHECK-SLDS2-A11Y"
+      ],
+      "evidence_limitations": "native semantics優先という比較主張の原典、および対象アプリの完全なキーボード検証"
     },
     {
       "id": "K-A11Y-002",
@@ -379,7 +419,13 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "partial_claim_support",
+      "evidence_claim_ids": [
+        "CHECK-WCAG22-258",
+        "CHECK-WCAG3-DRAFT"
+      ],
+      "evidence_limitations": "AA/AAA・各OSのproduct targetとの違い全般を説明する追加一次資料"
     },
     {
       "id": "K-PRO-001",
@@ -420,7 +466,12 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "context_only",
+      "evidence_claim_ids": [
+        "CHECK-PRIMER-EFFICIENCY"
+      ],
+      "evidence_limitations": "複数操作入口を共通commandへ集約する実装効果の原典"
     },
     {
       "id": "K-AI-001",
@@ -461,7 +512,12 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "context_only",
+      "evidence_claim_ids": [
+        "CHECK-NIST-RMF"
+      ],
+      "evidence_limitations": "確率的AIの能力・不確実性の校正方法を直接示す研究"
     },
     {
       "id": "K-AI-002",
@@ -502,7 +558,10 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "no_direct_claim",
+      "evidence_claim_ids": [],
+      "evidence_limitations": "AI変更の承認/拒否/差分/取り消しUIに関する直接の一次研究"
     },
     {
       "id": "K-PERF-001",
@@ -543,7 +602,12 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "partial_claim_support",
+      "evidence_claim_ids": [
+        "CHECK-CWV"
+      ],
+      "evidence_limitations": "CWV field measurementとtask latencyを比較した根拠、native/desktop適用境界"
     },
     {
       "id": "K-REQ-001",
@@ -584,7 +648,13 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "partial_claim_support",
+      "evidence_claim_ids": [
+        "CHECK-GHERKIN-THEN",
+        "CHECK-ISO29148-STATUS"
+      ],
+      "evidence_limitations": "goal→scenario→acceptanceの全連鎖、2018版規格の有料本文"
     },
     {
       "id": "K-REQ-002",
@@ -625,7 +695,10 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "no_direct_claim",
+      "evidence_claim_ids": [],
+      "evidence_limitations": "暗黙要件補完が安全な条件とbusiness/legal semanticsの質問ゲートの実証"
     },
     {
       "id": "K-ARCH-001",
@@ -666,7 +739,10 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "no_direct_claim",
+      "evidence_claim_ids": [],
+      "evidence_limitations": "async state machineに関する設計・実装一次資料"
     },
     {
       "id": "K-ARCH-002",
@@ -707,7 +783,10 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "no_direct_claim",
+      "evidence_claim_ids": [],
+      "evidence_limitations": "抽象化を安定した変動点に限るという比較事例・実証"
     },
     {
       "id": "K-VERIFY-001",
@@ -748,7 +827,13 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "partial_claim_support",
+      "evidence_claim_ids": [
+        "CHECK-USWDS-TEST",
+        "CHECK-ISO9241-11-SCOPE"
+      ],
+      "evidence_limitations": "自動試験と実利用者UX判定の定量的な比較実証"
     },
     {
       "id": "K-REDESIGN-001",
@@ -789,7 +874,12 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "context_only",
+      "evidence_claim_ids": [
+        "CHECK-ISO9241-115-SCOPE"
+      ],
+      "evidence_limitations": "UI追加前に問題構造を再定義する一般原理の直接実証。研究合成であり規格そのものではない"
     },
     {
       "id": "K-I18N-001",
@@ -830,7 +920,12 @@
       "adoption_status": "candidate",
       "personal_approval": false,
       "runtime_eligible": false,
-      "evidence_status": "partial_or_missing_see_evidence_traceability_audit"
+      "evidence_status": "partial_or_missing_see_evidence_traceability_audit",
+      "evidence_support_level": "context_only",
+      "evidence_claim_ids": [
+        "CHECK-JLREQ-SCOPE"
+      ],
+      "evidence_limitations": "日本語実文字列・ルビ・font fallback・reflowを使用した実際のUI検証"
     }
   ]
 }
