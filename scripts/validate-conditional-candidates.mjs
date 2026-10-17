@@ -44,6 +44,11 @@ for(const rule of candidateSet.records){
   assert.equal(sourceLookup.get(rule.id)?.authority,"research_synthesis_unapproved");
   assert.equal(auditLookup.get(rule.id)?.personal_approval,false);
   assert.equal(auditLookup.get(rule.id)?.runtime_eligible,false);
+  const evidence=auditLookup.get(rule.id);
+  assert.equal(rule.evidence_support_level,evidence.claim_support_level);
+  assert.deepEqual(rule.evidence_claim_ids,evidence.primary_claim_links.map(x=>x.claim_id));
+  assert.equal(rule.evidence_limitations,evidence.unverified_scope);
+  assert.ok(rule.evidence_limitations.length>0);
   assert.ok(rule.recommendation.length>0);
   assert.ok(rule.applies_when.length>=1);
   assert.ok(rule.avoid_when.length>=1);
