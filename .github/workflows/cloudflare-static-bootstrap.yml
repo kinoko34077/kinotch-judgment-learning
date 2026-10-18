@@ -1,27 +1,31 @@
-name: Cloudflare bootstrap Worker preflight
+name: Cloudflare Phase 1 security and deploy preflight
 on:
   pull_request:
     paths:
       - 'wrangler.jsonc'
       - 'public/**'
-      - 'worker/bootstrap.js'
-      - 'tests/worker-bootstrap.test.mjs'
+      - 'worker/**'
+      - 'tests/**'
       - '.github/workflows/cloudflare-static-bootstrap.yml'
 permissions:
   contents: read
 jobs:
   dry_run:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validate public-only D1-bound bootstrap without database access
+      - name: Verify correct Worker, D1 and preserved dashboard variables
         run: |
-          node -e 'const fs=require("fs");const c=JSON.parse(fs.readFileSync("wrangler.jsonc","utf8"));if(c.name!=="kinotch-judgment-learning"||c.main!=="worker/bootstrap.js"||c.assets?.directory!=="./public"||c.assets.binding!=="ASSETS"||c.assets.run_worker_first!==true||c.vars||!fs.existsSync("public/index.html"))process.exit(1);if(!Array.isArray(c.d1_databases)||c.d1_databases.length!==1||c.d1_databases[0].binding!=="DB"||c.d1_databases[0].database_name!=="kinotch-judgment-learning"||c.d1_databases[0].database_id!=="d503a90d-4c9f-4f98-80bf-ebe427aac12d")process.exit(3);if(/env\.DB|\.prepare\(/.test(fs.readFileSync("worker/bootstrap.js","utf8")))process.exit(4);const h=fs.readFileSync("public/index.html","utf8");if(h.includes("/auth/start")||h.includes("GITHUB_CLIENT_SECRET")||h.includes("/api/"))process.exit(2);'
-      - name: Test fail-closed private routing and public assets
-        run: node --test tests/worker-bootstrap.test.mjs
+          node -e 'const fs=require("fs"); const c=JSON.parse(fs.readFileSync("wrangler.jsonc","utf8")); const d=c.d1_databases?.[0]; if(c.name!=="kinotch-judgment-learning"||c.main!=="worker/index.js"||c.keep_vars!==true||c.vars||c.assets?.directory!=="./public"||c.assets?.binding!=="ASSETS"||c.assets?.run_worker_first!==true||c.d1_databases?.length!==1||d.binding!=="DB"||d.database_name!=="kinotch-judgment-learning"||d.database_id!=="d503a90d-4c9f-4f98-80bf-ebe427aac12d")process.exit(1); for(const f of ["public/index.html","public/app.html","worker/index.js","migrations/0001_init.sql"])if(!fs.existsSync(f))process.exit(2); if(/REPLACE_WITH|GITHUB_CLIENT_SECRET\s*[:=]\s*["\x27][^"\x27]+/.test(JSON.stringify(c)))process.exit(3);'
+      - name: Check Worker and frontend syntax
+        run: |
+          node --check worker/index.js
+          node --check public/app.js
+      - name: Validate private routes, owner allowlist and session protections
+        run: npm test
       - name: Check Wrangler deployment without publishing
-        run: npx --yes wrangler@4.151.1 deploy --dry-run --outdir /tmp/kjl-bootstrap-dryrun
+        run: npx --yes wrangler@4.151.1 deploy --dry-run --outdir /tmp/kjl-phase1-dryrun
