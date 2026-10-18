@@ -84,6 +84,15 @@ async function auth(req, env) {
   return Boolean(row && isAllowedGitHubUser(Number(row.user_id), env.OWNER_GITHUB_USER_ID));
 }
 function logoutCookie() { return cookie(SESSION_COOKIE, "", 0); }
+function protectedAssetHeaders(response) {
+  const headers = new Headers(response.headers);
+  headers.set("Cache-Control", "no-store");
+  headers.set("X-Content-Type-Options", "nosniff");
+  headers.set("X-Frame-Options", "DENY");
+  headers.set("Referrer-Policy", "no-referrer");
+  headers.set("Content-Security-Policy", "default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'self'; frame-ancestors 'none'");
+  return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+}
 
 async function login(env) {
   if (!env.GITHUB_CLIENT_ID || !env.GITHUB_CLIENT_SECRET || !env.OWNER_GITHUB_USER_ID || !env.DB) return json({ error: "Authentication not configured" }, 503);
@@ -91,7 +100,9 @@ async function login(env) {
   const verifier = randomToken(48);
   const hash = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(verifier));
   const challenge = btoa(String.fromCharCode(...new Uint8Array(hash))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  // Bound stale authorization and session rows without touching active login sessions.
   await env.DB.prepare("DELETE FROM oauth_pending WHERE expires_at < ?").bind(Date.now()).run();
+  await env.DB.prepare("DELETE FROM auth_sessions WHERE expires_at < ?").bind(Date.now()).run();
   await env.DB.prepare("INSERT INTO oauth_pending (state_hash, verifier, expires_at) VALUES (?, ?, ?)").bind(await hexHash(state), verifier, Date.now() + 600000).run();
   const url = new URL("https://github.com/login/oauth/authorize");
   url.searchParams.set("client_id", env.GITHUB_CLIENT_ID);
@@ -116,13 +127,13 @@ async function callback(req, env) {
     method: "POST", headers: { Accept: "application/json", "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({ client_id: env.GITHUB_CLIENT_ID, client_secret: env.GITHUB_CLIENT_SECRET, code, redirect_uri: origin(env) + "/auth/callback", code_verifier: row.verifier })
   });
-  if (!response.ok) return json({ error: "OAuth provider unavailable" }, 502);
+  if (!response.ok) return json({ error: "OAuth provider unavailable" }, 502, { "Set-Cookie": cookie(FLOW_COOKIE, "", 0) });
   const tokenData = await response.json();
-  if (!tokenData.access_token) return json({ error: "OAuth exchange failed" }, 401);
+  if (!tokenData.access_token) return json({ error: "OAuth exchange failed" }, 401, { "Set-Cookie": cookie(FLOW_COOKIE, "", 0) });
   const who = await fetch("https://api.github.com/user", {
     headers: { Authorization: "Bearer " + tokenData.access_token, Accept: "application/vnd.github+json", "User-Agent": "kinotch-judgment-learning", "X-GitHub-Api-Version": "2022-11-28" }
   });
-  if (!who.ok) return json({ error: "OAuth identity lookup failed" }, 502);
+  if (!who.ok) return json({ error: "OAuth identity lookup failed" }, 502, { "Set-Cookie": cookie(FLOW_COOKIE, "", 0) });
   const identity = await who.json();
   if (!isAllowedGitHubUser(identity.id, env.OWNER_GITHUB_USER_ID)) return json({ error: "Account is not authorized" }, 403, { "Set-Cookie": cookie(FLOW_COOKIE, "", 0) });
   const sessionToken = randomToken();
@@ -197,9 +208,14 @@ export default {
         if (t && env.DB) await env.DB.prepare("DELETE FROM auth_sessions WHERE token_hash = ?").bind(await hexHash(t)).run();
         return json({ loggedOut: true }, 200, { "Set-Cookie": logoutCookie() });
       }
-      if (path === "/app" && req.method === "GET") {
+      // Prevent unauthenticated access to the internal HTML file. /app is the only entry.
+      if (path === "/app.html") return redirect("/app");
+      if (path === "/app" && (req.method === "GET" || req.method === "HEAD")) {
         if (!(await auth(req, env))) return redirect("/");
-        return env.ASSETS.fetch(new Request(new URL("/app.html", req.url), req));
+        // Static Assets canonicalizes /app.html to /app; request the canonical path
+        // directly to prevent a client-visible 307 loop.
+        const asset = await env.ASSETS.fetch(new Request(new URL("/app", req.url), req));
+        return protectedAssetHeaders(asset);
       }
       if (path.startsWith("/auth/") || path.startsWith("/api/")) return json({ error: "Not found" }, 404);
       if (req.method !== "GET" && req.method !== "HEAD") return json({ error: "Method not allowed" }, 405);
