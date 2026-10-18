@@ -46,3 +46,62 @@ test("session hashing deterministic, never raw at rest", async () => {
   assert.notEqual(first, token);
   assert.equal(first, await hexHash(token));
 });
+test("authenticated /app requests canonical route once and sets private asset headers", async () => {
+  let calls = 0;
+  let servedPath = null;
+  const e = {
+    ...env(123456),
+    ASSETS: {
+      async fetch(request) {
+        calls++;
+        servedPath = new URL(request.url).pathname;
+        return new Response("<!doctype html><title>Owner workspace</title>", {
+          status: 200, headers: { "Content-Type": "text/html" }
+        });
+      }
+    }
+  };
+  const res = await worker.fetch(new Request(origin + "/app", {
+    headers: { Cookie: "__Host-knt_session=" + token }
+  }), e);
+  assert.equal(res.status, 200);
+  assert.equal(servedPath, "/app");
+  assert.equal(calls, 1);
+  assert.equal(res.headers.get("Cache-Control"), "no-store");
+  assert.equal(res.headers.get("X-Frame-Options"), "DENY");
+  assert.match(res.headers.get("Content-Security-Policy"), /frame-ancestors 'none'/);
+});
+
+test("nonowner cannot load /app assets", async () => {
+  let calls = 0;
+  const e = { ...env(123457), ASSETS: { fetch() { calls++; return new Response("unexpected"); } } };
+  const res = await worker.fetch(new Request(origin + "/app", {
+    headers: { Cookie: "__Host-knt_session=" + token }
+  }), e);
+  assert.equal(res.status, 302);
+  assert.equal(res.headers.get("Location"), "/");
+  assert.equal(calls, 0);
+});
+
+test("direct /app.html access redirects to authenticated app gate", async () => {
+  const res = await worker.fetch(new Request(origin + "/app.html"), {});
+  assert.equal(res.status, 302);
+  assert.equal(res.headers.get("Location"), "/app");
+  assert.equal(res.headers.get("Cache-Control"), "no-store");
+});
+
+test("unknown /api/undo question is a 404 rather than a DB FK error", async () => {
+  const e = env(123456);
+  e.DB.batch = async () => { throw Error("should not mutate"); };
+  const res = await worker.fetch(new Request(origin + "/api/undo", {
+    method: "POST",
+    headers: {
+      Cookie: "__Host-knt_session=" + token,
+      Origin: origin,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ questionId: "unknown-1" })
+  }), e);
+  assert.equal(res.status, 404);
+  assert.equal((await res.json()).error, "Unknown question");
+});
