@@ -27,5 +27,7 @@ jobs:
           node --check public/app.js
       - name: Validate private routes, owner allowlist and session protections
         run: npm test
+      - name: Verify actual local Cloudflare Worker routing and isolated D1
+        run: node tests/worker-runtime.mjs
       - name: Check Wrangler deployment without publishing
         run: npx --yes wrangler@4.151.1 deploy --dry-run --outdir /tmp/kjl-phase1-dryrun
