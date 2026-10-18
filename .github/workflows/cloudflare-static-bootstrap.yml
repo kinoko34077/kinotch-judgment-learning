@@ -1,9 +1,11 @@
-name: Cloudflare static bootstrap preflight
+name: Cloudflare bootstrap Worker preflight
 on:
   pull_request:
     paths:
       - 'wrangler.jsonc'
       - 'public/**'
+      - 'worker/bootstrap.js'
+      - 'tests/worker-bootstrap.test.mjs'
       - '.github/workflows/cloudflare-static-bootstrap.yml'
 permissions:
   contents: read
@@ -16,8 +18,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validate public-only bootstrap configuration
+      - name: Validate public-only script-backed bootstrap
         run: |
-          node -e 'const fs=require("fs");const c=JSON.parse(fs.readFileSync("wrangler.jsonc","utf8"));if(c.name!=="kinotch-judgment-learning"||c.assets?.directory!=="./public"||c.main||c.d1_databases||c.vars||!fs.existsSync("public/index.html"))process.exit(1);const h=fs.readFileSync("public/index.html","utf8");if(h.includes("/auth/start")||h.includes("GITHUB_CLIENT_SECRET")||h.includes("/api/"))process.exit(2);'
+          node -e 'const fs=require("fs");const c=JSON.parse(fs.readFileSync("wrangler.jsonc","utf8"));if(c.name!=="kinotch-judgment-learning"||c.main!=="worker/bootstrap.js"||c.assets?.directory!=="./public"||c.assets.binding!=="ASSETS"||c.assets.run_worker_first!==true||c.d1_databases||c.vars||!fs.existsSync("public/index.html"))process.exit(1);const h=fs.readFileSync("public/index.html","utf8");if(h.includes("/auth/start")||h.includes("GITHUB_CLIENT_SECRET")||h.includes("/api/"))process.exit(2);'
+      - name: Test fail-closed private routing and public assets
+        run: node --test tests/worker-bootstrap.test.mjs
       - name: Check Wrangler deployment without publishing
         run: npx --yes wrangler@4.151.1 deploy --dry-run --outdir /tmp/kjl-bootstrap-dryrun
