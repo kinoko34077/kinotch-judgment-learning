@@ -32,7 +32,8 @@ runLocal(["d1", "execute", database, "--local", "--config", config,
 const child = spawn("npx", ["--yes", "wrangler@4.151.1", "dev", "--local",
   "--ip", "127.0.0.1", "--port", "8798", "--config", config,
   "--var", "OWNER_GITHUB_USER_ID:" + ownerId], {
-  stdio: ["ignore", "pipe", "pipe"]
+  stdio: ["ignore", "pipe", "pipe"],
+  detached: true // Linux CI: kill the entire npx → Wrangler process group
 });
 let startupOutput = "";
 child.stdout.on("data", part => { startupOutput += part.toString(); });
@@ -79,6 +80,12 @@ try {
   assert.equal((await domains.json()).domains.length, 3);
   console.log("LOCAL WORKER E2E PASS: public HTML; gated /app.html; anonymous redirect; owner /app 200; private 401; D1 domains=3");
 } finally {
-  child.kill();
-  await delay(500);
+  // Killing only npx can orphan its Wrangler subprocess and hang the CI job.
+  // Runs only on disposable Ubuntu CI; never affects a production Worker.
+  if (child.pid) {
+    try { process.kill(-child.pid, "SIGKILL"); } catch {}
+  }
+  child.stdout.destroy();
+  child.stderr.destroy();
+  await delay(250);
 }
