@@ -1,0 +1,37 @@
+name: D1 schema migration preflight
+on:
+  pull_request:
+    paths:
+      - 'migrations/**'
+      - 'tests/test_d1_migration.py'
+      - '.github/workflows/d1-schema-preflight.yml'
+permissions:
+  contents: read
+jobs:
+  migration_sqlite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate SQL migration offline
+        run: python tests/test_d1_migration.py
+      - name: Verify canonical D1 binding matches expected deployed project
+        run: |
+          python - <<'PY'
+          import json
+          c = json.load(open('wrangler.jsonc', encoding='utf-8'))
+          dbs = c.get('d1_databases', [])
+          assert len(dbs) == 1
+          db = dbs[0]
+          assert db == {
+              'binding': 'DB',
+              'database_name': 'kinotch-judgment-learning',
+              'database_id': 'd503a90d-4c9f-4f98-80bf-ebe427aac12d'
+          }
+          assert c['main'] == 'worker/bootstrap.js'
+          PY
+      - name: Wrangler deployment dry run only
+        run: npx --yes wrangler@4.151.1 deploy --dry-run --outdir /tmp/kjl-d1-migration-preflight
