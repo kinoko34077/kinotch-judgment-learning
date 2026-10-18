@@ -18,9 +18,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validate public-only script-backed bootstrap
+      - name: Validate public-only D1-bound bootstrap without database access
         run: |
-          node -e 'const fs=require("fs");const c=JSON.parse(fs.readFileSync("wrangler.jsonc","utf8"));if(c.name!=="kinotch-judgment-learning"||c.main!=="worker/bootstrap.js"||c.assets?.directory!=="./public"||c.assets.binding!=="ASSETS"||c.assets.run_worker_first!==true||c.d1_databases||c.vars||!fs.existsSync("public/index.html"))process.exit(1);const h=fs.readFileSync("public/index.html","utf8");if(h.includes("/auth/start")||h.includes("GITHUB_CLIENT_SECRET")||h.includes("/api/"))process.exit(2);'
+          node -e 'const fs=require("fs");const c=JSON.parse(fs.readFileSync("wrangler.jsonc","utf8"));if(c.name!=="kinotch-judgment-learning"||c.main!=="worker/bootstrap.js"||c.assets?.directory!=="./public"||c.assets.binding!=="ASSETS"||c.assets.run_worker_first!==true||c.vars||!fs.existsSync("public/index.html"))process.exit(1);if(!Array.isArray(c.d1_databases)||c.d1_databases.length!==1||c.d1_databases[0].binding!=="DB"||c.d1_databases[0].database_name!=="kinotch-judgment-learning"||c.d1_databases[0].database_id!=="d503a90d-4c9f-4f98-80bf-ebe427aac12d")process.exit(3);if(/env\.DB|\.prepare\(/.test(fs.readFileSync("worker/bootstrap.js","utf8")))process.exit(4);const h=fs.readFileSync("public/index.html","utf8");if(h.includes("/auth/start")||h.includes("GITHUB_CLIENT_SECRET")||h.includes("/api/"))process.exit(2);'
       - name: Test fail-closed private routing and public assets
         run: node --test tests/worker-bootstrap.test.mjs
       - name: Check Wrangler deployment without publishing
