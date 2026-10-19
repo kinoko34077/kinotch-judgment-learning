@@ -15,6 +15,12 @@ assert db.execute("SELECT COUNT(*) FROM questions").fetchone()[0] == 3
 db.executescript(sql)
 assert db.execute("SELECT COUNT(*) FROM domains").fetchone()[0] == 3
 assert db.execute("SELECT COUNT(*) FROM questions").fetchone()[0] == 3
+# Apply and re-apply the additive expiry index without touching app data.
+expiry_sql = Path("migrations/0002_oauth_pending_expiry.sql").read_text(encoding="utf-8")
+db.executescript(expiry_sql)
+db.executescript(expiry_sql)
+assert db.execute("SELECT name FROM sqlite_master WHERE type='index' AND name='oauth_pending_expiry'").fetchone() == ("oauth_pending_expiry",)
+
 # Owner responses are keyed to a distinct GitHub numeric identity.
 db.execute("""INSERT INTO responses(owner_id, question_id, action, answer, note, updated_at)
 VALUES ('111', 'uiux-001', 'GO', '', '', 100)""")
