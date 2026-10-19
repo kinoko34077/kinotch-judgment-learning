@@ -31,7 +31,8 @@ runLocal(["d1", "execute", database, "--local", "--config", config,
 
 const child = spawn("npx", ["--yes", "wrangler@4.151.1", "dev", "--local",
   "--ip", "127.0.0.1", "--port", "8798", "--config", config,
-  "--var", "OWNER_GITHUB_USER_ID:" + ownerId], {
+  "--var", "OWNER_GITHUB_USER_ID:" + ownerId,
+  "--var", "PUBLIC_ORIGIN:https://example.workers.dev"], {
   stdio: ["ignore", "pipe", "pipe"],
   detached: true // Linux CI: kill the entire npx → Wrangler process group
 });
@@ -85,7 +86,33 @@ try {
   const domains = await request("/api/domains", { headers: { Cookie: cookie } });
   assert.equal(domains.status, 200);
   assert.equal((await domains.json()).domains.length, 3);
-  console.log("LOCAL WORKER E2E PASS: public HTML; gated /app.html; anonymous redirect; owner /app 200; private 401; D1 domains=3");
+
+  const post = (path, payload) => request(path, {
+    method: "POST",
+    headers: {Cookie:cookie, Origin:"https://example.workers.dev", "Content-Type":"application/json"},
+    body: JSON.stringify(payload)
+  });
+  const prior = await request("/api/history",{headers:{Cookie:cookie}});
+  assert.equal(prior.status,200);
+  assert.equal((await prior.json()).history.length,0,"Local test DB must be fresh");
+  const saved = await post("/api/answer",{questionId:"uiux-001",action:"GO"});
+  assert.equal(saved.status,200,"Owner GO write should persist");
+  assert.equal((await saved.json()).saved,true);
+  const history = await request("/api/history",{headers:{Cookie:cookie}});
+  assert.equal(history.status,200);
+  const stored = (await history.json()).history;
+  assert.equal(stored.length,1);
+  assert.equal(stored[0].action,"GO");
+  const anonymousHistory = await request("/api/history");
+  assert.equal(anonymousHistory.status,401,"Unauthorized history must stay hidden");
+  const undone = await post("/api/undo",{questionId:"uiux-001"});
+  assert.equal(undone.status,200);
+  assert.equal((await undone.json()).undone,true);
+  const finalHistory = await request("/api/history",{headers:{Cookie:cookie}});
+  assert.equal((await finalHistory.json()).history.length,0);
+  const next = await request("/api/next?domain=uiux",{headers:{Cookie:cookie}});
+  assert.equal((await next.json()).question.id,"uiux-001");
+  console.log("LOCAL WORKER E2E PASS: public/owner routing; DB reads; saved GO, history, undo and replayable question; anonymous 401");
 } finally {
   // Killing only npx can orphan its Wrangler subprocess and hang the CI job.
   // Runs only on disposable Ubuntu CI; never affects a production Worker.
