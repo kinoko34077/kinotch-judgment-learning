@@ -149,3 +149,31 @@ test("missing rate-limit binding fails closed without touching D1", async () => 
   assert.equal(res.status, 503);
   assert.equal(touchedDb, false);
 });
+
+test("OAuth callback attempts are limited before any D1 query or deletion", async () => {
+  let dbCalls = 0, rateCalls = 0;
+  const res = await worker.fetch(new Request(origin + "/auth/callback?state=invalid&code=fixture", {
+    headers: { "CF-Connecting-IP": "203.0.113.5" }
+  }), {
+    AUTH_RATE_LIMIT: {async limit({key}) {
+      assert.equal(key, "oauth-callback:203.0.113.5");
+      rateCalls++;
+      return {success:false};
+    }},
+    DB: {prepare() {dbCalls++; throw Error("D1 must not be touched when rate limited");}}
+  });
+  assert.equal(res.status, 429);
+  assert.equal(res.headers.get("Retry-After"), "60");
+  assert.equal(res.headers.get("Cache-Control"), "no-store");
+  assert.equal(dbCalls, 0);
+  assert.equal(rateCalls, 1);
+});
+
+test("missing callback rate-limit binding fails closed before D1", async () => {
+  let dbCalls = 0;
+  const res = await worker.fetch(new Request(origin + "/auth/callback?state=invalid&code=fixture"), {
+    DB: {prepare(){dbCalls++; throw Error("D1 must not be touched");}}
+  });
+  assert.equal(res.status, 503);
+  assert.equal(dbCalls, 0);
+});
