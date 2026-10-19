@@ -31,7 +31,12 @@ jobs:
               'database_name': 'kinotch-judgment-learning',
               'database_id': 'd503a90d-4c9f-4f98-80bf-ebe427aac12d'
           }
-          assert c['main'] == 'worker/bootstrap.js'
+          assert c['main'] in ('worker/bootstrap.js', 'worker/index.js')
+          if c['main'] == 'worker/index.js':
+              assert c.get('keep_vars') is True and not c.get('vars')
+              limits = c.get('ratelimits', [])
+              assert len(limits) == 1 and limits[0].get('name') == 'AUTH_RATE_LIMIT'
+          assert __import__('pathlib').Path('migrations/0002_oauth_pending_expiry.sql').is_file()
           PY
       - name: Wrangler deployment dry run only
         run: npx --yes wrangler@4.151.1 deploy --dry-run --outdir /tmp/kjl-d1-migration-preflight
