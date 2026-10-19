@@ -105,3 +105,47 @@ test("unknown /api/undo question is a 404 rather than a DB FK error", async () =
   assert.equal(res.status, 404);
   assert.equal((await res.json()).error, "Unknown question");
 });
+
+test("encoded, aliased and slash-variant app paths never bypass the private HTML gate", async () => {
+  const bad = ["/%61pp", "/app%2Ehtml", "/app%2F", "//app", "/app/", "/app.html/", "/app/index.html", "/APP"];
+  let count = 0;
+  const guarded = { ...env(123457), ASSETS: { fetch() { count++; return new Response("leaked"); } } };
+  for (const path of bad) {
+    const res = await worker.fetch(new Request(origin + path), guarded);
+    assert.ok([302, 404].includes(res.status), path + ": " + res.status);
+    assert.notEqual(await res.text(), "leaked", path);
+  }
+  assert.equal(count, 0, "no ambiguous app URL can directly fetch static app assets");
+});
+
+test("OAuth rate limiter rejects excess traffic before ANY D1 mutation", async () => {
+  let touchedDb = 0;
+  let calls = 0;
+  const config = {
+    GITHUB_CLIENT_ID: "test-public-id",
+    GITHUB_CLIENT_SECRET: "unit-test-only",
+    OWNER_GITHUB_USER_ID: "123456",
+    PUBLIC_ORIGIN: origin,
+    AUTH_RATE_LIMIT: {
+      async limit({key}) { assert.equal(key, "203.0.113.5"); calls++; return {success:false}; }
+    },
+    DB: { prepare() { touchedDb++; throw Error("D1 must never be accessed"); } }
+  };
+  const res = await worker.fetch(new Request(origin + "/auth/start", {headers:{"CF-Connecting-IP":"203.0.113.5"}}), config);
+  assert.equal(res.status, 429);
+  assert.equal(res.headers.get("Retry-After"), "60");
+  assert.equal(res.headers.get("Cache-Control"), "no-store");
+  assert.equal(touchedDb, 0);
+  assert.equal(calls, 1);
+});
+
+test("missing rate-limit binding fails closed without touching D1", async () => {
+  let touchedDb = false;
+  const res = await worker.fetch(new Request(origin + "/auth/start"), {
+    GITHUB_CLIENT_ID: "test-public-id", GITHUB_CLIENT_SECRET: "unit-test-only", OWNER_GITHUB_USER_ID:"123456",
+    PUBLIC_ORIGIN: origin,
+    DB: {prepare(){touchedDb = true; throw Error("Unexpected DB access");}}
+  });
+  assert.equal(res.status, 503);
+  assert.equal(touchedDb, false);
+});
