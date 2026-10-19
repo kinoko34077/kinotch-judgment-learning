@@ -94,8 +94,13 @@ function protectedAssetHeaders(response) {
   return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
 }
 
-async function login(env) {
-  if (!env.GITHUB_CLIENT_ID || !env.GITHUB_CLIENT_SECRET || !env.OWNER_GITHUB_USER_ID || !env.DB) return json({ error: "Authentication not configured" }, 503);
+async function login(req, env) {
+  if (!env.GITHUB_CLIENT_ID || !env.GITHUB_CLIENT_SECRET || !env.OWNER_GITHUB_USER_ID || !env.DB || !env.AUTH_RATE_LIMIT) return json({ error: "Authentication not configured" }, 503);
+  // Cloudflare supplies CF-Connecting-IP at the edge; do not accept a caller
+  // supplied query parameter or user identity as a rate-limit key.
+  const key = req.headers.get("CF-Connecting-IP") || "unidentified";
+  const { success } = await env.AUTH_RATE_LIMIT.limit({ key });
+  if (!success) return json({ error: "Too many login attempts" }, 429, { "Retry-After": "60" });
   const state = randomToken();
   const verifier = randomToken(48);
   const hash = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(verifier));
@@ -199,8 +204,11 @@ export default {
     try {
       const url = new URL(req.url);
       const path = url.pathname;
+      // Our public asset names are ASCII. Reject encoded / ambiguous paths
+      // before Cloudflare Static Assets may decode/canonicalize them differently.
+      if (/%|\\|\/\//.test(path)) return json({ error: "Not found" }, 404);
       if (path.startsWith("/api/")) return await api(req, env, url);
-      if (path === "/auth/start" && req.method === "GET") return await login(env);
+      if (path === "/auth/start" && req.method === "GET") return await login(req, env);
       if (path === "/auth/callback" && req.method === "GET") return await callback(req, env);
       if (path === "/auth/logout" && req.method === "POST") {
         if (!checkMutation(req, env)) return json({ error: "Origin and JSON content type required" }, 403);
@@ -208,8 +216,9 @@ export default {
         if (t && env.DB) await env.DB.prepare("DELETE FROM auth_sessions WHERE token_hash = ?").bind(await hexHash(t)).run();
         return json({ loggedOut: true }, 200, { "Set-Cookie": logoutCookie() });
       }
-      // Prevent unauthenticated access to the internal HTML file. /app is the only entry.
-      if (path === "/app.html") return redirect("/app");
+      // Normalize every app HTML alias through /app's authorization gate.
+      // /app.js stays a non-secret public JavaScript asset.
+      if (/^\/app(?:\.html)?(?:\/.*)?$/i.test(path) && path !== "/app") return redirect("/app");
       if (path === "/app" && (req.method === "GET" || req.method === "HEAD")) {
         if (!(await auth(req, env))) return redirect("/");
         // Static Assets canonicalizes /app.html to /app; request the canonical path
