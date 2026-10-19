@@ -119,6 +119,12 @@ async function login(req, env) {
   return redirect(url.toString(), cookie(FLOW_COOKIE, state, 600));
 }
 async function callback(req, env) {
+  // Apply the same edge rate-limiting service with a distinct bucket from
+  // /auth/start, so a successful OAuth round trip does not share its quota.
+  if (!env.AUTH_RATE_LIMIT) return json({ error: "Authentication not configured" }, 503);
+  const key = "oauth-callback:" + (req.headers.get("CF-Connecting-IP") || "unidentified");
+  const { success } = await env.AUTH_RATE_LIMIT.limit({ key });
+  if (!success) return json({ error: "Too many callback attempts" }, 429, { "Retry-After": "60" });
   const url = new URL(req.url);
   const state = url.searchParams.get("state");
   const code = url.searchParams.get("code");
