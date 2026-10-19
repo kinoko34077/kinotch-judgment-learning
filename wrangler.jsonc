@@ -15,5 +15,15 @@
       "database_id": "d503a90d-4c9f-4f98-80bf-ebe427aac12d"
     }
   ],
-  "keep_vars": true
+  "keep_vars": true,
+  "ratelimits": [
+    {
+      "name": "AUTH_RATE_LIMIT",
+      "namespace_id": "41101926",
+      "simple": {
+        "limit": 5,
+        "period": 60
+      }
+    }
+  ]
 }
