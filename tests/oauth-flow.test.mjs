@@ -89,7 +89,7 @@ function providerStub(id, seen) {
       const verifier=body.get("code_verifier");
       assert.ok(verifier && verifier.length > 40);
       const hash=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(verifier));
-      const b64=btoa(String.fromCharCode(...new Uint8Array(hash))).replace(/\\+/g,"-").replace(/\\//g,"_").replace(/=+$/,"");
+      const b64=btoa(String.fromCharCode(...new Uint8Array(hash))).replaceAll("+","-").replaceAll("/","_").replace(/=+$/,"");
       assert.equal(b64,seen.expectedChallenge);
       return new Response(JSON.stringify({access_token:"fake-test-token"}),{status:200});
     }
