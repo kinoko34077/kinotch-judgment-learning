@@ -65,6 +65,13 @@ try {
   assert.equal(anonymous.status, 302, "Unauthenticated /app must redirect");
   assert.equal(anonymous.headers.get("Location"), "/");
 
+  for (const path of ["/%61pp", "/app%2Ehtml", "/app%2F", "//app", "/app/", "/app.html/", "/app/index.html", "/APP"]) {
+    const res = await request(path);
+    assert.ok([302,404].includes(res.status), "Unexpected public alias response for "+path+": "+res.status);
+    const text = await res.text();
+    assert.ok(!text.includes("PRIVATE JUDGMENT SESSION"), "Private shell leaked at "+path);
+  }
+
   const privatePage = await request("/app", { headers: { Cookie: cookie } });
   assert.equal(privatePage.status, 200, "Owner /app should serve HTML, not redirect");
   assert.match(await privatePage.text(), /PRIVATE JUDGMENT SESSION/);
