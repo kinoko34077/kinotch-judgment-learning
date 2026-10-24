@@ -112,9 +112,10 @@ async function login(req, env) {
   const url = new URL("https://github.com/login/oauth/authorize");
   url.searchParams.set("client_id", env.GITHUB_CLIENT_ID);
   url.searchParams.set("redirect_uri", origin(env) + "/auth/callback");
-  // GitHub App user-to-server tokens use app permissions, not OAuth App scopes.
-  // Supplying "read:user" is unsupported for GitHub Apps. Minimal identity
-  // access is sufficient because the owner is checked using /user.id.
+  // This installation uses a GitHub OAuth App. Omit optional scopes to
+  // identify the signed-in account via GET /user without requesting private
+  // repository or other unnecessary permissions. Do not infer app type from
+  // the shared GitHub authorize/token endpoints.
   url.searchParams.set("state", state);
   url.searchParams.set("code_challenge", challenge);
   url.searchParams.set("code_challenge_method", "S256");
