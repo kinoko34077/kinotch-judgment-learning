@@ -70,6 +70,8 @@ async function begin(e) {
   assert.equal(location.searchParams.get("redirect_uri"),host+"/auth/callback");
   assert.equal(location.searchParams.get("code_challenge_method"),"S256");
   assert.equal(location.searchParams.get("client_id"),"unit-client");
+  assert.equal(location.searchParams.has("scope"),false,"GitHub App web authorization must not request OAuth App scopes");
+  assert.equal(location.searchParams.get("redirect_uri"),host+"/auth/callback");
   const token = flowCookie(response);
   assert.equal(location.searchParams.get("state"),token);
   return {state:token,challenge:location.searchParams.get("code_challenge")};
