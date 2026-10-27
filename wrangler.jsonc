@@ -35,8 +35,11 @@
   "secrets": {
     "required": [
       "GITHUB_CLIENT_ID",
-      "GITHUB_CLIENT_SECRET",
-      "OWNER_GITHUB_USER_ID"
+      "GITHUB_CLIENT_SECRET"
     ]
+  },
+  "vars": {
+    "OWNER_GITHUB_USER_ID": "79015263",
+    "PUBLIC_ORIGIN": "https://kinotch-judgment-learning.kinotch.workers.dev"
   }
 }
