@@ -104,7 +104,19 @@ try {
   assert.equal(stored.length,1);
   assert.equal(stored[0].action,"GO");
   const anonymousHistory = await request("/api/history");
-  assert.equal(anonymousHistory.status,401,"Unauthorized history must stay hidden");
+  assert.equal(anonymousHistory.status, 200, "Public history is readable");
+  const publicEntries = (await anonymousHistory.json()).history;
+  assert.equal(publicEntries.length, 1);
+  assert.equal(publicEntries[0].action, "GO");
+  assert.equal("owner_id" in publicEntries[0], false, "Do not expose owner ID");
+
+  // Anonymous reading never elevates to mutations, even with matching Origin.
+  const anonymousWrite = await request("/api/answer", {
+    method:"POST", headers:{"Content-Type":"application/json", Origin:"https://example.workers.dev"},
+    body:JSON.stringify({questionId:"uiux-001",action:"CORRECT",note:"unauthorized"})
+  });
+  assert.equal(anonymousWrite.status, 401, "Public history cannot authorize writes");
+
   const undone = await post("/api/undo",{questionId:"uiux-001"});
   assert.equal(undone.status,200);
   assert.equal((await undone.json()).undone,true);
@@ -112,7 +124,24 @@ try {
   assert.equal((await finalHistory.json()).history.length,0);
   const next = await request("/api/next?domain=uiux",{headers:{Cookie:cookie}});
   assert.equal((await next.json()).question.id,"uiux-001");
-  console.log("LOCAL WORKER E2E PASS: public/owner routing; DB reads; saved GO, history, undo and replayable question; anonymous 401");
+  // Deferral must remain revisitable and must not immediately repeat forever.
+  const deferred = await post("/api/answer",{questionId:"uiux-001",action:"SKIP"});
+  assert.equal(deferred.status, 200);
+  const standardNext = await request("/api/next?domain=uiux",{headers:{Cookie:cookie}});
+  const standardResult = await standardNext.json();
+  assert.equal(standardResult.question, null);
+  assert.equal(standardResult.pendingCount, 1);
+  const review = await request("/api/next?domain=uiux&pending=1",{headers:{Cookie:cookie}});
+  assert.equal((await review.json()).question.id,"uiux-001");
+  const publicDeferred = await request("/api/history");
+  assert.equal((await publicDeferred.json()).history[0].action,"SKIP");
+  const resolved = await post("/api/answer",{questionId:"uiux-001",action:"GO"});
+  assert.equal(resolved.status,200);
+  const finalPending = await request("/api/next?domain=uiux",{headers:{Cookie:cookie}});
+  assert.equal((await finalPending.json()).pendingCount,0);
+  const cleanup = await post("/api/undo",{questionId:"uiux-001"});
+  assert.equal(cleanup.status,200);
+  console.log("LOCAL WORKER E2E PASS: public/owner routing; DB reads; saved GO, history, undo and replayable question; public GET + owner-only mutations");
 } finally {
   // Killing only npx can orphan its Wrangler subprocess and hang the CI job.
   // Runs only on disposable Ubuntu CI; never affects a production Worker.
