@@ -19,13 +19,18 @@ function element(tag, value, className) {
   if (className) node.className = className;
   return node;
 }
-async function nextQuestion() {
+async function nextQuestion(pending = false) {
   el("question").hidden = true;
   el("correction").hidden = true;
-  status("次の設問を読み込み中…");
-  const data = await request("/api/next?domain=" + encodeURIComponent(domain));
+  status(pending ? "保留した設問を読み込み中…" : "次の設問を読み込み中…");
+  const data = await request("/api/next?domain=" + encodeURIComponent(domain) + (pending ? "&pending=1" : ""));
+  el("review-pending").hidden = !data.pendingCount;
+  el("review-pending").textContent = "保留を再開 (" + (data.pendingCount || 0) + ")";
   question = data.question;
-  if (!question) { status("この分野の初期設問はすべて回答済みです。履歴から取り消すと再回答できます。"); return; }
+  if (!question) {
+    status(data.pendingCount ? "未回答の設問はありません。保留中の設問は「保留を再開」から選べます。" : "この分野の設問はすべて回答済みです。履歴から取り消すと再回答できます。");
+    return;
+  }
   el("qid").textContent = question.domain.toUpperCase() + " / " + question.id;
   el("prompt").textContent = question.prompt;
   el("ai-answer").textContent = question.aiAnswer;
@@ -89,6 +94,7 @@ el("domain").addEventListener("change", async event => {
   domain = event.target.value;
   try { await nextQuestion(); } catch (e) { status(e.message); }
 });
+el("review-pending").addEventListener("click", () => nextQuestion(true).catch(e => status(e.message)));
 el("go").addEventListener("click", () => save("GO"));
 el("skip").addEventListener("click", () => save("SKIP"));
 el("edit").addEventListener("click", () => { el("correction").hidden = false; el("answer").focus(); });
