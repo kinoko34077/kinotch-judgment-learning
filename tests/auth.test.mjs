@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { isAllowedGitHubUser, validAnswer, randomToken, hexHash } from "../worker/index.js";
+import { isAllowedGitHubUser, validAnswer, randomToken, hexHash, classifyGitHubOAuthExchangeError } from "../worker/index.js";
 test("numeric, stable GitHub identity (not username)", () => {
   assert.equal(isAllowedGitHubUser(123456, "123456"), true);
   assert.equal(isAllowedGitHubUser(123457, "123456"), false);
@@ -32,4 +32,20 @@ test("mutation with wrong origin rejected even if logged out", async () => {
   const app = (await import("../worker/index.js")).default;
   const res = await app.fetch(new Request("https://example.workers.dev/auth/logout", { method: "POST", headers: { Origin: "https://evil.example", "Content-Type": "application/json" }, body: "{}" }), { PUBLIC_ORIGIN: "https://example.workers.dev" });
   assert.equal(res.status, 403);
+});
+test("GitHub OAuth exchange diagnostics whitelist provider reason without leaking details", () => {
+  for (const reason of [
+    "incorrect_client_credentials", "redirect_uri_mismatch",
+    "bad_verification_code", "unverified_user_email"
+  ]) {
+    assert.equal(classifyGitHubOAuthExchangeError({
+      error: reason, error_description: "DO_NOT_DISCLOSE", access_token: "DO_NOT_DISCLOSE"
+    }), reason);
+  }
+  for (const response of [
+    { error: "malicious\nsecret-leak", error_description: "DO_NOT_DISCLOSE" },
+    { error: { nested: "secret" } }, null, undefined, {}, "plain"
+  ]) {
+    assert.equal(classifyGitHubOAuthExchangeError(response), "unknown");
+  }
 });
