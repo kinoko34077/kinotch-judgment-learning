@@ -22,9 +22,9 @@ test("random tokens and session hash", async () => {
   assert.match(a, /^[A-Za-z0-9_-]{40,100}$/);
   assert.equal((await hexHash(a)).length, 64);
 });
-test("private API rejects unauthenticated users", async () => {
+test("owner API rejects unauthenticated users", async () => {
   const app = (await import("../worker/index.js")).default;
-  const res = await app.fetch(new Request("https://example.workers.dev/api/history"), { OWNER_GITHUB_USER_ID: "1" });
+  const res = await app.fetch(new Request("https://example.workers.dev/api/me"), { OWNER_GITHUB_USER_ID: "1" });
   assert.equal(res.status, 401);
   assert.equal(res.headers.get("Cache-Control"), "no-store");
 });

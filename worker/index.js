@@ -182,8 +182,15 @@ async function callback(req, env) {
   return new Response(null, { status: 302, headers });
 }
 async function api(req, env, url) {
-  if (!(await auth(req, env))) return json({ error: "Unauthorized" }, 401);
   const p = url.pathname;
+  // Public reading of owner judgment history is explicitly allowed. Only this
+  // GET route is public; all mutation and owner-workspace APIs remain gated.
+  if (req.method === "GET" && p === "/api/history") {
+    if (!env.DB || !env.OWNER_GITHUB_USER_ID) return json({ error: "Data unavailable" }, 503);
+    const rows = await env.DB.prepare("SELECT r.question_id, r.action, r.answer, r.note, r.updated_at, r.revision, q.prompt, q.domain_id FROM responses r JOIN questions q ON q.id = r.question_id WHERE r.owner_id = ? ORDER BY r.updated_at DESC LIMIT 100").bind(String(env.OWNER_GITHUB_USER_ID)).all();
+    return json({ history: rows.results });
+  }
+  if (!(await auth(req, env))) return json({ error: "Unauthorized" }, 401);
   if (req.method === "GET" && p === "/api/me") return json({ owner: true });
   if (req.method === "GET" && p === "/api/domains") {
     const rows = await env.DB.prepare("SELECT id, name FROM domains ORDER BY id").all();
@@ -192,13 +199,14 @@ async function api(req, env, url) {
   if (req.method === "GET" && p === "/api/next") {
     const domain = url.searchParams.get("domain");
     if (!domain || !/^[a-z0-9-]{1,40}$/.test(domain)) return json({ error: "Invalid domain" }, 400);
-    const q = await env.DB.prepare("SELECT q.id, q.domain_id, q.prompt, q.choices_json, q.ai_answer, q.ai_reason, q.source_note FROM questions q LEFT JOIN responses r ON r.question_id = q.id AND r.owner_id = ? WHERE q.domain_id = ? AND r.question_id IS NULL ORDER BY q.id LIMIT 1").bind(String(env.OWNER_GITHUB_USER_ID), domain).first();
-    if (!q) return json({ question: null });
-    return json({ question: { id: q.id, domain: q.domain_id, prompt: q.prompt, choices: JSON.parse(q.choices_json), aiAnswer: q.ai_answer, aiReason: q.ai_reason, source: q.source_note } });
-  }
-  if (req.method === "GET" && p === "/api/history") {
-    const rows = await env.DB.prepare("SELECT r.question_id, r.action, r.answer, r.note, r.updated_at, r.revision, q.prompt, q.domain_id FROM responses r JOIN questions q ON q.id = r.question_id WHERE r.owner_id = ? ORDER BY r.updated_at DESC LIMIT 100").bind(String(env.OWNER_GITHUB_USER_ID)).all();
-    return json({ history: rows.results });
+    // SKIP remains recorded, but is not permanently finished. Explicit review
+    // avoids re-showing a single deferred question in an endless loop.
+    const showPending = url.searchParams.get("pending") === "1";
+    const owner = String(env.OWNER_GITHUB_USER_ID);
+    const pending = await env.DB.prepare("SELECT COUNT(*) AS count FROM responses r JOIN questions q ON q.id = r.question_id WHERE r.owner_id = ? AND q.domain_id = ? AND r.action = 'SKIP'").bind(owner, domain).first();
+    const q = await env.DB.prepare("SELECT q.id, q.domain_id, q.prompt, q.choices_json, q.ai_answer, q.ai_reason, q.source_note FROM questions q LEFT JOIN responses r ON r.question_id = q.id AND r.owner_id = ? WHERE q.domain_id = ? AND " + (showPending ? "r.action = 'SKIP'" : "r.question_id IS NULL") + " ORDER BY " + (showPending ? "r.updated_at" : "q.id") + " LIMIT 1").bind(owner, domain).first();
+    if (!q) return json({ question: null, pendingCount: Number(pending?.count || 0) });
+    return json({ question: { id: q.id, domain: q.domain_id, prompt: q.prompt, choices: JSON.parse(q.choices_json), aiAnswer: q.ai_answer, aiReason: q.ai_reason, source: q.source_note }, pendingCount: Number(pending?.count || 0), fromPending: showPending });
   }
   if (req.method === "POST" && p === "/api/answer") {
     if (!checkMutation(req, env)) return json({ error: "Origin and JSON content type required" }, 403);

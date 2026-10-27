@@ -22,10 +22,21 @@ function fakeDatabase(userId) {
 const origin = "https://example.workers.dev";
 const token = "A".repeat(50);
 const env = ownerId => ({ DB: fakeDatabase(ownerId), PUBLIC_ORIGIN: origin, OWNER_GITHUB_USER_ID: "123456" });
-test("non-owner session can never read personal history", async () => {
+test("public history is readable without owner identity but cannot expose sessions", async () => {
   const res = await worker.fetch(new Request(origin + "/api/history", { headers: { Cookie: "__Host-knt_session=" + token } }), env(123457));
-  assert.equal(res.status, 401);
+  assert.equal(res.status, 200);
+  assert.deepEqual((await res.json()).history, []);
   assert.equal(res.headers.get("Cache-Control"), "no-store");
+  assert.equal(res.headers.get("Set-Cookie"), null);
+});
+test("nonowner is still rejected from owner-only question and mutation APIs", async () => {
+  const guarded = env(123457);
+  for (const path of ["/api/me", "/api/next?domain=uiux"]) {
+    const res = await worker.fetch(new Request(origin + path, {headers: { Cookie:"__Host-knt_session="+token }}), guarded);
+    assert.equal(res.status, 401);
+  }
+  const write = await worker.fetch(new Request(origin + "/api/answer", {method:"POST", headers:{ Origin:origin, "Content-Type":"application/json" }, body:JSON.stringify({ questionId:"uiux-001",action:"GO" })}), guarded);
+  assert.equal(write.status, 401);
 });
 test("owner session can read personal history", async () => {
   const res = await worker.fetch(new Request(origin + "/api/history", { headers: { Cookie: "__Host-knt_session=" + token } }), env(123456));
