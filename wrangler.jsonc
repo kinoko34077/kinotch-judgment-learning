@@ -31,5 +31,12 @@
       "enabled": true,
       "invocation_logs": true
     }
+  },
+  "secrets": {
+    "required": [
+      "GITHUB_CLIENT_ID",
+      "GITHUB_CLIENT_SECRET",
+      "OWNER_GITHUB_USER_ID"
+    ]
   }
 }
