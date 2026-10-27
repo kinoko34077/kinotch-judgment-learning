@@ -2,6 +2,20 @@ const SESSION_COOKIE = "__Host-knt_session";
 const FLOW_COOKIE = "__Host-knt_oauth";
 const WEEK = 7 * 86400;
 
+const GITHUB_OAUTH_EXCHANGE_ERRORS = new Set([
+  "incorrect_client_credentials",
+  "redirect_uri_mismatch",
+  "bad_verification_code",
+  "unverified_user_email"
+]);
+
+// Restrict diagnostics to fixed provider codes. Never echo provider descriptions,
+// authorization codes, credentials, tokens, or full upstream response objects.
+export function classifyGitHubOAuthExchangeError(payload) {
+  const code = payload && typeof payload === "object" ? payload.error : null;
+  return typeof code === "string" && GITHUB_OAUTH_EXCHANGE_ERRORS.has(code) ? code : "unknown";
+}
+
 export function hexHash(input) {
   return crypto.subtle.digest("SHA-256", new TextEncoder().encode(input)).then(
     bytes => [...new Uint8Array(bytes)].map(b => b.toString(16).padStart(2, "0")).join("")
@@ -149,7 +163,11 @@ async function callback(req, env) {
   });
   if (!response.ok) return json({ error: "OAuth provider unavailable" }, 502, { "Set-Cookie": cookie(FLOW_COOKIE, "", 0) });
   const tokenData = await response.json();
-  if (!tokenData.access_token) return json({ error: "OAuth exchange failed" }, 401, { "Set-Cookie": cookie(FLOW_COOKIE, "", 0) });
+  if (!tokenData?.access_token) {
+    const reason = classifyGitHubOAuthExchangeError(tokenData);
+    console.warn("GitHub OAuth token exchange rejected", { reason });
+    return json({ error: "OAuth exchange failed", reason }, 401, { "Set-Cookie": cookie(FLOW_COOKIE, "", 0) });
+  }
   const who = await fetch("https://api.github.com/user", {
     headers: { Authorization: "Bearer " + tokenData.access_token, Accept: "application/vnd.github+json", "User-Agent": "kinotch-judgment-learning", "X-GitHub-Api-Version": "2022-11-28" }
   });
