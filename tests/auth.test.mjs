@@ -11,6 +11,10 @@ test("numeric, stable GitHub identity (not username)", () => {
 test("answer validation", () => {
   assert.equal(validAnswer({ questionId: "uiux-001", action: "GO" }), true);
   assert.equal(validAnswer({ questionId: "uiux-001", action: "CORRECT", note: "条件により異なる" }), true);
+  assert.equal(validAnswer({ questionId: "uiux-001", action: "CORRECT", note: "条件により異なる", correctionKind:"premise" }), true);
+  assert.equal(validAnswer({ questionId: "uiux-001", action: "CORRECT", note:"補足", correctionKind:"exception" }), true);
+  assert.equal(validAnswer({ questionId: "uiux-001", action: "CORRECT", note:"補足", correctionKind:"unknown" }), false);
+  assert.equal(validAnswer({ questionId: "uiux-001", action: "GO", correctionKind:"premise" }), false);
   assert.equal(validAnswer({ questionId: "uiux-001", action: "CORRECT" }), false);
   assert.equal(validAnswer({ questionId: "uiux-001", action: "ADMIN" }), false);
   assert.equal(validAnswer({ questionId: "../../secret", action: "GO" }), false);
