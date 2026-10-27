@@ -95,7 +95,13 @@ function protectedAssetHeaders(response) {
 }
 
 async function login(req, env) {
-  if (!env.GITHUB_CLIENT_ID || !env.GITHUB_CLIENT_SECRET || !env.OWNER_GITHUB_USER_ID || !env.DB || !env.AUTH_RATE_LIMIT) return json({ error: "Authentication not configured" }, 503);
+  // Log binding names only to private Worker logs; never log values or expose details to callers.
+  const requiredBindings = ["GITHUB_CLIENT_ID", "GITHUB_CLIENT_SECRET", "OWNER_GITHUB_USER_ID", "DB", "AUTH_RATE_LIMIT"];
+  const missingBindings = requiredBindings.filter(name => !env[name]);
+  if (missingBindings.length) {
+    console.warn("OAuth runtime configuration incomplete", { missingBindings });
+    return json({ error: "Authentication not configured" }, 503);
+  }
   // Cloudflare supplies CF-Connecting-IP at the edge; do not accept a caller
   // supplied query parameter or user identity as a rate-limit key.
   const key = req.headers.get("CF-Connecting-IP") || "unidentified";

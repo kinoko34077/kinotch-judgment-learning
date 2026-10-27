@@ -169,3 +169,25 @@ test("expired session must be rejected even if cookie contains known owner ident
   const res=await worker.fetch(new Request(host+"/api/me",{headers:{Cookie:"__Host-knt_session="+cookie}}),e);
   assert.equal(res.status,401);
 });
+
+test("missing OAuth runtime binding logs names only and preserves generic 503", async () => {
+  const missing = ["GITHUB_CLIENT_ID", "GITHUB_CLIENT_SECRET", "OWNER_GITHUB_USER_ID", "DB", "AUTH_RATE_LIMIT"];
+  for (const key of missing) {
+    const e = env(createDB());
+    delete e[key];
+    const logs = [];
+    const originalWarn = console.warn;
+    console.warn = (...args) => logs.push(args);
+    try {
+      const response = await worker.fetch(new Request(host + "/auth/start"), e);
+      assert.equal(response.status, 503);
+      assert.deepEqual(await response.json(), {error:"Authentication not configured"});
+      assert.equal(logs.length, 1);
+      assert.equal(logs[0][0], "OAuth runtime configuration incomplete");
+      assert.deepEqual(logs[0][1].missingBindings, [key]);
+      assert.doesNotMatch(JSON.stringify(logs), /unit-test-secret|unit-client|123456/);
+    } finally {
+      console.warn = originalWarn;
+    }
+  }
+});
