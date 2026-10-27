@@ -79,8 +79,8 @@ try {
   assert.equal(privatePage.headers.get("Cache-Control"), "no-store");
   assert.equal(privatePage.headers.get("X-Frame-Options"), "DENY");
 
-  const rejected = await request("/api/history");
-  assert.equal(rejected.status, 401, "Anonymous personal API access must fail");
+  const rejected = await request("/api/me");
+  assert.equal(rejected.status, 401, "Anonymous owner-only API access must fail");
   assert.equal(rejected.headers.get("Cache-Control"), "no-store");
 
   const domains = await request("/api/domains", { headers: { Cookie: cookie } });
