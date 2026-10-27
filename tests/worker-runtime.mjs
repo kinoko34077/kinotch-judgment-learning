@@ -135,8 +135,12 @@ try {
   assert.equal((await review.json()).question.id,"uiux-001");
   const publicDeferred = await request("/api/history");
   assert.equal((await publicDeferred.json()).history[0].action,"SKIP");
-  const resolved = await post("/api/answer",{questionId:"uiux-001",action:"GO"});
+  const resolved = await post("/api/answer",{questionId:"uiux-001",action:"CORRECT",correctionKind:"premise",note:"設問の前提を修正"});
   assert.equal(resolved.status,200);
+  const typedHistory = await request("/api/history");
+  const typedEntries = (await typedHistory.json()).history;
+  assert.equal(typedEntries[0].correction_kind,"premise");
+  assert.equal(typedEntries[0].action,"CORRECT");
   const finalPending = await request("/api/next?domain=uiux",{headers:{Cookie:cookie}});
   assert.equal((await finalPending.json()).pendingCount,0);
   const cleanup = await post("/api/undo",{questionId:"uiux-001"});

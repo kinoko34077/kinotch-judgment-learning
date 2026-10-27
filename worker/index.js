@@ -1,6 +1,7 @@
 const SESSION_COOKIE = "__Host-knt_session";
 const FLOW_COOKIE = "__Host-knt_oauth";
 const WEEK = 7 * 86400;
+const CORRECTION_KINDS = new Set(["alternative", "partial", "premise", "exception", "supplement", "unspecified"]);
 
 const GITHUB_OAUTH_EXCHANGE_ERRORS = new Set([
   "incorrect_client_credentials",
@@ -34,7 +35,12 @@ export function validAnswer(input) {
   if (!["GO", "CORRECT", "SKIP"].includes(input.action)) return false;
   if (input.answer != null && (typeof input.answer !== "string" || input.answer.length > 1000)) return false;
   if (input.note != null && (typeof input.note !== "string" || input.note.length > 3000)) return false;
-  if (input.action === "CORRECT" && !(String(input.answer ?? "") + String(input.note ?? "")).trim()) return false;
+  if (input.action === "CORRECT") {
+    if (!(String(input.answer ?? "") + String(input.note ?? "")).trim()) return false;
+    if (input.correctionKind != null && !CORRECTION_KINDS.has(input.correctionKind)) return false;
+  } else if (input.correctionKind != null && input.correctionKind !== "") {
+    return false;
+  }
   return true;
 }
 function cookieValue(req, name) {
@@ -187,7 +193,7 @@ async function api(req, env, url) {
   // GET route is public; all mutation and owner-workspace APIs remain gated.
   if (req.method === "GET" && p === "/api/history") {
     if (!env.DB || !env.OWNER_GITHUB_USER_ID) return json({ error: "Data unavailable" }, 503);
-    const rows = await env.DB.prepare("SELECT r.question_id, r.action, r.answer, r.note, r.updated_at, r.revision, q.prompt, q.domain_id FROM responses r JOIN questions q ON q.id = r.question_id WHERE r.owner_id = ? ORDER BY r.updated_at DESC LIMIT 100").bind(String(env.OWNER_GITHUB_USER_ID)).all();
+    const rows = await env.DB.prepare("SELECT r.question_id, r.action, r.answer, r.note, r.correction_kind, r.updated_at, r.revision, q.prompt, q.domain_id FROM responses r JOIN questions q ON q.id = r.question_id WHERE r.owner_id = ? ORDER BY r.updated_at DESC LIMIT 100").bind(String(env.OWNER_GITHUB_USER_ID)).all();
     return json({ history: rows.results });
   }
   if (!(await auth(req, env))) return json({ error: "Unauthorized" }, 401);
@@ -217,9 +223,10 @@ async function api(req, env, url) {
     if (!exists) return json({ error: "Unknown question" }, 404);
     const owner = String(env.OWNER_GITHUB_USER_ID);
     const now = Date.now();
+    const kind = data.action === "CORRECT" ? (data.correctionKind || "unspecified") : "";
     await env.DB.batch([
-      env.DB.prepare("INSERT INTO responses (owner_id, question_id, action, answer, note, updated_at, revision) VALUES (?, ?, ?, ?, ?, ?, 1) ON CONFLICT(owner_id, question_id) DO UPDATE SET action=excluded.action, answer=excluded.answer, note=excluded.note, updated_at=excluded.updated_at, revision=revision+1").bind(owner, data.questionId, data.action, String(data.answer || ""), String(data.note || ""), now),
-      env.DB.prepare("INSERT INTO response_events (owner_id, question_id, action, answer, note, created_at) VALUES (?, ?, ?, ?, ?, ?)").bind(owner, data.questionId, data.action, String(data.answer || ""), String(data.note || ""), now)
+      env.DB.prepare("INSERT INTO responses (owner_id, question_id, action, answer, note, updated_at, revision, correction_kind) VALUES (?, ?, ?, ?, ?, ?, 1, ?) ON CONFLICT(owner_id, question_id) DO UPDATE SET action=excluded.action, answer=excluded.answer, note=excluded.note, updated_at=excluded.updated_at, correction_kind=excluded.correction_kind, revision=revision+1").bind(owner, data.questionId, data.action, String(data.answer || ""), String(data.note || ""), now, kind),
+      env.DB.prepare("INSERT INTO response_events (owner_id, question_id, action, answer, note, created_at, correction_kind) VALUES (?, ?, ?, ?, ?, ?, ?)").bind(owner, data.questionId, data.action, String(data.answer || ""), String(data.note || ""), now, kind)
     ]);
     return json({ saved: true });
   }

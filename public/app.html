@@ -10,7 +10,7 @@
 <div class="answer"><small>AIの初期回答</small><strong id="ai-answer"></strong><p id="ai-reason"></p></div>
 <div class="muted options" id="options"></div><p class="muted" id="source"></p>
 <div class="actions"><button class="button primary" id="go" type="button">✓ GO</button><button class="button secondary" id="edit" type="button">修正・補足</button><button class="button secondary" id="skip" type="button">保留</button></div>
-<form id="correction" hidden><h3>差分の入力</h3><label for="answer">採用する案・別解（任意）</label><input id="answer" maxlength="1000" placeholder="別の選択肢や構造を指定">
+<form id="correction" hidden><h3>差分の入力</h3><label for="correction-kind">修正の種類</label><select id="correction-kind" name="correctionKind"><option value="alternative">別案・選択肢の変更</option><option value="partial">部分修正</option><option value="premise">問題の前提訂正</option><option value="exception">例外条件の追加</option><option value="supplement">補足・条件追加</option></select><label for="answer">採用する案・別解（任意）</label><input id="answer" maxlength="1000" placeholder="別の選択肢や構造を指定">
 <label for="note">修正内容・条件・例外（任意）</label><textarea id="note" rows="4" maxlength="3000" placeholder="違う部分だけ記入してください"></textarea>
 <div class="actions"><button class="button primary" type="submit">修正を保存</button><button id="cancel" class="button secondary" type="button">キャンセル</button></div></form></article>
 <section class="history"><div class="row"><h2>最近の回答</h2><button class="button secondary" type="button" id="refresh">更新</button></div><div id="history">回答なし</div></section>

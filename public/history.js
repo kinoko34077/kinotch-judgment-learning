@@ -17,6 +17,7 @@ try {
     const row = add("article", "", "history-item");
     row.append(add("small", item.domain_id + " / " + ({GO:"GO",CORRECT:"修正",SKIP:"保留"}[item.action] || item.action) + " / " + new Date(item.updated_at).toLocaleString("ja-JP")));
     row.append(add("p", item.prompt));
+    if (item.action === "CORRECT") row.append(add("small", "修正種別: " + ({alternative:"別案",partial:"部分修正",premise:"前提訂正",exception:"例外",supplement:"補足",unspecified:"未分類"}[item.correction_kind] || "未分類")));
     if (item.answer) row.append(add("p", "採用案: " + item.answer));
     if (item.note) row.append(add("p", "補足: " + item.note));
     list.append(row);

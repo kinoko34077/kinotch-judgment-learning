@@ -51,6 +51,7 @@ async function refreshHistory() {
     details.append(element("small", item.domain_id + " / " + item.action + " / 更新 " + new Date(item.updated_at).toLocaleString("ja-JP")));
     details.append(element("p", item.prompt));
     const correction = [item.answer, item.note].filter(Boolean).join(" / ");
+    if (item.action === "CORRECT") details.append(element("small", "修正種別: " + ({alternative:"別案",partial:"部分修正",premise:"前提訂正",exception:"例外",supplement:"補足",unspecified:"未分類"}[item.correction_kind] || "未分類")));
     if (correction) details.append(element("p", correction));
     const undo = element("button", "取り消し", "button secondary");
     undo.type = "button";
@@ -64,12 +65,12 @@ async function refreshHistory() {
     root.append(row);
   }
 }
-async function save(action, answer = "", note = "") {
+async function save(action, answer = "", note = "", correctionKind = "") {
   if (!question) return;
   const buttons = [...el("question").querySelectorAll("button")];
   buttons.forEach(b => { b.disabled = true; });
   try {
-    await request("/api/answer", { questionId: question.id, action, answer, note });
+    await request("/api/answer", { questionId: question.id, action, answer, note, ...(action === "CORRECT" ? { correctionKind } : {}) });
     await Promise.all([nextQuestion(), refreshHistory()]);
   } catch (e) { status(e.message); }
   finally { buttons.forEach(b => { b.disabled = false; }); }
@@ -103,9 +104,10 @@ el("correction").addEventListener("submit", event => {
   event.preventDefault();
   const answer = el("answer").value.trim();
   const note = el("note").value.trim();
+  const kind = el("correction-kind").value;
   if (!answer && !note) { status("修正内容か採用案を入力してください。"); return; }
   el("correction").reset();
-  save("CORRECT", answer, note);
+  save("CORRECT", answer, note, kind);
 });
 el("refresh").addEventListener("click", () => refreshHistory().catch(e => status(e.message)));
 el("logout").addEventListener("click", async () => {
