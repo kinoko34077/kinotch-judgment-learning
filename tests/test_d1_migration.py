@@ -35,6 +35,26 @@ assert db.execute("SELECT COUNT(*) FROM oauth_pending").fetchone()[0] == 1998
 assert db.execute("SELECT MIN(expires_at) FROM oauth_pending").fetchone()[0] == 200
 
 
+# Additive 0003 must preserve legacy rows and events without rewriting them.
+db.execute("""INSERT INTO responses(owner_id, question_id, action, answer, note, updated_at)
+VALUES ('999', 'music-001', 'GO', '', '', 100)""")
+db.execute("""INSERT INTO response_events(owner_id, question_id, action, answer, note, created_at)
+VALUES ('999', 'music-001', 'GO', '', '', 100)""")
+correction_sql = Path("migrations/0003_correction_kind.sql").read_text(encoding="utf-8")
+db.executescript(correction_sql)
+assert db.execute("SELECT correction_kind FROM responses WHERE owner_id='999'").fetchone() == ("",)
+assert db.execute("SELECT correction_kind FROM response_events WHERE owner_id='999'").fetchone() == ("",)
+db.execute("""INSERT INTO responses(owner_id, question_id, action, answer, note, updated_at, correction_kind)
+VALUES ('999', 'software-001', 'CORRECT', '', 'precondition', 200, 'premise')""")
+assert db.execute("SELECT correction_kind FROM responses WHERE question_id='software-001' AND owner_id='999'").fetchone() == ("premise",)
+try:
+    db.execute("""INSERT INTO responses(owner_id, question_id, action, answer, note, updated_at, correction_kind)
+    VALUES ('999', 'uiux-001', 'CORRECT', '', 'bad', 200, 'INVALID')""")
+except sqlite3.IntegrityError:
+    pass
+else:
+    raise AssertionError("Unrecognized correction type stored")
+
 # Owner responses are keyed to a distinct GitHub numeric identity.
 db.execute("""INSERT INTO responses(owner_id, question_id, action, answer, note, updated_at)
 VALUES ('111', 'uiux-001', 'GO', '', '', 100)""")
