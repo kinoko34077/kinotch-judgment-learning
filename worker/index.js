@@ -1,3 +1,4 @@
+import { listResearchPreviews, evaluateResearchPreview } from "./research-preview.js";
 const SESSION_COOKIE = "__Host-knt_session";
 const FLOW_COOKIE = "__Host-knt_oauth";
 const WEEK = 7 * 86400;
@@ -198,6 +199,23 @@ async function api(req, env, url) {
   }
   if (!(await auth(req, env))) return json({ error: "Unauthorized" }, 401);
   if (req.method === "GET" && p === "/api/me") return json({ owner: true });
+  if (req.method === "GET" && p === "/api/research/seeds")
+    return json({ researchOnly: true, seeds: listResearchPreviews() });
+  if (req.method === "POST" && p === "/api/research/evaluate") {
+    if (!checkMutation(req, env)) return json({ error: "Origin and JSON content type required" }, 403);
+    let payload;
+    try { payload = await readSmallJSON(req); }
+    catch { return json({ error: "Invalid JSON or body too large" }, 400); }
+    if (!payload || typeof payload !== "object" || Array.isArray(payload) ||
+        Object.keys(payload).some(key => !["seedId", "selections"].includes(key)))
+      return json({ error: "Invalid research preview request" }, 400);
+    try { return json({ researchOnly: true, evaluation: evaluateResearchPreview(payload.seedId, payload.selections) }); }
+    catch (e) {
+      if (e instanceof TypeError) return json({ error: "Invalid research preview request" }, 400);
+      throw e;
+    }
+  }
+
   if (req.method === "GET" && p === "/api/domains") {
     const rows = await env.DB.prepare("SELECT id, name FROM domains ORDER BY id").all();
     return json({ domains: rows.results });

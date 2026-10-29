@@ -83,6 +83,27 @@ try {
   assert.equal(rejected.status, 401, "Anonymous owner-only API access must fail");
   assert.equal(rejected.headers.get("Cache-Control"), "no-store");
 
+  // Research-only adapter is owner-gated and never inserts response rows.
+  const previewAnon = await request("/api/research/seeds");
+  assert.equal(previewAnon.status, 401, "No public access to research preview");
+  const previewOwner = await request("/api/research/seeds", { headers: {Cookie:cookie} });
+  assert.equal(previewOwner.status, 200);
+  const previewList = await previewOwner.json();
+  assert.equal(previewList.researchOnly, true);
+  assert.equal(previewList.seeds.length, 14);
+  assert.ok(previewList.seeds.every(s => s.previewOnly && !s.runtimeEligible));
+  const researchPost = await request("/api/research/evaluate", {
+    method:"POST", headers:{Cookie:cookie,Origin:"https://example.workers.dev","Content-Type":"application/json"},
+    body:JSON.stringify({seedId:"Q-BAS-001",selections:{}})
+  });
+  assert.equal(researchPost.status, 200);
+  const researchResult = await researchPost.json();
+  assert.equal(researchResult.evaluation.status, "defer_missing_context");
+  assert.equal(researchResult.evaluation.go_recorded,false);
+  assert.equal(researchResult.evaluation.rule_actionable,false);
+  const previewRows = await request("/api/history");
+  assert.equal((await previewRows.json()).history.length, 0, "No D1 history writes from research preview");
+
   const domains = await request("/api/domains", { headers: { Cookie: cookie } });
   assert.equal(domains.status, 200);
   assert.equal((await domains.json()).domains.length, 3);
