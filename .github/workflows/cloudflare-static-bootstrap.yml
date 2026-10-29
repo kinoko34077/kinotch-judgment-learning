@@ -25,6 +25,8 @@ jobs:
         run: |
           node --check worker/index.js
           node --check public/app.js
+          node --check worker/research-preview.js
+          node --check public/research-preview.js
       - name: Validate private routes, owner allowlist and session protections
         run: npm test
       - name: Verify actual local Cloudflare Worker routing and isolated D1
