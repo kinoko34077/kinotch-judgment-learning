@@ -13,5 +13,15 @@
 <form id="correction" hidden><h3>差分の入力</h3><label for="correction-kind">修正の種類</label><select id="correction-kind" name="correctionKind"><option value="alternative">別案・選択肢の変更</option><option value="partial">部分修正</option><option value="premise">問題の前提訂正</option><option value="exception">例外条件の追加</option><option value="supplement">補足・条件追加</option></select><label for="answer">採用する案・別解（任意）</label><input id="answer" maxlength="1000" placeholder="別の選択肢や構造を指定">
 <label for="note">修正内容・条件・例外（任意）</label><textarea id="note" rows="4" maxlength="3000" placeholder="違う部分だけ記入してください"></textarea>
 <div class="actions"><button class="button primary" type="submit">修正を保存</button><button id="cancel" class="button secondary" type="button">キャンセル</button></div></form></article>
+<section class="history" aria-labelledby="research-preview-title">
+<h2 id="research-preview-title">研究候補の条件確認</h2>
+<p class="muted">研究資料にある未承認の例を条件別に確認します。通常の設問・GO・回答履歴には保存されず、AIが新しく生成した問題でもありません。</p>
+<label for="research-seed">研究例</label><select id="research-seed"><option>読み込み中…</option></select>
+<div id="research-description" class="answer" aria-live="polite"></div>
+<form id="research-form"><fieldset><legend>明示的な条件（不明な項目は未選択）</legend><div id="research-facts"></div></fieldset>
+<button type="submit" class="button secondary">条件を評価（保存しない）</button></form>
+<p id="research-outcome" role="status" aria-live="polite"></p>
+</section>
+<script type="module" src="/research-preview.js"></script>
 <section class="history"><div class="row"><h2>最近の回答</h2><button class="button secondary" type="button" id="refresh">更新</button></div><div id="history">回答なし</div></section>
 <footer>回答は非公開の個人ストレージに保存されます。公開GitHubリポジトリには記録されません。</footer></main></body></html>
