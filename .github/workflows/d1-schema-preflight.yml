@@ -40,6 +40,7 @@ jobs:
               assert len(limits) == 1 and limits[0].get('name') == 'AUTH_RATE_LIMIT'
           assert __import__('pathlib').Path('migrations/0002_oauth_pending_expiry.sql').is_file()
           assert __import__('pathlib').Path('migrations/0003_correction_kind.sql').is_file()
+          assert __import__('pathlib').Path('migrations/0004_source_backed_questions.sql').is_file()
           PY
       - name: Wrangler deployment dry run only
         run: npx --yes wrangler@4.151.1 deploy --dry-run --outdir /tmp/kjl-d1-migration-preflight
