@@ -69,4 +69,22 @@ except sqlite3.IntegrityError:
     pass
 else:
     raise AssertionError("Invalid foreign key accepted")
-print("Phase 1 D1 migration: schema, seeds, idempotence, owner separation and FK OK")
+# Additional P2 questions are SOURCE-BOUNDED fixed proposals, never
+# model-generated personal rules. Existing owner answers must survive.
+evidence_sql = Path("migrations/0004_source_backed_questions.sql").read_text(encoding="utf-8")
+original_owner_rows = db.execute("SELECT COUNT(*) FROM responses").fetchone()[0]
+db.executescript(evidence_sql)
+assert db.execute("SELECT COUNT(*) FROM questions").fetchone()[0] == 5
+rows = db.execute("""SELECT id, ai_answer, source_note FROM questions
+  WHERE id LIKE 'uiux-src-%' ORDER BY id""").fetchall()
+assert len(rows) == 2
+assert {r[0] for r in rows} == {"uiux-src-uswds-table", "uiux-src-wcag257"}
+assert {r[1] for r in rows} == {"B"}
+assert all("AI自動生成ではない" in row[2] for row in rows)
+assert "CHECK-USWDS-TABLE" in rows[0][2] and "designsystem.digital.gov" in rows[0][2]
+assert "CHECK-WCAG22-257" in rows[1][2] and "w3.org/TR/WCAG22" in rows[1][2]
+db.executescript(evidence_sql)
+assert db.execute("SELECT COUNT(*) FROM questions").fetchone()[0] == 5
+assert db.execute("SELECT COUNT(*) FROM responses").fetchone()[0] == original_owner_rows
+
+print("Phase 1 + P2 D1 migration: schema, seeds, idempotence, owner separation and FK OK")

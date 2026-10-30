@@ -36,7 +36,26 @@ async function nextQuestion(pending = false) {
   el("ai-answer").textContent = question.aiAnswer;
   el("ai-reason").textContent = question.aiReason;
   el("options").textContent = (question.choices || []).join("\n");
-  el("source").textContent = question.source || "";
+  const sourceEl = el("source");
+  sourceEl.replaceChildren();
+  const sourceText = String(question.source || "");
+  sourceEl.append(document.createTextNode(sourceText));
+  // Allow the user to inspect the actual cited primary-source page; static
+  // evidence URLs remain textContent, not arbitrary markup from the database.
+  const match = sourceText.match(/https:\/\/[^\s;）]+/);
+  if (match) {
+    try {
+      const url = new URL(match[0]);
+      if (url.protocol === "https:") {
+        const citation = document.createElement("a");
+        citation.href = url.href;
+        citation.rel = "noopener noreferrer";
+        citation.target = "_blank";
+        citation.textContent = " 出典を開く";
+        sourceEl.append(citation);
+      }
+    } catch { /* Unparseable legacy source metadata stays plain text. */ }
+  }
   el("question").hidden = false;
   status("妥当ならGO、異なる場合だけ修正してください。");
 }
