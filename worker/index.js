@@ -1,4 +1,5 @@
 import { listResearchPreviews, evaluateResearchPreview } from "./research-preview.js";
+import { extractCorrectionMaterials } from "./correction-material.js";
 const SESSION_COOKIE = "__Host-knt_session";
 const FLOW_COOKIE = "__Host-knt_oauth";
 const WEEK = 7 * 86400;
@@ -199,6 +200,12 @@ async function api(req, env, url) {
   }
   if (!(await auth(req, env))) return json({ error: "Unauthorized" }, 401);
   if (req.method === "GET" && p === "/api/me") return json({ owner: true });
+  if (req.method === "GET" && p === "/api/correction-materials") {
+    // Owner-only. Inference inputs are read directly from current responses,
+    // so UNDO immediately removes the corresponding tentative material.
+    const rows = await env.DB.prepare("SELECT r.question_id, r.action, r.answer, r.note, r.correction_kind, r.revision, q.domain_id, q.prompt, q.ai_answer, q.ai_reason FROM responses r JOIN questions q ON q.id = r.question_id WHERE r.owner_id = ? AND r.action = 'CORRECT' ORDER BY r.updated_at DESC LIMIT 100").bind(String(env.OWNER_GITHUB_USER_ID)).all();
+    return json({ materialOnly: true, candidates: extractCorrectionMaterials(rows.results) });
+  }
   if (req.method === "GET" && p === "/api/research/seeds")
     return json({ researchOnly: true, seeds: listResearchPreviews() });
   if (req.method === "POST" && p === "/api/research/evaluate") {
