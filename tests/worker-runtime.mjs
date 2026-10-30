@@ -150,7 +150,20 @@ try {
   assert.equal(deferred.status, 200);
   const standardNext = await request("/api/next?domain=uiux",{headers:{Cookie:cookie}});
   const standardResult = await standardNext.json();
-  assert.equal(standardResult.question, null);
+  assert.equal(standardResult.question.id, "uiux-src-uswds-table");
+  assert.match(standardResult.question.source, /CHECK-USWDS-TABLE/);
+  // A real source-backed fixed case must support the same owner GO + undo
+  // persistence contract without changing any original illustrative answer.
+  const evidenceSave = await post("/api/answer",{questionId:"uiux-src-uswds-table",action:"GO"});
+  assert.equal(evidenceSave.status,200);
+  const evidenceHistory = await request("/api/history");
+  assert.ok((await evidenceHistory.json()).history.some(r=>r.question_id==="uiux-src-uswds-table"));
+  const evidenceNext = await request("/api/next?domain=uiux",{headers:{Cookie:cookie}});
+  const sourceCase = (await evidenceNext.json()).question;
+  assert.equal(sourceCase.id,"uiux-src-wcag257");
+  assert.match(sourceCase.source,/CHECK-WCAG22-257/);
+  const evidenceUndo = await post("/api/undo",{questionId:"uiux-src-uswds-table"});
+  assert.equal(evidenceUndo.status,200);
   assert.equal(standardResult.pendingCount, 1);
   const review = await request("/api/next?domain=uiux&pending=1",{headers:{Cookie:cookie}});
   assert.equal((await review.json()).question.id,"uiux-001");
