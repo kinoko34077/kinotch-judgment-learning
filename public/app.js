@@ -77,12 +77,39 @@ async function refreshHistory() {
     undo.addEventListener("click", async () => {
       if (!confirm("この回答を取り消して、再度出題できるようにしますか？")) return;
       undo.disabled = true;
-      try { await request("/api/undo", { questionId: item.question_id }); await refreshHistory(); await nextQuestion(); }
+      try { await request("/api/undo", { questionId: item.question_id }); await refreshHistory(); await nextQuestion(); maybeRefreshCorrectionMaterials(); }
       catch (e) { status(e.message); } finally { undo.disabled = false; }
     });
     row.append(details, undo);
     root.append(row);
   }
+}
+async function refreshCorrectionMaterials() {
+  const root = el("correction-material-list");
+  root.textContent = "修正差分を読み込み中…";
+  const data = await request("/api/correction-materials");
+  if (data.materialOnly !== true || !Array.isArray(data.candidates)) throw Error("差分レスポンスが不正です");
+  root.replaceChildren();
+  if (!data.candidates.length) {
+    root.textContent = "修正済みの回答がありません。GOだけでは一般規則候補を作成しません。";
+    return;
+  }
+  for (const material of data.candidates) {
+    const card = element("article", "", "history-item");
+    card.append(element("strong", material.question));
+    card.append(element("p", "元の提案: " + (material.baseline?.proposal || "")));
+    card.append(element("p", "修正区分: " + material.correction.kindLabel));
+    if (material.correction.alternative) card.append(element("p", "採用案: " + material.correction.alternative));
+    if (material.correction.note) card.append(element("p", "修正原文: " + material.correction.note));
+    card.append(element("p", "次に検証する対象: " + material.nextCheck.target));
+    card.append(element("p", "確認方針: " + material.nextCheck.suggestion));
+    card.append(element("small", "元回答 " + material.source.questionId + " / revision " +
+      material.source.revision + " ／ この設問だけの未検証素材。一般化・承認・外部AI供給は未実施。"));
+    root.append(card);
+  }
+}
+function maybeRefreshCorrectionMaterials() {
+  if (el("correction-material-panel").open) refreshCorrectionMaterials().catch(e => status(e.message));
 }
 async function save(action, answer = "", note = "", correctionKind = "") {
   if (!question) return;
@@ -91,6 +118,7 @@ async function save(action, answer = "", note = "", correctionKind = "") {
   try {
     await request("/api/answer", { questionId: question.id, action, answer, note, ...(action === "CORRECT" ? { correctionKind } : {}) });
     await Promise.all([nextQuestion(), refreshHistory()]);
+    maybeRefreshCorrectionMaterials();
   } catch (e) { status(e.message); }
   finally { buttons.forEach(b => { b.disabled = false; }); }
 }
@@ -132,4 +160,6 @@ el("refresh").addEventListener("click", () => refreshHistory().catch(e => status
 el("logout").addEventListener("click", async () => {
   try { await request("/auth/logout", {}); location.replace("/"); } catch (e) { status(e.message); }
 });
+el("refresh-correction-material").addEventListener("click", () => refreshCorrectionMaterials().catch(e => status(e.message)));
+el("correction-material-panel").addEventListener("toggle", maybeRefreshCorrectionMaterials);
 init();

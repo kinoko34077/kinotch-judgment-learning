@@ -31,7 +31,7 @@ test("public history is readable without owner identity but cannot expose sessio
 });
 test("nonowner is still rejected from owner-only question and mutation APIs", async () => {
   const guarded = env(123457);
-  for (const path of ["/api/me", "/api/next?domain=uiux"]) {
+  for (const path of ["/api/me", "/api/next?domain=uiux", "/api/correction-materials"]) {
     const res = await worker.fetch(new Request(origin + path, {headers: { Cookie:"__Host-knt_session="+token }}), guarded);
     assert.equal(res.status, 401);
   }
