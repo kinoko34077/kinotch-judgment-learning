@@ -175,10 +175,31 @@ try {
   const typedEntries = (await typedHistory.json()).history;
   assert.equal(typedEntries[0].correction_kind,"premise");
   assert.equal(typedEntries[0].action,"CORRECT");
+  // The owner can inspect the correction hypothesis material, but an
+  // anonymous visitor cannot access it even though public history is allowed.
+  const ownerMaterials = await request("/api/correction-materials",{headers:{Cookie:cookie}});
+  assert.equal(ownerMaterials.status,200);
+  const candidateBody = await ownerMaterials.json();
+  assert.equal(candidateBody.materialOnly,true);
+  assert.equal(candidateBody.candidates.length,1);
+  const material = candidateBody.candidates[0];
+  assert.equal(material.source.questionId,"uiux-001");
+  assert.equal(material.correction.kind,"premise");
+  assert.equal(material.correction.note,"設問の前提を修正");
+  assert.equal(material.baseline.proposal,"C");
+  assert.equal(material.status,"hypothesis_material_unverified");
+  assert.equal(material.autoApproved,false);
+  assert.equal(material.generalized,false);
+  const anonymousMaterials = await request("/api/correction-materials");
+  assert.equal(anonymousMaterials.status,401);
+
   const finalPending = await request("/api/next?domain=uiux",{headers:{Cookie:cookie}});
   assert.equal((await finalPending.json()).pendingCount,0);
   const cleanup = await post("/api/undo",{questionId:"uiux-001"});
   assert.equal(cleanup.status,200);
+  const afterUndo = await request("/api/correction-materials",{headers:{Cookie:cookie}});
+  assert.deepEqual((await afterUndo.json()).candidates,[]);
+
   console.log("LOCAL WORKER E2E PASS: public/owner routing; DB reads; saved GO, history, undo and replayable question; public GET + owner-only mutations");
 } finally {
   // Killing only npx can orphan its Wrangler subprocess and hang the CI job.
