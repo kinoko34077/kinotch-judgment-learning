@@ -3,11 +3,11 @@
 <link rel="stylesheet" href="/styles.css"><script type="module" src="/app.js"></script></head><body>
 <header><a href="/">KiNoTch. <span>Judgment Learning</span></a><button id="logout" type="button" class="headerbtn">ログアウト</button></header>
 <main class="workspace"><p class="eyebrow">PRIVATE JUDGMENT SESSION</p><h1>判断を確認する</h1>
-<p class="muted">AIが先に選んだ判断をGOか添削で確認。現在の初期設問は概念検証用のサンプルです。</p>
+<p class="muted">出典を明示した事前提案をGOか添削で確認。概念検証用サンプルと、公式資料の限定的な記載に基づく固定設問を区別して扱います。実AIによる動的生成は未実装です。</p>
 <div id="message" role="status" aria-live="polite">読み込み中…</div>
 <label for="domain">学習分野</label><select id="domain" disabled><option>読込中</option></select><button id="review-pending" class="button secondary" type="button" hidden>保留を再開</button>
 <article class="question" id="question" hidden><p class="eyebrow" id="qid"></p><h2 id="prompt"></h2>
-<div class="answer"><small>AIの初期回答</small><strong id="ai-answer"></strong><p id="ai-reason"></p></div>
+<div class="answer"><small>事前提案（現段階は固定案）</small><strong id="ai-answer"></strong><p id="ai-reason"></p></div>
 <div class="muted options" id="options"></div><p class="muted" id="source"></p>
 <div class="actions"><button class="button primary" id="go" type="button">✓ GO</button><button class="button secondary" id="edit" type="button">修正・補足</button><button class="button secondary" id="skip" type="button">保留</button></div>
 <form id="correction" hidden><h3>差分の入力</h3><label for="correction-kind">修正の種類</label><select id="correction-kind" name="correctionKind"><option value="alternative">別案・選択肢の変更</option><option value="partial">部分修正</option><option value="premise">問題の前提訂正</option><option value="exception">例外条件の追加</option><option value="supplement">補足・条件追加</option></select><label for="answer">採用する案・別解（任意）</label><input id="answer" maxlength="1000" placeholder="別の選択肢や構造を指定">
