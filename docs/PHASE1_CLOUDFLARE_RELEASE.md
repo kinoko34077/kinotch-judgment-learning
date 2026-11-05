@@ -48,7 +48,7 @@ Once owner approval is granted and Gate A/B pass, check current-head tests, inde
 4. Exercise at least two domains with GO, correction, skip, undo, logout/re-login, cross-browser or cross-device reload and history persistence. Use **designated throwaway answer data** and remove it only through a defined verified cleanup operation; never expose the owner's actual private history in logs/issues.
 5. Verify public pages and mobile viewport without leaking the private app HTML through aliases. Record pass/fail and exact evidence in Issue #2.
 
-Mocked GitHub OAuth tests and local D1 tests are useful prerequisites but **not** proof of real OAuth or remote persistence.
+Mocked GitHub OAuth tests and local D1 tests are useful prerequisites but **not** proof of real OAuth or remote persistence. CI should prioritize the supported Worker/Node tests, D1 contracts and actual Cloudflare/OAuth acceptance; a Python 3.10/3.11 dual matrix is not a release gate without an explicit Python runtime and compatibility requirement.
 
 ## Rollback and failure boundaries
 
